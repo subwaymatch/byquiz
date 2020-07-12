@@ -1,4 +1,5 @@
 import Head from "next/head";
+import QuizQuestion from "../components/quiz-question";
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
         </h1>
 
         <p className="description">Description here</p>
+
+        <QuizQuestion />
       </main>
 
       <footer>

@@ -1,0 +1,10 @@
+question: What is the capital of London?
+hint: Where is Big Ben?
+choices:
+  - London[o]
+  - Seoul
+  - Lviv
+explanation: |
+  London is the capital of England.
+  Seoul is the capital of South Korea.
+  Lviv is a city in Ukraine.
