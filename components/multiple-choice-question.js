@@ -1,4 +1,4 @@
-export default function QuizQuestion({ quizData }) {
+export default function MultipleChoiceQuestion({ quizData }) {
   console.log(quizData);
 
   return (

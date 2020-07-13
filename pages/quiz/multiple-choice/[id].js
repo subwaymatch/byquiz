@@ -3,7 +3,7 @@ import {
   getAllMultipleChoiceQuizIds,
   getMultipleChoiceQuizData,
 } from "lib/quizzes";
-import MultipleChoiceQuestion from "components/MultipleChoiceQuestion";
+import MultipleChoiceQuestion from "components/multiple-choice-question";
 import Layout from "components/layout";
 
 export default function QuizPage({ quizData }) {

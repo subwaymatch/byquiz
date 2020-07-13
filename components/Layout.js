@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Layout({ children }) {
   return (
@@ -13,7 +14,25 @@ export default function Layout({ children }) {
       </main>
 
       <footer>
-        <div>Mini Quiz App</div>
+        <div>
+          <ul>
+            <li>
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/course">
+                <a>Courses</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/quiz">
+                <a>Question Bank</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </footer>
 
       <style jsx>{`
@@ -57,9 +76,23 @@ export default function Layout({ children }) {
           align-items: center;
         }
 
-        a {
-          color: inherit;
+        footer ul {
+          list-style-type: none;
+        }
+
+        footer li {
+          display: inline-block;
+        }
+
+        footer li > a {
+          color: #ff5544;
+          display: block;
+          padding: 1rem;
           text-decoration: none;
+        }
+
+        footer li > a:hover {
+          color: #dd3322;
         }
       `}</style>
     </div>

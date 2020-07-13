@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Layout from "components/Layout";
+import Layout from "components/layout";
 import { getAllMultipleChoiceQuizIds } from "lib/quizzes";
 export default function QuizHome(props) {
   console.log(props);
@@ -9,7 +9,7 @@ export default function QuizHome(props) {
 
       {/* {multipleChoiceQuizzes.map((q) => (
         <Link
-          to="/quiz/multiple-choice/[id]"
+          href="/quiz/multiple-choice/[id]"
           as={`/quiz/multiple-choice/${q.id}`}
         >
           <a className="quiz-link">{q.id}</a>
