@@ -1,3 +1,11 @@
 a.quiz-link {
   display: block;
+  border-top: 1px solid #ddd;
+  padding: 1rem 0;
+  color: #777;
+
+  &:hover {
+    color: #ff5544;
+    border-color: #ff5544;
+  }
 }
