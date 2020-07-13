@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import {
   getAllMultipleChoiceQuizIds,
   getMultipleChoiceQuizData,
-} from "../../../lib/quizzes";
-import MultipleChoiceQuestion from "../../../components/MultipleChoiceQuestion";
+} from "lib/quizzes";
+import MultipleChoiceQuestion from "components/MultipleChoiceQuestion";
+import Layout from "components/layout";
 
 export default function QuizPage({ quizData }) {
   console.log(quizData);
@@ -12,10 +13,10 @@ export default function QuizPage({ quizData }) {
   const { id: quizId } = router.query;
 
   return (
-    <div>
+    <Layout>
       <div>Quiz: {quizId}</div>
       <MultipleChoiceQuestion quizData={quizData} />
-    </div>
+    </Layout>
   );
 }
 
