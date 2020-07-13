@@ -1,0 +1,9 @@
+text: What is 4 x 4 x 4?
+hint: 4 x 4 is 16. What is 16 x 4?
+options:
+  - 16
+  - 32
+  - 64[o]
+  - 128
+explanation: |
+  First, multiply 4 by 4. That gives you 16. Multiply that by 4 again. 16 x 4 = 64.

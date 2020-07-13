@@ -1,5 +1,5 @@
 text: What is the capital of London?
-hint: Where is Big Ben?
+hint: Which city is Big Ben located in?
 options:
   - London[o]
   - Seoul
