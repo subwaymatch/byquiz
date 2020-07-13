@@ -4,7 +4,7 @@ import {
   getMultipleChoiceQuizData,
 } from "lib/quizzes";
 import MultipleChoiceQuestion from "components/multiple-choice-question";
-import Layout from "components/layout";
+import Layout from "components/app-layout";
 
 export default function QuizPage({ quizData }) {
   console.log(quizData);

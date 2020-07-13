@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Layout from "components/layout";
+import Layout from "components/app-layout";
 import { getAllMultipleChoiceQuizIds } from "lib/quizzes";
 
 import styles from "./index.module.scss";
