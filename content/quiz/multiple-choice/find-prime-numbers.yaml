@@ -1,0 +1,9 @@
+text: Which of the following is a prime number?
+hint: 4 can be divided by 2.
+options:
+  - 2[o]
+  - 3[o]
+  - 4
+  - 5[o]
+explanation: |
+  Both 2, 3, and 5 cannot be divided by any number other than 1 and themselves.

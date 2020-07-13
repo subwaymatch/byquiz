@@ -58,7 +58,6 @@ export default function Layout({ children }) {
 
         .main-content {
           max-width: 700px;
-          background: #fc3;
         }
 
         footer {
