@@ -1,5 +1,3 @@
-import data from "../content/quiz/multiple-choice/london-capital.yaml";
-
 export default function QuizQuestion({ quizData }) {
   console.log(quizData);
 

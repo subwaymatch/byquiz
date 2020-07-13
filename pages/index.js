@@ -1,5 +1,5 @@
 import Head from "next/head";
-import QuizQuestion from "../components/MultipleChoiceQuestion";
+// import QuizQuestion from "../components/MultipleChoiceQuestion";
 
 export default function Home() {
   return (
@@ -9,9 +9,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <QuizQuestion />
-      </main>
+      <main>Main Page</main>
 
       <footer>
         <div>Mini Quiz App</div>
