@@ -1,4 +1,2 @@
 title: Intro to ByQuiz
-modules:
-  - title: Sample Quiz
-    description: Consists of only multiple choice quizzes
+description: This is a sample course to demonstrate how modules consist a course, and how a module is broken down into one or more pages.
