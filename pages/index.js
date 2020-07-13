@@ -1,5 +1,5 @@
 import Head from "next/head";
-import QuizQuestion from "../components/quiz-question";
+import QuizQuestion from "../components/MultipleChoiceQuestion";
 
 export default function Home() {
   return (
@@ -10,23 +10,11 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className="description">Description here</p>
-
         <QuizQuestion />
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by Vercel
-        </a>
+        <div>Mini Quiz App</div>
       </footer>
 
       <style jsx>{`
@@ -59,7 +47,7 @@ export default function Home() {
           align-items: center;
         }
 
-        footer a {
+        footer > div {
           display: flex;
           justify-content: center;
           align-items: center;

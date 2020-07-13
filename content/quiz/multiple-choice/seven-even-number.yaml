@@ -1,0 +1,8 @@
+text: Is 7 an even number?
+hint: 6 is an even number.
+options:
+  - Yes
+  - No[o]
+explanation: |
+  An even number is an integer of the form n=2k, where k is an integer.
+  7 is in the form of n=2k+1 where k=1.

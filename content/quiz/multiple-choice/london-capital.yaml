@@ -1,6 +1,6 @@
-question: What is the capital of London?
+text: What is the capital of London?
 hint: Where is Big Ben?
-choices:
+options:
   - London[o]
   - Seoul
   - Lviv
