@@ -11,7 +11,7 @@ export default function CourseHome({ courses }) {
       <h2>Courses</h2>
 
       {courses.map((course) => (
-        <Link href="/course/[id]" as={`/course/${course.id}`}>
+        <Link key={course.id} href="/course/[id]" as={`/course/${course.id}`}>
           <a className={styles["course-item"]} key={course.id}>
             <h3>{course.title}</h3>
             <p>{course.description}</p>

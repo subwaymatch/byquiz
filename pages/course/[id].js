@@ -1,12 +1,19 @@
-import { getAllCourses } from "lib/courses";
+import { getCourseData, getAllCourses } from "lib/courses";
 import Layout from "components/layout";
 
-export default function CoursePage(props) {
-  console.log(props);
+export default function CoursePage({ course }) {
+  console.log(course);
 
   return (
     <Layout>
-      <h2>courseData.title</h2>
+      <h2>{course.title}</h2>
+      <p>{course.description}</p>
+
+      <ul>
+        {course.modules.map((cm) => (
+          <li key={cm}>{cm}</li>
+        ))}
+      </ul>
     </Layout>
   );
 }
@@ -27,7 +34,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const course = await getCourseData(params.id);
+
   return {
-    props: params,
+    props: { course },
   };
 }
