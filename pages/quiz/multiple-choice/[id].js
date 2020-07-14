@@ -1,10 +1,9 @@
-import { useRouter } from "next/router";
 import {
   getAllMultipleChoiceQuizzes,
   getMultipleChoiceQuizData,
-} from "lib/quizzes";
-import MultipleChoiceQuestion from "components/multiple-choice-question";
-import Layout from "components/layout";
+} from 'lib/quizzes';
+import MultipleChoiceQuestion from 'components/multiple-choice-question';
+import Layout from 'components/layout';
 
 export default function QuizPage(props) {
   const { id, text, hint, options, explanation } = props;
