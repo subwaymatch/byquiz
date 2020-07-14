@@ -1,21 +1,25 @@
-export default function MultipleChoiceQuestion({ quizData }) {
-  console.log(quizData);
-
+export default function MultipleChoiceQuestion({
+  id,
+  text,
+  options,
+  hint,
+  explanation,
+}) {
   return (
     <div>
-      <h2>{quizData.text}</h2>
+      <h2>{text}</h2>
 
       <div className="choices-wrapper">
-        {quizData.options.map((option, index) => (
+        {options.map((option, index) => (
           <div key={index}>{option}</div>
         ))}
       </div>
 
       <h3>Hint</h3>
-      <div>{quizData.hint}</div>
+      <div>{hint}</div>
 
       <h3>Explanation</h3>
-      <p>{quizData.explanation}</p>
+      <p>{explanation}</p>
     </div>
   );
 }

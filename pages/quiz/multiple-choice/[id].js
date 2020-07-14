@@ -1,40 +1,49 @@
 import { useRouter } from "next/router";
 import {
-  getAllMultipleChoiceQuizIds,
+  getAllMultipleChoiceQuizzes,
   getMultipleChoiceQuizData,
 } from "lib/quizzes";
 import MultipleChoiceQuestion from "components/multiple-choice-question";
-import Layout from "components/app-layout";
+import Layout from "components/layout";
 
-export default function QuizPage({ quizData }) {
-  console.log(quizData);
-
-  const router = useRouter();
-  const { id: quizId } = router.query;
+export default function QuizPage(props) {
+  const { id, text, hint, options, explanation } = props;
 
   return (
     <Layout>
-      <div>Quiz: {quizId}</div>
-      <MultipleChoiceQuestion quizData={quizData} />
+      <div>Quiz ID: {id}</div>
+      <MultipleChoiceQuestion
+        id={id}
+        text={text}
+        hint={hint}
+        options={options}
+        explanation={explanation}
+      />
     </Layout>
   );
 }
 
 export async function getStaticPaths() {
-  const paths = getAllMultipleChoiceQuizIds();
+  const mcQuizzes = await getAllMultipleChoiceQuizzes();
+  const paths = mcQuizzes.map((quiz) => ({
+    params: {
+      id: quiz.id,
+    },
+  }));
 
   return {
-    paths,
+    paths: paths,
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const quizData = getMultipleChoiceQuizData(params.id);
+  const quizData = await getMultipleChoiceQuizData(params.id);
 
   return {
     props: {
-      quizData,
+      id: params.id,
+      ...quizData,
     },
   };
 }

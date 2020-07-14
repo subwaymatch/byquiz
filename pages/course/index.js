@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Layout from "components/app-layout";
+import Layout from "components/layout";
 import { getAllCourses } from "lib/courses";
 import styles from "./index.module.scss";
 

@@ -1,22 +1,21 @@
 import Link from "next/link";
-import Layout from "components/app-layout";
-import { getAllMultipleChoiceQuizIds } from "lib/quizzes";
+import Layout from "components/layout";
+import { getAllMultipleChoiceQuizzes } from "lib/quizzes";
 
 import styles from "./index.module.scss";
 
 export default function QuizHome(props) {
-  console.log(props);
   return (
     <Layout>
       <h2>List of Multiple Choice Quizzes</h2>
 
-      {props.paths.map((path) => (
+      {props.mcQuizzes.map((mcQuiz) => (
         <Link
-          key={path.params.id}
+          key={mcQuiz.id}
           href="/quiz/multiple-choice/[id]"
-          as={`/quiz/multiple-choice/${path.params.id}`}
+          as={`/quiz/multiple-choice/${mcQuiz.id}`}
         >
-          <a className={styles["quiz-link"]}>{path.params.id}</a>
+          <a className={styles["quiz-link"]}>{mcQuiz.id}</a>
         </Link>
       ))}
     </Layout>
@@ -24,11 +23,11 @@ export default function QuizHome(props) {
 }
 
 export async function getStaticProps() {
-  const paths = getAllMultipleChoiceQuizIds();
+  const mcQuizzes = await getAllMultipleChoiceQuizzes();
 
   return {
     props: {
-      paths,
+      mcQuizzes,
     },
   };
 }
