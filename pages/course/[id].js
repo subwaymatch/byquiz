@@ -1,5 +1,5 @@
-import { getCourseData, getAllCourses } from "lib/courses";
-import Layout from "components/layout";
+import { getCourseData, getAllCourses } from 'lib/courses';
+import Layout from 'components/layout';
 
 export default function CoursePage({ course }) {
   console.log(course);

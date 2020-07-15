@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Layout from "components/layout";
-import { getAllCourses } from "lib/courses";
-import styles from "./index.module.scss";
+import Link from 'next/link';
+import Layout from 'components/layout';
+import { getAllCourses } from 'lib/courses';
+import styles from './index.module.scss';
 
 export default function CourseHome({ courses }) {
   console.log(courses);
@@ -12,7 +12,7 @@ export default function CourseHome({ courses }) {
 
       {courses.map((course) => (
         <Link key={course.id} href="/course/[id]" as={`/course/${course.id}`}>
-          <a className={styles["course-item"]} key={course.id}>
+          <a className={styles['course-item']} key={course.id}>
             <h3>{course.title}</h3>
             <p>{course.description}</p>
           </a>

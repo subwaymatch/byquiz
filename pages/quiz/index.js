@@ -1,8 +1,8 @@
-import Link from "next/link";
-import Layout from "components/layout";
-import { getAllMultipleChoiceQuizzes } from "lib/quizzes";
+import Link from 'next/link';
+import Layout from 'components/layout';
+import { getAllMultipleChoiceQuizzes } from 'lib/quizzes';
 
-import styles from "./index.module.scss";
+import styles from './index.module.scss';
 
 export default function QuizHome(props) {
   return (
@@ -15,7 +15,7 @@ export default function QuizHome(props) {
           href="/quiz/multiple-choice/[id]"
           as={`/quiz/multiple-choice/${mcQuiz.id}`}
         >
-          <a className={styles["quiz-link"]}>{mcQuiz.id}</a>
+          <a className={styles['quiz-link']}>{mcQuiz.id}</a>
         </Link>
       ))}
     </Layout>
