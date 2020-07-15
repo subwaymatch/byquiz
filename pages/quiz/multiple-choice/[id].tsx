@@ -4,6 +4,7 @@ import {
 } from 'lib/quizzes';
 import MultipleChoiceQuestion from 'components/multiple-choice-question';
 import Layout from 'components/layout';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 export default function QuizPage(props) {
   const { id, text, hint, options, explanation } = props;
@@ -22,7 +23,7 @@ export default function QuizPage(props) {
   );
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const mcQuizzes = await getAllMultipleChoiceQuizzes();
   const paths = mcQuizzes.map((quiz) => ({
     params: {
@@ -34,9 +35,9 @@ export async function getStaticPaths() {
     paths: paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const quizData = await getMultipleChoiceQuizData(params.id);
 
   return {
@@ -45,4 +46,4 @@ export async function getStaticProps({ params }) {
       ...quizData,
     },
   };
-}
+};
