@@ -1,0 +1,36 @@
+.optionItem {
+  border: 3px solid #ebf5fb;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+
+  &.selected {
+    background-color: #d6eaf8;
+    border-color: #aed6f1;
+  }
+}
+
+button.submitBtn {
+  width: 100%;
+  display: block;
+  color: white;
+  background-color: black;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #222;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #eee;
+  }
+}

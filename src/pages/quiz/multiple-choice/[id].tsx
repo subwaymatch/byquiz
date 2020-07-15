@@ -7,7 +7,7 @@ import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 export default function QuizPage(props) {
-  const { id, text, hint, options, explanation } = props;
+  const { id, text, hint, options, correctOptions, explanation } = props;
 
   return (
     <Layout>
@@ -17,6 +17,7 @@ export default function QuizPage(props) {
         text={text}
         hint={hint}
         options={options}
+        correctOptions={correctOptions}
         explanation={explanation}
       />
     </Layout>
@@ -32,7 +33,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }));
 
   return {
-    paths: paths,
+    paths,
     fallback: false,
   };
 };

@@ -53,11 +53,10 @@ export default function Layout({ children }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          max-width: 720px;
         }
 
         .main-content {
-          max-width: 700px;
+          width: 660px;
         }
 
         footer {
