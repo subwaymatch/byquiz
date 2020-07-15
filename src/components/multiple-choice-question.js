@@ -22,15 +22,25 @@ export default function MultipleChoiceQuestion({
     0
   );
 
+  const isCorrect = selectedOptions.every(
+    (didSelectOption, index) => didSelectOption === correctOptions[index]
+  );
+
   return (
     <div
       className={classNames({
         [`${styles.didSubmit}`]: didSubmit,
-        [`${styles.isCorrect}`]: selectedOptions.every(
-          (didSelectOption, index) => didSelectOption === correctOptions[index]
-        ),
+        [`${styles.isCorrect}`]: isCorrect,
       })}
     >
+      {didSubmit && isCorrect && (
+        <p className={styles.correctMessage}>Yay! You've got this.</p>
+      )}
+
+      {didSubmit && !isCorrect && (
+        <p className={styles.incorrectMessage}>Oops, nice try!</p>
+      )}
+
       <p>
         {text} {numCorrectOptions > 1 && `Select ${numCorrectOptions}`}
       </p>

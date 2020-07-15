@@ -1,4 +1,17 @@
 .didSubmit {
+  .correctMessage,
+  .incorrectMessage {
+    padding: 1rem 0;
+    color: #2ecc71;
+    border-top: 2px solid #2ecc71;
+    border-bottom: 2px solid #2ecc71;
+  }
+
+  .incorrectMessage {
+    color: #e74c3c;
+    border-color: #e74c3c;
+  }
+
   .optionItem.correctOption,
   .optionItem.correctOption.selected {
     color: white;
