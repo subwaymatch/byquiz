@@ -25,9 +25,10 @@ export default function MultipleChoiceQuestion({
   return (
     <div
       className={classNames({
-        'did-submit': didSubmit,
-        'is-correct': false,
-        'is-incorrect': false,
+        [`${styles.didSubmit}`]: didSubmit,
+        [`${styles.isCorrect}`]: selectedOptions.every(
+          (didSelectOption, index) => didSelectOption === correctOptions[index]
+        ),
       })}
     >
       <p>
@@ -39,11 +40,17 @@ export default function MultipleChoiceQuestion({
           <div
             className={classNames({
               [`${styles.optionItem}`]: true,
+              [`${styles.correctOption}`]: correctOptions[index],
               [`${styles.selected}`]: selectedOptions[index],
+              [`${styles.isCorrect}`]:
+                correctOptions[index] === selectedOptions[index],
             })}
             key={index}
             onClick={(e) => {
               e.preventDefault();
+
+              // If already submitted, do nothing
+              if (didSubmit) return;
 
               console.log(`Selected option ${index}`);
 
@@ -56,7 +63,10 @@ export default function MultipleChoiceQuestion({
                 const newSelectedOptions = new Array(options.length).fill(
                   false
                 );
-                newSelectedOptions[index] = true;
+
+                if (!selectedOptions[index]) {
+                  newSelectedOptions[index] = true;
+                }
 
                 setSelectedOptions(newSelectedOptions);
               }
@@ -67,18 +77,28 @@ export default function MultipleChoiceQuestion({
         ))}
       </div>
 
-      {showHint && (
-        <>
-          <h3>Hint</h3>
-          <div>{hint}</div>
-        </>
-      )}
+      <div className={styles.hintBox}>
+        <span
+          className={styles.hintBoxLabel}
+          onClick={() => {
+            setShowHint(!showHint);
+          }}
+        >
+          Hint {showHint ? '▾' : '▴'}
+        </span>
+        {showHint && (
+          <div className={styles.hintContent}>
+            <div>{hint}</div>
+          </div>
+        )}
+      </div>
 
       {didSubmit && (
-        <>
-          <h3>Explanation</h3>
+        <div className={styles.explanationBox}>
+          <span className={styles.explanationBoxLabel}>Explanation</span>
+
           <p>{explanation}</p>
-        </>
+        </div>
       )}
 
       <button
@@ -88,7 +108,7 @@ export default function MultipleChoiceQuestion({
         }}
         disabled={didSubmit}
       >
-        Submit
+        Check Your Answer!
       </button>
     </div>
   );
