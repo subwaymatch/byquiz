@@ -2,8 +2,8 @@ import {
   getAllMultipleChoiceQuizzes,
   getMultipleChoiceQuizData,
 } from 'lib/quizzes';
-import MultipleChoiceQuestion from 'components/multiple-choice-question';
-import Layout from 'components/layout';
+import MultipleChoiceQuestion from 'src/components/multiple-choice-question';
+import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 export default function QuizPage(props) {

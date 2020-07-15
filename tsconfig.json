@@ -20,6 +20,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/course/[id]/[module].js"
+    "src/pages/course/[id]/[module].js"
   ]
 }
