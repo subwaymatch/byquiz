@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const quizData = await getMultipleChoiceQuizData(params.id);
+  const quizData = await getMultipleChoiceQuizData(params.id as string);
 
   return {
     props: {

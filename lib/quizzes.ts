@@ -10,6 +10,7 @@ export type QuizData = {
   text: string;
   hint: string;
   options: (string | number | boolean)[];
+  correctOptions: boolean[];
   explanation: string;
 };
 
@@ -36,7 +37,9 @@ export async function getMultipleChoiceQuizData(
   return quizData;
 }
 
-export async function getAllMultipleChoiceQuizzes() {
+export async function getAllMultipleChoiceQuizzes(): Promise<
+  Array<{ id: string }>
+> {
   const fileNames = fs.readdirSync(multipleChoicePath);
 
   const quizzes = fileNames.map((fileName) => ({
