@@ -4,8 +4,6 @@ import { getAllCourses } from 'lib/courses';
 import styles from './index.module.scss';
 
 export default function CourseHome({ courses }) {
-  console.log(courses);
-
   return (
     <Layout>
       <h2>Courses</h2>
