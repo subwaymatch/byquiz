@@ -5,28 +5,29 @@ import YAML from 'yaml';
 const fsPromises = fs.promises;
 const coursesPath = path.join(process.cwd(), 'content', 'course');
 
-export interface Course {
+export interface ICourse {
+  id: string;
   title: string;
   description: string;
   modules: string[];
 }
 
-export interface CourseModule {
+export interface ICourseModule {
   title: string;
   pages: string[];
 }
 
-export interface CourseModulePage {
+export interface ICourseModulePage {
   title: string;
   quizzes: string[];
   content: string;
 }
 
-export async function getCourseData(courseSlug) {
-  const courseYamlFilePath = path.join(coursesPath, courseSlug, '_course.yaml');
+export async function getCourseData(courseId): Promise<ICourse> {
+  const courseYamlFilePath = path.join(coursesPath, courseId, '_course.yaml');
 
   if (!fs.existsSync(courseYamlFilePath)) {
-    throw new Error(`_course.yaml for ${courseSlug} not found`);
+    throw new Error(`_course.yaml for ${courseId} not found`);
   }
 
   const courseYaml = await fsPromises.readFile(courseYamlFilePath, {
@@ -35,10 +36,10 @@ export async function getCourseData(courseSlug) {
 
   const courseData = YAML.parse(courseYaml);
 
-  return { id: courseSlug, ...courseData };
+  return { id: courseId, ...courseData };
 }
 
-export async function getAllCourses() {
+export async function getAllCourses(): Promise<ICourse[]> {
   const fileNames = await fsPromises.readdir(coursesPath, {
     withFileTypes: true,
   });
@@ -46,7 +47,7 @@ export async function getAllCourses() {
   const courses = fileNames
     .filter((dirent) => dirent.isDirectory())
     .map(async (dirent) => {
-      const courseData = getCourseData(dirent.name);
+      const courseData = await getCourseData(dirent.name);
 
       return courseData;
     });

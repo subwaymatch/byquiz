@@ -1,9 +1,14 @@
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import Layout from 'src/components/layout';
-import { getAllCourses } from 'lib/courses';
+import { getAllCourses, ICourse } from 'lib/courses';
 import styles from './index.module.scss';
 
-export default function CourseHome({ courses }) {
+type CourseHomeTypes = {
+  courses: ICourse[];
+};
+
+export default function CourseHome({ courses }: CourseHomeTypes) {
   return (
     <Layout>
       <h2>Courses</h2>
@@ -20,12 +25,12 @@ export default function CourseHome({ courses }) {
   );
 }
 
-export async function getStaticProps() {
-  const courses = await getAllCourses();
+export const getStaticProps: GetStaticProps = async () => {
+  const courses: ICourse[] = await getAllCourses();
 
   return {
     props: {
       courses,
     },
   };
-}
+};

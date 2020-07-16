@@ -47,7 +47,7 @@ export async function getAllMultipleChoiceQuizzes(): Promise<
 > {
   const fileNames = fs.readdirSync(multipleChoicePath);
   const quizIds = fileNames.map((fileName) => fileName.replace(/\.yaml$/, ''));
-  let quizzes = Promise.all(
+  const quizzes = Promise.all(
     quizIds.map(async (quizId) => await getMultipleChoiceQuiz(quizId))
   );
 

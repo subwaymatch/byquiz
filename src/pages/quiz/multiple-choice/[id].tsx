@@ -7,7 +7,13 @@ import MultipleChoiceQuiz from 'src/components/multiple-choice-quiz';
 import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function QuizPage({ quiz }: { quiz: IMultipleChoiceQuiz }) {
+type MultipleChoiceQuizPageProps = {
+  quiz: IMultipleChoiceQuiz;
+};
+
+export default function MultipleChoiceQuizPage({
+  quiz,
+}: MultipleChoiceQuizPageProps) {
   return (
     <Layout>
       <div>Quiz ID: {quiz.id}</div>
