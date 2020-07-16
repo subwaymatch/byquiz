@@ -7,7 +7,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="wrapper">
       <Head>
-        <title>Mini Quiz</title>
+        <title>ByQuiz</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

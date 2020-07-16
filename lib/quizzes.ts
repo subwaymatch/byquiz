@@ -37,14 +37,12 @@ export async function getMultipleChoiceQuizData(
   return quizData;
 }
 
-export async function getAllMultipleChoiceQuizzes(): Promise<
-  Array<{ id: string }>
-> {
+export async function getAllMultipleChoiceQuizzes(): Promise<QuizData[]> {
   const fileNames = fs.readdirSync(multipleChoicePath);
-
-  const quizzes = fileNames.map((fileName) => ({
-    id: fileName.replace(/\.yaml$/, ''),
-  }));
+  const quizIds = fileNames.map((fileName) => fileName.replace(/\.yaml$/, ''));
+  let quizzes = Promise.all(
+    quizIds.map(async (quizId) => await getMultipleChoiceQuizData(quizId))
+  );
 
   return quizzes;
 }

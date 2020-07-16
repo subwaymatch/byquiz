@@ -60,7 +60,9 @@ export default function MultipleChoiceQuestion({
               e.preventDefault();
 
               // If already submitted, do nothing
-              if (didSubmit) return;
+              if (didSubmit) {
+                return;
+              }
 
               console.log(`Selected option ${index}`);
 
