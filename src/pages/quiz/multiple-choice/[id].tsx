@@ -1,18 +1,18 @@
 import {
   getAllMultipleChoiceQuizzes,
   getMultipleChoiceQuiz,
-  MultipleChoiceQuiz,
+  IMultipleChoiceQuiz,
 } from 'lib/quizzes';
-import MultipleChoiceQuestion from 'src/components/multiple-choice-question';
+import MultipleChoiceQuiz from 'src/components/multiple-choice-quiz';
 import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function QuizPage({ quiz }: { quiz: MultipleChoiceQuiz }) {
+export default function QuizPage({ quiz }: { quiz: IMultipleChoiceQuiz }) {
   return (
     <Layout>
       <div>Quiz ID: {quiz.id}</div>
 
-      <MultipleChoiceQuestion quiz={quiz} />
+      <MultipleChoiceQuiz quiz={quiz} />
     </Layout>
   );
 }

@@ -5,23 +5,23 @@ import YAML from 'yaml';
 const quizContentPath = path.join(process.cwd(), 'content', 'quiz');
 const multipleChoicePath = path.join(quizContentPath, 'multiple-choice');
 
-export interface QuizBase {
+export interface IQuiz {
   id: string;
   text: string;
   hint: string;
 }
 
-export interface MultipleChoiceQuiz extends QuizBase {
+export interface IMultipleChoiceQuiz extends IQuiz {
   options: (string | number | boolean)[];
   correctOptions: boolean[];
   explanation: string;
 }
 
-export interface CodingQuiz extends QuizBase {}
+export interface ICodingQuiz extends IQuiz {}
 
 export async function getMultipleChoiceQuiz(
   quizId: string
-): Promise<MultipleChoiceQuiz> {
+): Promise<IMultipleChoiceQuiz> {
   const quizFile = fs.readFileSync(
     path.join(multipleChoicePath, `${quizId}.yaml`),
     {
@@ -29,7 +29,7 @@ export async function getMultipleChoiceQuiz(
     }
   );
 
-  const quizData: MultipleChoiceQuiz = {
+  const quizData: IMultipleChoiceQuiz = {
     id: quizId,
     ...YAML.parse(quizFile),
   };
@@ -43,7 +43,7 @@ export async function getMultipleChoiceQuiz(
 }
 
 export async function getAllMultipleChoiceQuizzes(): Promise<
-  MultipleChoiceQuiz[]
+  IMultipleChoiceQuiz[]
 > {
   const fileNames = fs.readdirSync(multipleChoicePath);
   const quizIds = fileNames.map((fileName) => fileName.replace(/\.yaml$/, ''));

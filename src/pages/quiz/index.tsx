@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Layout from 'src/components/layout';
-import { getAllMultipleChoiceQuizzes, MultipleChoiceQuiz } from 'lib/quizzes';
+import { getAllMultipleChoiceQuizzes, IMultipleChoiceQuiz } from 'lib/quizzes';
 
 import styles from './index.module.scss';
 
 type QuizHomeProps = {
-  mcQuizzes: MultipleChoiceQuiz[];
+  mcQuizzes: IMultipleChoiceQuiz[];
 };
 
 export default function QuizHome({ mcQuizzes }: QuizHomeProps) {

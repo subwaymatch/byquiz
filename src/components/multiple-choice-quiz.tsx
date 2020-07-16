@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import styles from './multiple-choice-question.module.scss';
+import styles from './multiple-choice-quiz.module.scss';
 import { default as classNames } from 'classnames';
-import { MultipleChoiceQuiz } from 'lib/quizzes';
+import { IMultipleChoiceQuiz } from 'lib/quizzes';
 
-export default function MultipleChoiceQuestion({
+export default function MultipleChoiceQuiz({
   quiz,
 }: {
-  quiz: MultipleChoiceQuiz;
+  quiz: IMultipleChoiceQuiz;
 }) {
   const { id, options, correctOptions, text, hint, explanation } = quiz;
 
