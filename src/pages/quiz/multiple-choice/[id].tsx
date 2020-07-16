@@ -1,25 +1,18 @@
 import {
   getAllMultipleChoiceQuizzes,
   getMultipleChoiceQuiz,
+  MultipleChoiceQuiz,
 } from 'lib/quizzes';
 import MultipleChoiceQuestion from 'src/components/multiple-choice-question';
 import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function QuizPage(props) {
-  const { id, text, hint, options, correctOptions, explanation } = props;
-
+export default function QuizPage({ quiz }: { quiz: MultipleChoiceQuiz }) {
   return (
     <Layout>
-      <div>Quiz ID: {id}</div>
-      <MultipleChoiceQuestion
-        id={id}
-        text={text}
-        hint={hint}
-        options={options}
-        correctOptions={correctOptions}
-        explanation={explanation}
-      />
+      <div>Quiz ID: {quiz.id}</div>
+
+      <MultipleChoiceQuestion quiz={quiz} />
     </Layout>
   );
 }
@@ -39,12 +32,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const quizData = await getMultipleChoiceQuiz(params.id as string);
+  const quiz = await getMultipleChoiceQuiz(params.id as string);
 
   return {
     props: {
-      id: params.id,
-      ...quizData,
+      quiz,
     },
   };
 };

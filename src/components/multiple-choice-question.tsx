@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import styles from './multiple-choice-question.module.scss';
-
-const classNames = require('classnames');
+import { default as classNames } from 'classnames';
+import { MultipleChoiceQuiz } from 'lib/quizzes';
 
 export default function MultipleChoiceQuestion({
-  id,
-  text,
-  options,
-  correctOptions,
-  hint,
-  explanation,
+  quiz,
+}: {
+  quiz: MultipleChoiceQuiz;
 }) {
+  const { id, options, correctOptions, text, hint, explanation } = quiz;
+
   const [selectedOptions, setSelectedOptions] = useState(
     new Array(options.length).fill(false)
   );
@@ -63,8 +62,6 @@ export default function MultipleChoiceQuestion({
               if (didSubmit) {
                 return;
               }
-
-              console.log(`Selected option ${index}`);
 
               if (numCorrectOptions > 1) {
                 const selectedOptionsCopy = selectedOptions.slice();

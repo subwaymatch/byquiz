@@ -10,8 +10,6 @@ type QuizHomeProps = {
 };
 
 export default function QuizHome({ mcQuizzes }: QuizHomeProps) {
-  console.log(mcQuizzes);
-
   return (
     <Layout>
       <h2>List of Multiple Choice Quizzes</h2>
