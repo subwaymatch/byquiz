@@ -1,3 +1,16 @@
+.optionItem {
+  border: 3px solid #ebf5fb;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+
+  &.selected {
+    background-color: #d6eaf8;
+    border-color: #aed6f1;
+  }
+}
+
 .didSubmit {
   .correctMessage,
   .incorrectMessage {
@@ -23,19 +36,6 @@
     color: white;
     background-color: #2ecc71;
     border-color: #28b463;
-  }
-}
-
-.optionItem {
-  border: 3px solid #ebf5fb;
-  border-radius: 6px;
-  padding: 1rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
-
-  &.selected {
-    background-color: #d6eaf8;
-    border-color: #aed6f1;
   }
 }
 
