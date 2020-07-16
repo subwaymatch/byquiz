@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import styles from './multiple-choice-quiz.module.scss';
 import { default as classNames } from 'classnames';
-import { IMultipleChoiceQuiz } from 'lib/quizzes';
+import { IMultipleChoiceQuiz } from 'types/quiz';
 
 export default function MultipleChoiceQuiz({
   quiz,
 }: {
   quiz: IMultipleChoiceQuiz;
 }) {
-  const { id, options, correctOptions, text, hint, explanation } = quiz;
+  const { options, correctOptions, text, hint, explanation } = quiz;
 
   const [selectedOptions, setSelectedOptions] = useState(
     new Array(options.length).fill(false)

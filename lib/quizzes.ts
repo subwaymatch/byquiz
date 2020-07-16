@@ -2,22 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import YAML from 'yaml';
 
+import { IMultipleChoiceQuiz } from 'types/quiz';
+
 const quizContentPath = path.join(process.cwd(), 'content', 'quiz');
 const multipleChoicePath = path.join(quizContentPath, 'multiple-choice');
-
-export interface IQuiz {
-  id: string;
-  text: string;
-  hint: string;
-}
-
-export interface IMultipleChoiceQuiz extends IQuiz {
-  options: (string | number | boolean)[];
-  correctOptions: boolean[];
-  explanation: string;
-}
-
-export interface ICodingQuiz extends IQuiz {}
 
 export async function getMultipleChoiceQuiz(
   quizId: string

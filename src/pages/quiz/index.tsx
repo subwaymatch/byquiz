@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Layout from 'src/components/layout';
-import { getAllMultipleChoiceQuizzes, IMultipleChoiceQuiz } from 'lib/quizzes';
+import { getAllMultipleChoiceQuizzes } from 'lib/quizzes';
+import { IMultipleChoiceQuiz } from 'types/quiz';
 
 import styles from './index.module.scss';
 

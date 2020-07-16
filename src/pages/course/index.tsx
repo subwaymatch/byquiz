@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Layout from 'src/components/layout';
-import { getAllCourses, ICourse } from 'lib/courses';
+import { getAllCourses } from 'lib/courses';
+import { ICourse } from 'types/course';
+
 import styles from './index.module.scss';
 
 type CourseHomeTypes = {

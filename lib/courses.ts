@@ -1,27 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import YAML from 'yaml';
+import { ICourse } from 'types/course';
 
 const fsPromises = fs.promises;
 const coursesPath = path.join(process.cwd(), 'content', 'course');
-
-export interface ICourse {
-  id: string;
-  title: string;
-  description: string;
-  modules: string[];
-}
-
-export interface ICourseModule {
-  title: string;
-  pages: string[];
-}
-
-export interface ICourseModulePage {
-  title: string;
-  quizzes: string[];
-  content: string;
-}
 
 export async function getCourseData(courseId): Promise<ICourse> {
   const courseYamlFilePath = path.join(coursesPath, courseId, '_course.yaml');

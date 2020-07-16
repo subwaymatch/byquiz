@@ -1,9 +1,9 @@
 import {
   getAllMultipleChoiceQuizzes,
   getMultipleChoiceQuiz,
-  IMultipleChoiceQuiz,
 } from 'lib/quizzes';
 import MultipleChoiceQuiz from 'src/components/multiple-choice-quiz';
+import { IMultipleChoiceQuiz } from 'types/quiz';
 import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 

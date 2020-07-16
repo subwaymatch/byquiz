@@ -1,4 +1,5 @@
-import { getCourseData, getAllCourses, ICourse } from 'lib/courses';
+import { getCourseData, getAllCourses } from 'lib/courses';
+import { ICourse } from 'types/course';
 import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
