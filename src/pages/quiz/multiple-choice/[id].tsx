@@ -1,6 +1,6 @@
 import {
   getAllMultipleChoiceQuizzes,
-  getMultipleChoiceQuizData,
+  getMultipleChoiceQuiz,
 } from 'lib/quizzes';
 import MultipleChoiceQuestion from 'src/components/multiple-choice-question';
 import Layout from 'src/components/layout';
@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const quizData = await getMultipleChoiceQuizData(params.id as string);
+  const quizData = await getMultipleChoiceQuiz(params.id as string);
 
   return {
     props: {

@@ -5,6 +5,23 @@ import YAML from 'yaml';
 const fsPromises = fs.promises;
 const coursesPath = path.join(process.cwd(), 'content', 'course');
 
+export interface Course {
+  title: string;
+  description: string;
+  modules: string[];
+}
+
+export interface CourseModule {
+  title: string;
+  pages: string[];
+}
+
+export interface CourseModulePage {
+  title: string;
+  quizzes: string[];
+  content: string;
+}
+
 export async function getCourseData(courseSlug) {
   const courseYamlFilePath = path.join(coursesPath, courseSlug, '_course.yaml');
 
