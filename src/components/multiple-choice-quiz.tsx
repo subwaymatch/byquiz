@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import styles from './multiple-choice-quiz.module.scss';
-import { default as classNames } from 'classnames';
+import classNames from 'classnames/bind';
 import { IMultipleChoiceQuiz } from 'types/quiz';
 
-export default function MultipleChoiceQuiz({
-  quiz,
-}: {
+type MultipleChoiceQuizProps = {
   quiz: IMultipleChoiceQuiz;
-}) {
+};
+
+const cx = classNames.bind(styles);
+
+export default function MultipleChoiceQuiz({ quiz }: MultipleChoiceQuizProps) {
   const { options, correctOptions, text, hint, explanation } = quiz;
 
   const [selectedOptions, setSelectedOptions] = useState(
@@ -27,9 +29,9 @@ export default function MultipleChoiceQuiz({
 
   return (
     <div
-      className={classNames({
-        [`${styles.didSubmit}`]: didSubmit,
-        [`${styles.isCorrect}`]: isCorrect,
+      className={cx({
+        didSubmit: didSubmit,
+        isCorrect: isCorrect,
       })}
     >
       {didSubmit && isCorrect && (
@@ -47,12 +49,11 @@ export default function MultipleChoiceQuiz({
       <div className="options-wrapper">
         {options.map((option, index) => (
           <div
-            className={classNames({
-              [`${styles.optionItem}`]: true,
-              [`${styles.correctOption}`]: correctOptions[index],
-              [`${styles.selected}`]: selectedOptions[index],
-              [`${styles.isCorrect}`]:
-                correctOptions[index] === selectedOptions[index],
+            className={cx({
+              optionItem: true,
+              correctOption: correctOptions[index],
+              selected: selectedOptions[index],
+              isCorrect: correctOptions[index] === selectedOptions[index],
             })}
             key={index}
             onClick={(e) => {
