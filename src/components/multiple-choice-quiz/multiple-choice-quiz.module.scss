@@ -1,6 +1,8 @@
+@import 'src/styles/variables.scss';
+
 .optionItem {
   border: 3px solid #ebf5fb;
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 1rem;
   margin-top: 0.5rem;
   cursor: pointer;
@@ -69,9 +71,9 @@ button.submitBtn {
   background-color: black;
   border: none;
   outline: none;
-  border-radius: 6px;
+  border-radius: 100px;
   margin-top: 1.5rem;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   font-size: 1.3rem;
   font-weight: 300;
   cursor: pointer;

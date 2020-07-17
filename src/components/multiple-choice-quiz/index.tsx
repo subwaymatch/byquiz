@@ -2,30 +2,72 @@ import { useState } from 'react';
 import styles from './multiple-choice-quiz.module.scss';
 import classNames from 'classnames/bind';
 import { IMultipleChoiceQuiz } from 'types/quiz';
+import ChoiceOption from 'src/components/multiple-choice-quiz/choice-option';
 
 type MultipleChoiceQuizProps = {
   quiz: IMultipleChoiceQuiz;
+  onCorrectSubmission?: () => void;
+  onIncorrectAttempt?: () => void;
 };
 
 const cx = classNames.bind(styles);
 
-export default function MultipleChoiceQuiz({ quiz }: MultipleChoiceQuizProps) {
+export default function MultipleChoiceQuiz({
+  quiz,
+  onCorrectSubmission,
+  onIncorrectAttempt,
+}: MultipleChoiceQuizProps) {
   const { options, correctOptions, text, hint, explanation } = quiz;
 
-  const [selectedOptions, setSelectedOptions] = useState(
+  const [selectedOptions, setSelectedOptions] = useState<boolean[]>(
     new Array(options.length).fill(false)
   );
   const [didSubmit, setDidSubmit] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
 
   const numCorrectOptions = correctOptions.reduce(
     (accumulator, currentValue) => accumulator + (currentValue ? 1 : 0),
     0
   );
 
-  const isCorrect = selectedOptions.every(
-    (didSelectOption, index) => didSelectOption === correctOptions[index]
-  );
+  const handleOptionClick = (optionIndex: number) => {
+    // If already submitted, do nothing
+    if (didSubmit) {
+      return;
+    }
+
+    if (numCorrectOptions > 1) {
+      const selectedOptionsCopy = selectedOptions.slice();
+      selectedOptionsCopy[optionIndex] = !selectedOptionsCopy[optionIndex];
+
+      setSelectedOptions(selectedOptionsCopy);
+    } else {
+      const newSelectedOptions = new Array(options.length).fill(false);
+
+      if (!selectedOptions[optionIndex]) {
+        newSelectedOptions[optionIndex] = true;
+      }
+
+      setSelectedOptions(newSelectedOptions);
+    }
+  };
+
+  const handleSubmit = () => {
+    let isCorrectTemp = selectedOptions.every(
+      (didSelectOption, index) => didSelectOption === correctOptions[index]
+    );
+
+    setIsCorrect(isCorrectTemp);
+
+    setDidSubmit(true);
+
+    if (isCorrectTemp) {
+      onCorrectSubmission();
+    } else {
+      onIncorrectAttempt();
+    }
+  };
 
   return (
     <div
@@ -35,7 +77,7 @@ export default function MultipleChoiceQuiz({ quiz }: MultipleChoiceQuizProps) {
       })}
     >
       {didSubmit && isCorrect && (
-        <p className={styles.correctMessage}>Yay! You've got this.</p>
+        <p className={styles.correctMessage}>Yay! You got this.</p>
       )}
 
       {didSubmit && !isCorrect && (
@@ -48,42 +90,13 @@ export default function MultipleChoiceQuiz({ quiz }: MultipleChoiceQuizProps) {
 
       <div className="options-wrapper">
         {options.map((option, index) => (
-          <div
-            className={cx({
-              optionItem: true,
-              correctOption: correctOptions[index],
-              selected: selectedOptions[index],
-              isCorrect: correctOptions[index] === selectedOptions[index],
-            })}
+          <ChoiceOption
             key={index}
-            onClick={(e) => {
-              e.preventDefault();
-
-              // If already submitted, do nothing
-              if (didSubmit) {
-                return;
-              }
-
-              if (numCorrectOptions > 1) {
-                const selectedOptionsCopy = selectedOptions.slice();
-                selectedOptionsCopy[index] = !selectedOptionsCopy[index];
-
-                setSelectedOptions(selectedOptionsCopy);
-              } else {
-                const newSelectedOptions = new Array(options.length).fill(
-                  false
-                );
-
-                if (!selectedOptions[index]) {
-                  newSelectedOptions[index] = true;
-                }
-
-                setSelectedOptions(newSelectedOptions);
-              }
-            }}
-          >
-            {option}
-          </div>
+            label={String(option)}
+            isSelected={selectedOptions[index]}
+            isCorrectOption={correctOptions[index]}
+            onClick={() => handleOptionClick(index)}
+          />
         ))}
       </div>
 
@@ -113,9 +126,7 @@ export default function MultipleChoiceQuiz({ quiz }: MultipleChoiceQuizProps) {
 
       <button
         className={styles.submitBtn}
-        onClick={() => {
-          setDidSubmit(true);
-        }}
+        onClick={handleSubmit}
         disabled={didSubmit}
       >
         Check Your Answer!

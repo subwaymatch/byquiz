@@ -18,7 +18,15 @@ export default function MultipleChoiceQuizPage({
     <Layout>
       <div>Quiz ID: {quiz.id}</div>
 
-      <MultipleChoiceQuiz quiz={quiz} />
+      <MultipleChoiceQuiz
+        quiz={quiz}
+        onCorrectSubmission={() => {
+          console.log('Success!');
+        }}
+        onIncorrectAttempt={() => {
+          console.log('Fail!');
+        }}
+      />
     </Layout>
   );
 }
