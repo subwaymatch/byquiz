@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getCourseData, getAllCourses } from 'lib/courses';
 import { ICourse } from 'types/course';
 import Layout from 'src/components/layout';
@@ -8,16 +9,21 @@ type CoursePageProps = {
 };
 
 export default function CoursePage({ course }: CoursePageProps) {
+  const { id, title, description, modules } = course;
+
   return (
     <Layout>
-      <h2>{course.title}</h2>
-      <p>{course.description}</p>
+      <h2>{title}</h2>
+      <p>{description}</p>
 
-      <ul>
-        {course.modules.map((cm) => (
-          <li key={cm}>{cm}</li>
-        ))}
-      </ul>
+      <h3>Modules</h3>
+      {modules.map((cm) => (
+        <div key={cm}>
+          <Link href="/course/[id]/[cm]" as={`/course/${id}/${cm}`}>
+            <a>{cm}</a>
+          </Link>
+        </div>
+      ))}
     </Layout>
   );
 }

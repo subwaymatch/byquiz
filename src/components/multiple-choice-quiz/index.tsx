@@ -107,7 +107,7 @@ export default function MultipleChoiceQuiz({
             setShowHint(!showHint);
           }}
         >
-          Hint {showHint ? '▾' : '▴'}
+          Hint {showHint ? '▴' : '▾'}
         </span>
         {showHint && (
           <div className={styles.hintContent}>
@@ -124,13 +124,15 @@ export default function MultipleChoiceQuiz({
         </div>
       )}
 
-      <button
-        className={styles.submitBtn}
-        onClick={handleSubmit}
-        disabled={didSubmit}
-      >
-        Check Your Answer!
-      </button>
+      {!didSubmit && (
+        <button
+          className={styles.submitBtn}
+          onClick={handleSubmit}
+          disabled={didSubmit}
+        >
+          Check Your Answer!
+        </button>
+      )}
     </div>
   );
 }

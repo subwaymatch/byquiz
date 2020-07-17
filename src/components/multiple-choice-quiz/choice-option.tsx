@@ -16,11 +16,14 @@ export default function ChoiceOption({
   isCorrectOption,
   onClick,
 }: ChoiceOptionProps) {
+  const isUserCorrect = isSelected === isCorrectOption;
+
   return (
     <div
       className={cx('optionItem', {
-        correctOption: isCorrectOption,
-        selected: isSelected,
+        isCorrectOption,
+        isSelected,
+        isUserCorrect,
       })}
       onClick={onClick}
     >
