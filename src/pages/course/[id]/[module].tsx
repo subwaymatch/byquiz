@@ -2,7 +2,12 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Layout from 'src/components/layout';
 import CourseModule from 'src/components/course/course-module';
 import { ICourse, ICourseModule, ICourseModulePage } from 'types/course';
-import { getAllCourses } from 'lib/courses';
+import {
+  getAllCourses,
+  getCourseData,
+  getCourseModulePages,
+  getCourseModuleData,
+} from 'lib/courses';
 
 type CourseModulePageProps = {
   course: ICourse;
@@ -24,7 +29,10 @@ type CourseModulePageProps = {
 //   );
 // }
 
-export default function CourseModulePage() {
+export default function CourseModulePage(props) {
+  console.log('CourseModulePage');
+  console.log(props);
+
   return (
     <Layout>
       <h2>CourseModulePage</h2>
@@ -44,10 +52,30 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       },
     ],
-    fallback: false,
+    fallback: true,
   };
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: {} };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { id, module } = params;
+
+  const courseId = id as string;
+  const moduleId = module as string;
+
+  const courseData = await getCourseData(courseId);
+  const moduleData = await getCourseModuleData(courseId, moduleId);
+  const pagesData = await getCourseModulePages(courseId, moduleId);
+
+  const props = {
+    course: courseData,
+    module: moduleData,
+    pages: pagesData,
+  };
+
+  console.log('getStaticProps');
+  console.log(props);
+
+  return {
+    props,
+  };
 };

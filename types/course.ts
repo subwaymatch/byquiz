@@ -6,11 +6,14 @@ export interface ICourse {
 }
 
 export interface ICourseModule {
+  id: string;
   title: string;
+  description?: string;
   pages: string[];
 }
 
 export interface ICourseModulePage {
+  id: string;
   title: string;
   quizzes: string[];
   content: string;

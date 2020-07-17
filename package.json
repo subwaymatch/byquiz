@@ -10,12 +10,15 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "classnames": "^2.2.6",
+    "gray-matter": "^4.0.2",
     "js-yaml-loader": "^1.2.2",
     "next": "9.4.4",
     "node-sass": "^4.14.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "^7.2.0",
+    "remark": "^12.0.0",
+    "remark-html": "^11.0.2",
     "showdown": "^1.9.1",
     "yaml": "^1.10.0"
   },
