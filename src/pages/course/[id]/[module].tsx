@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
 import Layout from 'src/components/layout';
 import CourseModule from 'src/components/course/course-module';
 import { ICourse, ICourseModule, ICourseModulePage } from 'types/course';
@@ -8,34 +9,62 @@ import {
   getCourseModulePages,
   getCourseModuleData,
 } from 'lib/courses';
+import styles from './course.module.scss';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
 
 type CourseModulePageProps = {
   course: ICourse;
-  courseModule: ICourseModule;
-  modulePages: ICourseModulePage[];
+  module: ICourseModule;
+  pages: ICourseModulePage[];
 };
 
-// export default function CourseModulePage({
-//   course,
-//   courseModule,
-//   modulePages,
-// }: CourseModulePageProps) {
-//   return (
-//     <Layout>
-//       <h2>{course.title}</h2>
-
-//       <CourseModule />
-//     </Layout>
-//   );
-// }
-
-export default function CourseModulePage(props) {
+export default function CourseModulePage({
+  course,
+  module,
+  pages,
+}: CourseModulePageProps) {
   console.log('CourseModulePage');
-  console.log(props);
 
   return (
     <Layout>
-      <h2>CourseModulePage</h2>
+      <div className={styles.courseModule}>
+        <div className="row">
+          <div className="col-12">
+            <div className={styles.courseInfo}>
+              <span>{course.title}</span>
+              <h2>{module.title}</h2>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-3">
+            {course.modules.map((cm) => (
+              <Link
+                href="/course/[courseId]/[moduleId]"
+                as={`/course/${course.id}/${cm}`}
+              >
+                <a
+                  className={cx({
+                    moduleLink: true,
+                    isActive: cm === module.id,
+                  })}
+                >
+                  {cm}
+                </a>
+              </Link>
+            ))}
+          </div>
+
+          <div className="col-9">
+            {pages.map((page) => (
+              <div dangerouslySetInnerHTML={{ __html: page.content }} />
+            ))}
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }
@@ -43,16 +72,22 @@ export default function CourseModulePage(props) {
 export const getStaticPaths: GetStaticPaths = async () => {
   const courses = await getAllCourses();
 
-  return {
-    paths: [
-      {
+  const paths = [];
+
+  for (const course of courses) {
+    for (const moduleId of course.modules) {
+      paths.push({
         params: {
-          id: 'intro-to-byquiz',
-          module: 'first-module',
+          id: course.id,
+          module: moduleId,
         },
-      },
-    ],
-    fallback: true,
+      });
+    }
+  }
+
+  return {
+    paths,
+    fallback: false,
   };
 };
 
@@ -71,9 +106,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     module: moduleData,
     pages: pagesData,
   };
-
-  console.log('getStaticProps');
-  console.log(props);
 
   return {
     props,

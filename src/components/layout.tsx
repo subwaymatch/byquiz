@@ -12,7 +12,9 @@ export default function Layout({ children }: LayoutProps) {
       </Head>
 
       <main>
-        <div className="main-content">{children}</div>
+        <div className="container">
+          <div className="row">{children}</div>
+        </div>
       </main>
 
       <footer>
@@ -55,10 +57,6 @@ export default function Layout({ children }: LayoutProps) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-        }
-
-        .main-content {
-          width: 660px;
         }
 
         footer {

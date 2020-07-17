@@ -8,7 +8,6 @@ export interface ICourse {
 export interface ICourseModule {
   id: string;
   title: string;
-  description?: string;
   pages: string[];
 }
 

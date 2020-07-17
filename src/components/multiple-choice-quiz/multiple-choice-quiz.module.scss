@@ -18,9 +18,9 @@ $option-selected-border-color: #aed6f1;
   .correctMessage,
   .incorrectMessage {
     padding: 1rem 0;
-    color: #2ecc71;
-    border-top: 2px solid #2ecc71;
-    border-bottom: 2px solid #2ecc71;
+    color: $color-primary;
+    border-top: 2px solid $color-primary;
+    border-bottom: 2px solid $color-primary;
   }
 
   .incorrectMessage {
@@ -37,7 +37,7 @@ $option-selected-border-color: #aed6f1;
   .optionItem.isCorrectOption,
   .optionItem.isCorrectOption.isSelected {
     color: white;
-    background-color: #2ecc71;
+    background-color: $color-primary;
     border-color: #28b463;
   }
 }
