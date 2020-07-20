@@ -5,6 +5,7 @@ import { ICourse, ICourseModule, ICourseModulePage } from 'types/course';
 import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
+import { getQuizByFullId } from './quizzes';
 
 const fsPromises = fs.promises;
 const coursesPath = path.join(process.cwd(), 'content', 'course');
@@ -100,13 +101,25 @@ export async function getCourseModulePageData(
   const fileContents = fs.readFileSync(pageFilePath, 'utf-8');
 
   // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents);
+  const matterResult: {
+    data: {
+      title: string;
+      quizzes: string[];
+    };
+    content: string;
+  } = matter(fileContents);
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
+
+  const quizzes = Promise.all(
+    matterResult.data.quizzes.map(async (quizFullId) => {
+      return await getQuizByFullId(quizFullId);
+    })
+  );
 
   return {
     id: pageId,

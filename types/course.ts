@@ -1,3 +1,5 @@
+import { IQuiz } from './quiz';
+
 export interface ICourse {
   id: string;
   title: string;
@@ -14,6 +16,6 @@ export interface ICourseModule {
 export interface ICourseModulePage {
   id: string;
   title: string;
-  quizzes: string[];
+  quizzes: IQuiz[];
   content: string;
 }
