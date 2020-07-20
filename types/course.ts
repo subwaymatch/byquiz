@@ -21,6 +21,8 @@ export interface ICourseModulePageMeta {
 
 export interface ICourseModulePageData {
   id: string;
+  courseId: string;
+  moduleId: string;
   title: string;
   quizzes: IQuiz[];
   content: string;

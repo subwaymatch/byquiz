@@ -9,7 +9,9 @@ import {
 import { ICourse, ICourseModulePageData } from 'types/course';
 import CourseHeader from 'src/components/course/course-header';
 import CourseSidebar from 'src/components/course/course-sidebar';
-import QuizComponent from 'src/components/quiz';
+import CourseModulePageContent from 'src/components/course/course-module-page-content';
+import CourseModulePageQuizzes from 'src/components/course/course-module-page-quizzes';
+import CourseModuleNavigation from 'src/components/course/course-module-navigation';
 
 type CourseModulePagePageProps = {
   course: ICourse;
@@ -20,6 +22,12 @@ export default function CourseModulePagePage({
   course,
   pageData,
 }: CourseModulePagePageProps) {
+  const currentModule = course.modules.filter(
+    (module) => module.id === pageData.moduleId
+  )[0];
+
+  console.log(currentModule);
+
   return (
     <Layout>
       <div className="courseModulePageWrapper">
@@ -31,16 +39,23 @@ export default function CourseModulePagePage({
 
         <div className="row">
           <div className="col-3">
-            <CourseSidebar course={course} />
+            <CourseSidebar
+              course={course}
+              currentModuleId={pageData.moduleId}
+            />
           </div>
 
           <div className="col-9">
-            <h3>{pageData.title}</h3>
-            <div dangerouslySetInnerHTML={{ __html: pageData.content }} />
+            <CourseModuleNavigation
+              courseId={course.id}
+              moduleId={currentModule.id}
+              currentPageId={pageData.id}
+              pagesMeta={currentModule.pages}
+            />
 
-            {pageData.quizzes.map((quiz) => (
-              <QuizComponent key={quiz.id} quiz={quiz} />
-            ))}
+            <CourseModulePageContent pageData={pageData} />
+
+            <CourseModulePageQuizzes quizzes={pageData.quizzes} />
           </div>
         </div>
       </div>

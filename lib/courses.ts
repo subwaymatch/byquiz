@@ -182,6 +182,8 @@ export async function getCourseModulePageData(
 
   return {
     id: pageId,
+    courseId,
+    moduleId,
     title: pageData.title,
     content: pageData.content,
     quizzes,

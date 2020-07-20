@@ -4,13 +4,13 @@ import classNames from 'classnames/bind';
 import { IMultipleChoiceQuiz } from 'types/quiz';
 import ChoiceOption from 'src/components/quiz/multiple-choice-quiz/choice-option';
 
+const cx = classNames.bind(styles);
+
 type MultipleChoiceQuizProps = {
   quiz: IMultipleChoiceQuiz;
   onCorrectSubmission?: () => void;
   onIncorrectAttempt?: () => void;
 };
-
-const cx = classNames.bind(styles);
 
 export default function MultipleChoiceQuiz({
   quiz,
