@@ -21,10 +21,10 @@ export default function MultipleChoiceQuizPage({
       <MultipleChoiceQuiz
         quiz={quiz}
         onCorrectSubmission={() => {
-          console.log('Success!');
+          // do nothing
         }}
         onIncorrectAttempt={() => {
-          console.log('Fail!');
+          // do nothing
         }}
       />
     </Layout>

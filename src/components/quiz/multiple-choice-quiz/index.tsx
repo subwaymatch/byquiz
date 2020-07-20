@@ -76,8 +76,8 @@ export default function MultipleChoiceQuiz({
   return (
     <div
       className={cx({
-        didSubmit: didSubmit,
-        isCorrect: isCorrect,
+        didSubmit,
+        isCorrect,
       })}
     >
       {didSubmit && isCorrect && (

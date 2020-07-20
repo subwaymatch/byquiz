@@ -20,9 +20,6 @@ export default function CourseModulePagePage({
   course,
   pageData,
 }: CourseModulePagePageProps) {
-  console.log(course);
-  console.log(pageData);
-
   return (
     <Layout>
       <div className="courseModulePageWrapper">
