@@ -1,27 +1,33 @@
+import { ICourse } from 'types/course';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
-import Layout from 'src/components/layout';
 import { getAllCourses } from 'lib/courses';
-import { ICourse } from 'types/course';
+import Layout from 'src/components/layout';
 
-import styles from './index.module.scss';
-
-type CourseHomeTypes = {
+type CourseIndexPageProps = {
   courses: ICourse[];
 };
 
-export default function CourseHome({ courses }: CourseHomeTypes) {
+export default function CourseIndexPage({ courses }: CourseIndexPageProps) {
+  console.log(courses);
+
   return (
     <Layout>
-      <h2>Courses</h2>
+      <h2>All Courses</h2>
 
       {courses.map((course) => (
-        <Link key={course.id} href="/course/[id]" as={`/course/${course.id}`}>
-          <a className={styles['course-item']} key={course.id}>
-            <h3>{course.title}</h3>
-            <p>{course.description}</p>
-          </a>
-        </Link>
+        <div key={course.id}>
+          <h3>{course.title}</h3>
+          <p>{course.description}</p>
+
+          {course.modules && (
+            <ul>
+              {course.modules.map((cm) => (
+                <li key={cm.id}>{cm.id}</li>
+              ))}
+            </ul>
+          )}
+        </div>
       ))}
     </Layout>
   );

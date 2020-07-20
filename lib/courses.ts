@@ -1,8 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import YAML from 'yaml';
-import { ICourse, ICourseModule, ICourseModulePage } from 'types/course';
-import matter from 'gray-matter';
+import {
+  ICourse,
+  ICourseModule,
+  ICourseModulePageData,
+  ICourseModulePageMeta,
+} from 'types/course';
+import matter, { GrayMatterFile } from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
 import { getQuizByFullId } from './quizzes';
@@ -26,6 +31,43 @@ export async function readYamlFile<T>(filePath: string): Promise<T> {
   return parsedObject;
 }
 
+export async function readFileFrontMatter<T>(filePath: string) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Markdown file ${filePath} not found`);
+  }
+
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+
+  // Use gray-matter to parse the post metadata section
+  const matterResult: GrayMatterFile<string> = matter(fileContents);
+
+  return {
+    ...matterResult.data,
+  } as T;
+}
+
+export async function readMarkdownFile(filePath: string) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Markdown file ${filePath} not found`);
+  }
+
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+
+  // Use gray-matter to parse the post metadata section
+  const matterResult: GrayMatterFile<string> = matter(fileContents);
+
+  // Use remark to convert markdown into HTML string
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content);
+  const contentHtml = processedContent.toString();
+
+  return {
+    ...matterResult.data,
+    content: contentHtml,
+  };
+}
+
 export async function getCourseData(courseId: string): Promise<ICourse> {
   const courseYamlFilePath = path.join(
     coursesPath,
@@ -33,9 +75,24 @@ export async function getCourseData(courseId: string): Promise<ICourse> {
     courseYamlFileName
   );
 
-  const courseData = await readYamlFile<ICourse>(courseYamlFilePath);
+  const parsedCourseYaml = await readYamlFile<{
+    title: string;
+    description: string;
+    modules: string[];
+  }>(courseYamlFilePath);
 
-  return { id: courseId, ...courseData };
+  const modules = await Promise.all(
+    parsedCourseYaml.modules.map(async (moduleId) => {
+      return await getCourseModuleData(courseId, moduleId);
+    })
+  );
+
+  return {
+    id: courseId,
+    title: parsedCourseYaml.title,
+    description: parsedCourseYaml.description,
+    modules,
+  };
 }
 
 export async function getAllCourses(): Promise<ICourse[]> {
@@ -65,32 +122,25 @@ export async function getCourseModuleData(
     courseModuleYamlFileName
   );
 
-  const courseModuleData = await readYamlFile<ICourseModule>(
-    moduleYamlFilePath
-  );
+  const parsedCourseModuleYaml = await readYamlFile<{
+    title: string;
+    pages: string[];
+  }>(moduleYamlFilePath);
 
-  return { id: moduleId, ...courseModuleData };
-}
-
-export async function getCourseModules(
-  courseId: string
-): Promise<ICourseModule[]> {
-  const moduleIds = (await getCourseData(courseId)).modules;
-
-  const courseModules = Promise.all(
-    moduleIds.map(async (moduleId) => {
-      return await getCourseModuleData(courseId, moduleId);
+  const pages = await Promise.all(
+    parsedCourseModuleYaml.pages.map(async (pageId) => {
+      return await getCourseModulePageMetaData(courseId, moduleId, pageId);
     })
   );
 
-  return courseModules;
+  return { id: moduleId, title: parsedCourseModuleYaml.title, pages };
 }
 
-export async function getCourseModulePageData(
+export async function getCourseModulePageMetaData(
   courseId: string,
   moduleId: string,
   pageId: string
-): Promise<ICourseModulePage> {
+): Promise<ICourseModulePageMeta> {
   const pageFilePath = path.join(
     coursesPath,
     courseId,
@@ -98,50 +148,13 @@ export async function getCourseModulePageData(
     `${pageId}.md`
   );
 
-  const fileContents = fs.readFileSync(pageFilePath, 'utf-8');
-
-  // Use gray-matter to parse the post metadata section
-  const matterResult: {
-    data: {
-      title: string;
-      quizzes: string[];
-    };
-    content: string;
-  } = matter(fileContents);
-
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
-
-  const quizzes = Promise.all(
-    matterResult.data.quizzes.map(async (quizFullId) => {
-      return await getQuizByFullId(quizFullId);
-    })
-  );
+  const metaData = await readFileFrontMatter<{
+    title: string;
+    quizzes: string[];
+  }>(pageFilePath);
 
   return {
     id: pageId,
-    title: matterResult.data.title,
-    quizzes: matterResult.data.quizzes,
-    content: contentHtml,
-  };
-}
-
-export async function getCourseModulePages(
-  courseId: string,
-  moduleId: string
-): Promise<ICourseModulePage[]> {
-  const moduleData = await getCourseModuleData(courseId, moduleId);
-
-  const pages = moduleData.pages;
-
-  const pagesData = Promise.all(
-    pages.map(async (pageId) => {
-      return await getCourseModulePageData(courseId, moduleId, pageId);
-    })
-  );
-
-  return pagesData;
+    ...metaData,
+  } as ICourseModulePageMeta;
 }

@@ -4,16 +4,22 @@ export interface ICourse {
   id: string;
   title: string;
   description: string;
-  modules: string[];
+  modules: ICourseModule[];
 }
 
 export interface ICourseModule {
   id: string;
   title: string;
-  pages: string[];
+  pages: ICourseModulePageMeta[];
 }
 
-export interface ICourseModulePage {
+export interface ICourseModulePageMeta {
+  id: string;
+  title: string;
+  quizzes: string[];
+}
+
+export interface ICourseModulePageData {
   id: string;
   title: string;
   quizzes: IQuiz[];
