@@ -46,7 +46,7 @@ export async function readFileFrontMatter<T>(filePath: string) {
   } as T;
 }
 
-export async function readMarkdownFile(filePath: string) {
+export async function readMarkdownFile(filePath: string): Promise<any> {
   if (!fs.existsSync(filePath)) {
     throw new Error(`Markdown file ${filePath} not found`);
   }
@@ -157,4 +157,33 @@ export async function getCourseModulePageMetaData(
     id: pageId,
     ...metaData,
   } as ICourseModulePageMeta;
+}
+
+export async function getCourseModulePageData(
+  courseId: string,
+  moduleId: string,
+  pageId: string
+): Promise<ICourseModulePageData> {
+  const pageFilePath = path.join(
+    coursesPath,
+    courseId,
+    moduleId,
+    `${pageId}.md`
+  );
+
+  const pageData = await readMarkdownFile(pageFilePath);
+  const quizFullIds = pageData.quizzes as string[];
+
+  const quizzes = await Promise.all(
+    quizFullIds.map(async (quizFullId) => {
+      return await getQuizByFullId(quizFullId);
+    })
+  );
+
+  return {
+    id: pageId,
+    title: pageData.title,
+    content: pageData.content,
+    quizzes,
+  } as ICourseModulePageData;
 }

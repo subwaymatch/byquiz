@@ -1,0 +1,16 @@
+@import 'src/styles/variables';
+
+.courseItem {
+  border-top: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.courseModuleItem {
+  cursor: pointer;
+  color: $color-primary;
+  padding: 0.4rem 0;
+
+  &:hover {
+    color: darken($color-primary, 10%);
+  }
+}

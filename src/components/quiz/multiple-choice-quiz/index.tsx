@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './multiple-choice-quiz.module.scss';
 import classNames from 'classnames/bind';
 import { IMultipleChoiceQuiz } from 'types/quiz';
-import ChoiceOption from 'src/components/multiple-choice-quiz/choice-option';
+import ChoiceOption from 'src/components/quiz/multiple-choice-quiz/choice-option';
 
 type MultipleChoiceQuizProps = {
   quiz: IMultipleChoiceQuiz;
@@ -63,9 +63,13 @@ export default function MultipleChoiceQuiz({
     setDidSubmit(true);
 
     if (isCorrectTemp) {
-      onCorrectSubmission();
+      if (onCorrectSubmission) {
+        onCorrectSubmission();
+      }
     } else {
-      onIncorrectAttempt();
+      if (onIncorrectAttempt) {
+        onIncorrectAttempt();
+      }
     }
   };
 
