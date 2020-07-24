@@ -18,6 +18,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "^7.2.0",
+    "react-redux-firebase": "^3.6.0",
+    "redux-firestore": "^0.13.0",
     "remark": "^12.0.0",
     "remark-html": "^11.0.2",
     "showdown": "^1.9.1",
