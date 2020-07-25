@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, useFirestore } from 'react-redux-firebase';
 
-function TodosComponent(props) {
+function TodosComponent() {
   const firestore = useFirestore();
   useFirestoreConnect('todos');
 
@@ -41,7 +41,7 @@ function TodosComponent(props) {
 
   return (
     <div>
-      <h1>Todos Component</h1>
+      <h1>Todos with Firebase</h1>
 
       <form
         onSubmit={(e) => {

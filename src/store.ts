@@ -35,15 +35,16 @@ const middleware = [
 const store = configureStore({
   reducer: {
     counter: counterReducer,
-    firebaseReducer,
+    firebase: firebaseReducer,
     firestore: firestoreReducer, // <- needed if using firestore
   },
   middleware,
   devTools: true,
 });
 
+export type RootState = ReturnType<typeof store.getState>;
+
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-export type RootState = ReturnType<typeof store.getState>;
 
 export default store;
