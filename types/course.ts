@@ -1,4 +1,4 @@
-import { IQuiz } from './quiz';
+import { IQuestion } from './question';
 
 export interface ICourse {
   id: string;
@@ -16,7 +16,7 @@ export interface ICourseModule {
 export interface ICourseModulePageMeta {
   id: string;
   title: string;
-  quizzes: string[];
+  questions: string[];
 }
 
 export interface ICourseModulePageData {
@@ -24,6 +24,6 @@ export interface ICourseModulePageData {
   courseId: string;
   moduleId: string;
   title: string;
-  quizzes: IQuiz[];
+  questions: IQuestion[];
   content: string;
 }

@@ -1,23 +1,23 @@
 import { useState } from 'react';
-import styles from './multiple-choice-quiz.module.scss';
+import styles from './multiple-choice-question.module.scss';
 import classNames from 'classnames/bind';
-import { IMultipleChoiceQuiz } from 'types/quiz';
-import ChoiceOption from 'src/components/quiz/multiple-choice-quiz/choice-option';
+import { IMultipleChoiceQuestion } from 'types/question';
+import ChoiceOption from 'src/components/question/multiple-choice-question/choice-option';
 
 const cx = classNames.bind(styles);
 
-type MultipleChoiceQuizProps = {
-  quiz: IMultipleChoiceQuiz;
+type MultipleChoiceQuestionProps = {
+  question: IMultipleChoiceQuestion;
   onCorrectSubmission?: () => void;
   onIncorrectAttempt?: () => void;
 };
 
-export default function MultipleChoiceQuiz({
-  quiz,
+export default function MultipleChoiceQuestion({
+  question,
   onCorrectSubmission,
   onIncorrectAttempt,
-}: MultipleChoiceQuizProps) {
-  const { options, correctOptions, text, hint, explanation } = quiz;
+}: MultipleChoiceQuestionProps) {
+  const { options, correctOptions, text, hint, explanation } = question;
 
   const [selectedOptions, setSelectedOptions] = useState<boolean[]>(
     new Array(options.length).fill(false)

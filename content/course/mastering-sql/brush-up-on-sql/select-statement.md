@@ -1,5 +1,5 @@
 ---
-title: 'Say hello to ByQuiz!'
+title: '`select` Statement'
 questions:
   - multiple-choice/london-capital
 ---

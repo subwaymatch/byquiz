@@ -31,7 +31,7 @@ export default function Layout({ children }: LayoutProps) {
               </Link>
             </li>
             <li>
-              <Link href="/quiz">
+              <Link href="/question">
                 <a>Question Bank</a>
               </Link>
             </li>

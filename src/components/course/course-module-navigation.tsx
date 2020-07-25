@@ -22,6 +22,7 @@ export default function CourseModuleNavigation({
     <div className={styles.courseModuleNavigation}>
       {pagesMeta.map((pageMeta, pageIndex) => (
         <Link
+          key={pageMeta.id}
           href="/course/[courseId]/[moduleId]/[pageId]"
           as={`/course/${courseId}/${moduleId}/${pageMeta.id}`}
         >

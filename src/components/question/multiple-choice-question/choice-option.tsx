@@ -1,4 +1,4 @@
-import styles from './multiple-choice-quiz.module.scss';
+import styles from './multiple-choice-question.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);

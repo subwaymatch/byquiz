@@ -10,7 +10,7 @@ import { ICourse, ICourseModulePageData } from 'types/course';
 import CourseHeader from 'src/components/course/course-header';
 import CourseSidebar from 'src/components/course/course-sidebar';
 import CourseModulePageContent from 'src/components/course/course-module-page-content';
-import CourseModulePageQuizzes from 'src/components/course/course-module-page-quizzes';
+import CourseModulePageQuestions from 'src/components/course/course-module-page-questions';
 import CourseModuleNavigation from 'src/components/course/course-module-navigation';
 
 type CourseModulePagePageProps = {
@@ -25,9 +25,6 @@ export default function CourseModulePagePage({
   const currentModule = course.modules.filter(
     (module) => module.id === pageData.moduleId
   )[0];
-
-  console.log(currentModule);
-
   return (
     <Layout>
       <div className="courseModulePageWrapper">
@@ -55,7 +52,7 @@ export default function CourseModulePagePage({
 
             <CourseModulePageContent pageData={pageData} />
 
-            <CourseModulePageQuizzes quizzes={pageData.quizzes} />
+            <CourseModulePageQuestions questions={pageData.questions} />
           </div>
         </div>
       </div>

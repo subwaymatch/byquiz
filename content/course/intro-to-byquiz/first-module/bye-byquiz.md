@@ -1,6 +1,6 @@
 ---
-title: "Already time to say bye..."
-quizzes:
+title: 'Already time to say bye...'
+questions:
   - multiple-choice/seven-even-number
 ---
 

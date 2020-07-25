@@ -10,7 +10,7 @@ import {
 import matter, { GrayMatterFile } from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
-import { getQuizByFullId } from './quizzes';
+import { getQuestionByFullId } from './questions';
 
 const fsPromises = fs.promises;
 const coursesPath = path.join(process.cwd(), 'content', 'course');
@@ -77,20 +77,26 @@ export async function getCourseData(courseId: string): Promise<ICourse> {
 
   const parsedCourseYaml = await readYamlFile<{
     title: string;
-    description: string;
-    modules: string[];
+    description?: string;
+    modules?: string[];
   }>(courseYamlFilePath);
 
-  const modules = await Promise.all(
-    parsedCourseYaml.modules.map(async (moduleId) => {
-      return await getCourseModuleData(courseId, moduleId);
-    })
-  );
+  const description = parsedCourseYaml.hasOwnProperty('description')
+    ? parsedCourseYaml.description
+    : null;
+
+  const modules = parsedCourseYaml.hasOwnProperty('modules')
+    ? await Promise.all(
+        parsedCourseYaml.modules.map(async (moduleId) => {
+          return await getCourseModuleData(courseId, moduleId);
+        })
+      )
+    : [];
 
   return {
     id: courseId,
     title: parsedCourseYaml.title,
-    description: parsedCourseYaml.description,
+    description,
     modules,
   };
 }
@@ -127,6 +133,13 @@ export async function getCourseModuleData(
     pages: string[];
   }>(moduleYamlFilePath);
 
+  if (
+    !parsedCourseModuleYaml.hasOwnProperty('pages') ||
+    parsedCourseModuleYaml.pages.length == 0
+  ) {
+    throw new Error('A module must have at least one page');
+  }
+
   const pages = await Promise.all(
     parsedCourseModuleYaml.pages.map(async (pageId) => {
       return await getCourseModulePageMetaData(courseId, moduleId, pageId);
@@ -150,7 +163,7 @@ export async function getCourseModulePageMetaData(
 
   const metaData = await readFileFrontMatter<{
     title: string;
-    quizzes: string[];
+    questions: string[];
   }>(pageFilePath);
 
   return {
@@ -172,11 +185,14 @@ export async function getCourseModulePageData(
   );
 
   const pageData = await readMarkdownFile(pageFilePath);
-  const quizFullIds = pageData.quizzes as string[];
 
-  const quizzes = await Promise.all(
-    quizFullIds.map(async (quizFullId) => {
-      return await getQuizByFullId(quizFullId);
+  const questionFullIds = pageData.hasOwnProperty('questions')
+    ? (pageData.questions as string[])
+    : [];
+
+  const questions = await Promise.all(
+    questionFullIds.map(async (questionFullId) => {
+      return await getQuestionByFullId(questionFullId);
     })
   );
 
@@ -186,6 +202,6 @@ export async function getCourseModulePageData(
     moduleId,
     title: pageData.title,
     content: pageData.content,
-    quizzes,
+    questions: questions,
   } as ICourseModulePageData;
 }
