@@ -1,5 +1,5 @@
-import PyodideWrapper from 'src/components/pyodide-wrapper';
-import Layout from 'src/components/Layout';
+import PyodideWrapper from '../components/pyodide-wrapper';
+import Layout from '../components/Layout';
 
 export default function PyodideTestPage() {
   return (
