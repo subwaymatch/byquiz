@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
 import Layout from 'src/components/layout';
 import {
   getAllCourses,

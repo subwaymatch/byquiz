@@ -135,7 +135,7 @@ export async function getCourseModuleData(
 
   if (
     !parsedCourseModuleYaml.hasOwnProperty('pages') ||
-    parsedCourseModuleYaml.pages.length == 0
+    parsedCourseModuleYaml.pages.length === 0
   ) {
     throw new Error('A module must have at least one page');
   }
@@ -202,6 +202,6 @@ export async function getCourseModulePageData(
     moduleId,
     title: pageData.title,
     content: pageData.content,
-    questions: questions,
+    questions,
   } as ICourseModulePageData;
 }

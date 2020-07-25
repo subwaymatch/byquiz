@@ -10,14 +10,8 @@ function TodosComponent() {
 
   const todos = useSelector((state) => state.firestore.ordered.todos);
 
-  if (todos) {
-    const todo = todos[0];
-  }
-
-  console.log(todos);
-
   const addTodo = (todoText) => {
-    console.log(`addTodo at ${firestore.FieldValue.serverTimestamp()}`);
+    // console.log(`addTodo at ${firestore.FieldValue.serverTimestamp()}`);
 
     firestore
       .collection('todos')

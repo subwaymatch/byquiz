@@ -13,7 +13,7 @@ export default function CourseModulePageQuestions({
   questions,
 }: CourseModulePagequestionsProps) {
   return (
-    <div className={styles.wrapper}>
+    <div className={cx('wrapper')}>
       {questions.map((question) => (
         <QuestionComponent key={question.id} question={question} />
       ))}
