@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import counterReducer from 'lib/slices/counterSlice';
+import pyodideReudcer from 'lib/slices/pyodideSlice';
 import {
   getFirebase,
   firebaseReducer,
@@ -37,6 +38,7 @@ const store = configureStore({
     counter: counterReducer,
     firebase: firebaseReducer,
     firestore: firestoreReducer, // <- needed if using firestore
+    pyodide: pyodideReudcer,
   },
   middleware,
   devTools: true,
