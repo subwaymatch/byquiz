@@ -1,23 +1,33 @@
 import Layout from '../components/layout';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadPyodide } from 'lib/slices/pyodideSlice';
-import { useEffect } from 'react';
+import { selectIsPyodidedLoaded, loadPyodide } from 'lib/slices/pyodideSlice';
+import { useEffect, useState } from 'react';
 
-const usePyodide = () => {
-  console.log('usePyodide');
+export default function PyodideTestPage() {
+  const isPyodideReady = useSelector(selectIsPyodidedLoaded);
+  const [isTrue, setIsTrue] = useState(true);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadPyodide());
-  }, [dispatch]);
-};
+    if (!isPyodideReady) {
+      dispatch(loadPyodide());
+    }
+  }, []);
 
-export default function PyodideTestPage() {
-  usePyodide();
+  const runSomeCode = () => {
+    // Change state for tests
+    setIsTrue(!isTrue);
 
-  const isPyodideLoading = useSelector((state) => state.pyodide.isLoading);
+    console.log(
+      pyodide.runPython(`
+                  import sys
+                  sys.version
+              `)
+    );
+    console.log(pyodide.runPython('print(1 + 2)'));
+  };
 
   return (
     <Layout>
@@ -25,7 +35,18 @@ export default function PyodideTestPage() {
         <script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
       </Head>
       <div>
-        <h1>{isPyodideLoading ? 'Loading Pyodide' : 'Loading complete!'}</h1>
+        <h1>{isPyodideReady ? 'Pyodided Loaded' : 'Pyodide Loading'}</h1>
+
+        <p>{isTrue ? 'TRUE DAT' : 'FALSE THAT'}</p>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            runSomeCode();
+          }}
+          disabled={!isPyodideReady}
+        >
+          Can click now!
+        </button>
       </div>
     </Layout>
   );
