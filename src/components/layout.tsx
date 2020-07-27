@@ -26,6 +26,11 @@ export default function Layout({ children }: LayoutProps) {
               </Link>
             </li>
             <li>
+              <Link href="/pyodide-test">
+                <a>Python Test</a>
+              </Link>
+            </li>
+            <li>
               <Link href="/course">
                 <a>Courses</a>
               </Link>

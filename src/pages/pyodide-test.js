@@ -3,10 +3,14 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsPyodidedLoaded, loadPyodide } from 'lib/slices/pyodideSlice';
 import { useEffect, useState } from 'react';
+import AceEditor from 'react-ace';
+
+import 'ace-builds/src-noconflict/mode-python';
+import 'ace-builds/src-noconflict/theme-solarized_light';
 
 export default function PyodideTestPage() {
   const isPyodideReady = useSelector(selectIsPyodidedLoaded);
-  const [isTrue, setIsTrue] = useState(true);
+  const [userCode, setUserCode] = useState('');
 
   const dispatch = useDispatch();
 
@@ -16,17 +20,17 @@ export default function PyodideTestPage() {
     }
   }, []);
 
-  const runSomeCode = () => {
-    // Change state for tests
-    setIsTrue(!isTrue);
+  const runPython = (code) => {
+    if (!isPyodideReady) {
+      throw new Error('Pyodide is not loaded yet');
+    }
 
-    console.log(
-      pyodide.runPython(`
-                  import sys
-                  sys.version
-              `)
-    );
-    console.log(pyodide.runPython('print(1 + 2)'));
+    try {
+      console.log(pyodide.runPython(code));
+    } catch (err) {
+      console.error('Error while running code');
+      console.log(code);
+    }
   };
 
   return (
@@ -35,18 +39,29 @@ export default function PyodideTestPage() {
         <script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
       </Head>
       <div>
-        <h1>{isPyodideReady ? 'Pyodided Loaded' : 'Pyodide Loading'}</h1>
+        {isPyodideReady ? (
+          <>
+            <AceEditor
+              mode="python"
+              theme="solarized_light"
+              onChange={setUserCode}
+              name="UNIQUE_ID_OF_DIV"
+              editorProps={{ $blockScrolling: true }}
+              fontSize={20}
+            />
 
-        <p>{isTrue ? 'TRUE DAT' : 'FALSE THAT'}</p>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            runSomeCode();
-          }}
-          disabled={!isPyodideReady}
-        >
-          Can click now!
-        </button>
+            <button
+              onClick={(e) => {
+                runPython(userCode);
+              }}
+              disabled={!isPyodideReady}
+            >
+              Run!
+            </button>
+          </>
+        ) : (
+          <>Loading Python Engine</>
+        )}
       </div>
     </Layout>
   );
