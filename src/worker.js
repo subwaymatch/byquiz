@@ -1,6 +1,18 @@
-// This is a module worker, so we can use imports (in the browser too!)
-import pi from '../utils/pi';
+addEventListener('message', async (event) => {
+  console.log(event);
 
-addEventListener('message', (event) => {
-  postMessage(pi(event.data));
+  switch (event.data.type) {
+    case 'LOAD_PYODIDE':
+      postMessage({
+        type: 'LOAD_REQUESTED',
+        data: null,
+      });
+
+      break;
+    default:
+      postMessage({
+        type: 'COMMAND_NOT_FOUND',
+        data: null,
+      });
+  }
 });

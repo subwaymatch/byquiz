@@ -4,15 +4,16 @@ export default function WorkerTest() {
   const workerRef = useRef();
   useEffect(() => {
     workerRef.current = new Worker('../worker.js', { type: 'module' });
-    workerRef.current.onmessage = (evt) =>
-      alert(`WebWorker Response => ${evt.data}`);
+    workerRef.current.onmessage = (evt) => console.log(evt.data);
     return () => {
       workerRef.current.terminate();
     };
   }, []);
 
   const handleWork = useCallback(async () => {
-    workerRef.current.postMessage(100000);
+    workerRef.current.postMessage({
+      type: 'LOAD_PYODIDE',
+    });
   }, []);
 
   return (
