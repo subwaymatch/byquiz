@@ -22,19 +22,6 @@ export default function PyodideTestPage() {
     }
   }, []);
 
-  // const myWorker = new Worker('../../lib/pyodide/pyodide-worker.js');
-
-  // const postToWorker = () => {
-  //   myWorker.postMessage([num1, num2]);
-  //   console.log(`${num1} and ${num2} posted to worker`);
-  // };
-
-  // myWorker.onmessage = (e) => {
-  //   SpeechRecognitionResult.textContent = e.data;
-  //   console.log('Message received from worker');
-  //   console.log(e);
-  // };
-
   const runPython = (code) => {
     if (!isPyodideReady) {
       throw new Error('Pyodide is not loaded yet');
