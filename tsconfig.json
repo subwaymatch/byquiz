@@ -21,6 +21,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/pyodide-test.js",
-    "lib/slices/pyodideSlice.js"
+    "lib/slices/pyodideSlice.js",
+    "src/components/question/coding-python-question/index.js"
   ]
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './multiple-choice-question.module.scss';
 import classNames from 'classnames/bind';
 import { IMultipleChoiceQuestion } from 'types/question';
-import ChoiceOption from 'src/components/question/multiple-choice-question/choice-option';
+import ChoiceOption from 'src/components/question/multiple-choice/choice-option';
 
 const cx = classNames.bind(styles);
 

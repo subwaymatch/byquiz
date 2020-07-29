@@ -3,7 +3,7 @@ import {
   QuestionType,
   IMultipleChoiceQuestion,
 } from 'types/question';
-import MultipleChoiceQuestion from './multiple-choice-question';
+import MultipleChoiceQuestion from './multiple-choice';
 
 type QuestionComponentProps = {
   question: IQuestion;

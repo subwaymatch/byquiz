@@ -2,7 +2,7 @@ import {
   getAllMultipleChoiceQuestions,
   getMultipleChoiceQuestion,
 } from 'lib/questions';
-import MultipleChoiceQuestion from 'src/components/question/multiple-choice-question';
+import MultipleChoiceQuestion from 'src/components/question/multiple-choice';
 import { IMultipleChoiceQuestion } from 'types/question';
 import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';

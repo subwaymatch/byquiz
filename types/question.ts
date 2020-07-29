@@ -1,8 +1,8 @@
 export enum QuestionType {
   MultipleChoice = 'multiple-choice',
   FreeResponse = 'free-response',
-  CodingPython = 'coding-python',
-  CodingSQL = 'coding-sql',
+  PythonCoding = 'python-coding',
+  SQLCoding = 'sql-coding',
 }
 
 export interface IQuestion {
@@ -32,5 +32,5 @@ export interface IFreeResponseQuestion extends IQuestion {
 }
 
 export interface IPythonCodingQuiz extends ICodingQuestion {
-  type: QuestionType.CodingPython;
+  type: QuestionType.PythonCoding;
 }
