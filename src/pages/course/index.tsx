@@ -21,15 +21,19 @@ export default function CourseIndexPage({ courses }: CourseIndexPageProps) {
 
           {course.modules && (
             <div>
-              {course.modules.map((cm) => (
-                <Link
-                  key={cm.id}
-                  href="/course/[course]/[module]/[page]"
-                  as={`/course/${course.id}/${cm.id}/${cm.pages[0].id}`}
-                >
-                  <div className={styles.courseModuleItem}>{cm.title}</div>
-                </Link>
-              ))}
+              {course.modules.map((cm) => {
+                console.log(cm);
+
+                return (
+                  <Link
+                    key={cm.id}
+                    href="/course/[course]/[module]/[page]"
+                    as={`/course/${course.id}/${cm.id}/${cm.pages[0].id}`}
+                  >
+                    <div className={styles.courseModuleItem}>{cm.title}</div>
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

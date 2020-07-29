@@ -25,6 +25,7 @@
     "remark": "^12.0.0",
     "remark-html": "^11.0.2",
     "showdown": "^1.9.1",
+    "worker-plugin": "^4.0.3",
     "yaml": "^1.10.0"
   },
   "devDependencies": {
