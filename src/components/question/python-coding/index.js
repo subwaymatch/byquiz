@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/theme-solarized_light';
+import 'ace-builds/src-noconflict/theme-tomorrow';
 
 export default function PythonCodingQuestion() {
   const defaultCodeResult = {
@@ -16,9 +17,6 @@ export default function PythonCodingQuestion() {
   const [codeResult, setCodeResult] = useState(defaultCodeResult);
 
   const pyodideWorkerRef = useRef();
-
-  console.log('codeResult');
-  console.log(codeResult);
 
   useEffect(() => {
     pyodideWorkerRef.current = new Worker('lib/pyodide/worker.js', {
@@ -43,7 +41,8 @@ export default function PythonCodingQuestion() {
           break;
 
         default:
-          console.log('default');
+          // do nothing
+          break;
       }
     };
 
@@ -70,7 +69,7 @@ export default function PythonCodingQuestion() {
       <div>
         <AceEditor
           mode="python"
-          theme="solarized_light"
+          theme="tomorrow"
           onChange={setUserCode}
           name="UNIQUE_ID_OF_DIV"
           editorProps={{ $blockScrolling: true }}
