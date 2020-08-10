@@ -18,8 +18,17 @@
       color: #777;
       font-size: 1.05rem;
 
+      .reactIcon {
+        color: #ddd;
+        margin-right: 0.5rem;
+      }
+
       &:hover {
-        color: #444;
+        color: #888;
+
+        .reactIcon {
+          color: #888;
+        }
       }
     }
 

@@ -1,20 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import classNames from 'classnames/bind';
 import styles from './python-coding-question.module.scss';
-import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
-import { EditorDidMount, ControlledEditorOnChange } from '@monaco-editor/react';
+import { editor } from 'monaco-editor/esm/vs/editor/editor.api';
+import {
+  monaco,
+  EditorDidMount,
+  ControlledEditor,
+  ControlledEditorOnChange,
+} from '@monaco-editor/react';
 import { CodeResult } from 'typing/pyodide';
+import { BsFillPuzzleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 
 const cx = classNames.bind(styles);
-
-const ControlledEditor = dynamic(
-  import('@monaco-editor/react').then((mod) => mod.ControlledEditor),
-  {
-    ssr: false,
-  }
-);
 
 type PythonCodingQuestionComponentProps = {
   templateCode: string;
@@ -33,7 +31,7 @@ export default function PythonCodingQuestionComponent({
     stdout: null,
   };
 
-  const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor>();
+  const editorRef = useRef<editor.IStandaloneCodeEditor>();
   const [editorValue, setEditorValue] = useState<string>(templateCode);
   const [isPyodideReady, setIsPyodideReady] = useState(false);
   const [codeResult, setCodeResult] = useState(defaultCodeResult);
@@ -103,9 +101,13 @@ export default function PythonCodingQuestionComponent({
   const handleEditorDidMount: EditorDidMount = (_, editor) => {
     editorRef.current = editor;
 
-    // 3 == KeyCode.Enter, 2048 == KeyMod.CtrlCmd
-    editor.addCommand(3 | 2048, () => {
-      alert('CmdCtrl + Enter Pressed!');
+    monaco.init().then((monacoInstance) => {
+      editor.addCommand(
+        monacoInstance.KeyMod.CtrlCmd | monacoInstance.KeyCode.Enter,
+        () => {
+          alert('CmdCtrl + Enter Pressed!');
+        }
+      );
     });
   };
 
@@ -133,7 +135,10 @@ export default function PythonCodingQuestionComponent({
       />
 
       <div className={cx(['editorBox', 'commandBox'])}>
-        <a className={styles.hintButton}>See Hint</a>
+        <a className={styles.hintButton}>
+          <BsFillPuzzleFill className={styles.reactIcon} />
+          <span>See Hint</span>
+        </a>
 
         <div className={styles.commandButtons}>
           <a
