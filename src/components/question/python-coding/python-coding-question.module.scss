@@ -2,10 +2,9 @@
 
 .codeEditorWrapper {
   border: 1px solid #e8e8e8;
-  padding-bottom: 1rem;
 
   .editorBox {
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.1rem;
   }
 
   .commandBox {
@@ -31,7 +30,8 @@
 
     .runCodeButton,
     .submitButton {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       color: white;
       font-size: 1rem;
       line-height: 1.4rem;
@@ -39,10 +39,15 @@
       letter-spacing: 0;
       padding: 0.6rem 1.3rem;
       border-radius: 10rem;
+
+      .reactIcon {
+        margin-right: 0.5rem;
+      }
     }
 
     .runCodeButton {
       background-color: $color-secondary;
+      border: 1px solid darken($color-secondary, 6%);
 
       &:hover {
         background-color: lighten($color-secondary, 3%);
@@ -52,9 +57,15 @@
     .submitButton {
       background-color: $color-primary;
       margin-left: 0.8rem;
+      border: 1px solid darken($color-primary, 6%);
 
       &:hover {
         background-color: lighten($color-primary, 3%);
+      }
+
+      .reactIcon {
+        font-size: 1.3rem;
+        transform: rotate(180deg);
       }
     }
   }
@@ -66,6 +77,10 @@
   .outputBox,
   .errorOutputBox {
     letter-spacing: 0;
+
+    pre {
+      margin: 0;
+    }
   }
 
   .outputBox {

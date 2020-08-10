@@ -5,6 +5,7 @@ import styles from './python-coding-question.module.scss';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import { EditorDidMount, ControlledEditorOnChange } from '@monaco-editor/react';
 import { CodeResult } from 'typing/pyodide';
+import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 
 const cx = classNames.bind(styles);
 
@@ -141,7 +142,8 @@ export default function PythonCodingQuestionComponent({
               runAndCheckCode(editorValue);
             }}
           >
-            Run Code
+            <MdPlayArrow className={styles.reactIcon} />
+            <span>Run Code</span>
           </a>
           <a
             className={styles.submitButton}
@@ -149,7 +151,8 @@ export default function PythonCodingQuestionComponent({
               runAndCheckCode(editorValue);
             }}
           >
-            Submit
+            <MdPlayForWork className={styles.reactIcon} />
+            <span>Submit</span>
           </a>
         </div>
       </div>
@@ -157,13 +160,15 @@ export default function PythonCodingQuestionComponent({
       <div className={cx(['editorBox', 'outputBox'])}>
         <span className={styles.boxLabel}>Output</span>
 
-        <pre>{codeResult.stdout}</pre>
+        <pre>{codeResult.stdout ? codeResult.stdout : 'No Output'}</pre>
       </div>
 
       <div className={cx(['editorBox', 'errorOutputBox'])}>
         <span className={styles.boxLabel}>Error</span>
 
-        <pre>{codeResult.errorMessage}</pre>
+        <pre>
+          {codeResult.errorMessage ? codeResult.errorMessage : 'No Error'}
+        </pre>
       </div>
     </div>
   );

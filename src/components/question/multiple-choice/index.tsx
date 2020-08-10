@@ -89,7 +89,7 @@ export default function MultipleChoiceQuestion({
       )}
 
       <p>
-        {text} {numCorrectOptions > 1 && `Select ${numCorrectOptions}`}
+        {text} {numCorrectOptions > 1 && `Select ${numCorrectOptions}.`}
       </p>
 
       <div className="options-wrapper">
