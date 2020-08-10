@@ -1,5 +1,6 @@
 import Layout from 'src/components/layout';
-import PythonCodingQuestion from 'src/components/question/python-coding-ace';
+import PythonCodingQuestion from 'src/components/question/python-coding';
+import PythonCodingQuestionOld from 'src/components/question/python-coding-ace';
 
 const templateCode = `some_list = []`;
 const checkCode = `from nose.tools import assert_equal
@@ -16,7 +17,9 @@ export default function PyodideTest() {
           <code>8.7</code>.
         </p>
 
-        <PythonCodingQuestion
+        <PythonCodingQuestion />
+
+        <PythonCodingQuestionOld
           templateCode={templateCode}
           checkCode={checkCode}
         />

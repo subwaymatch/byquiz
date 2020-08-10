@@ -15,7 +15,7 @@ type CodeResult = {
   stdout?: null | string;
 };
 
-export default function PythonCodingQuestion({
+export default function PythonCodingQuestionOld({
   templateCode,
   checkCode,
 }: {
