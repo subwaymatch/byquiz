@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import HeaderComponent from 'src/components/header';
 
 type LayoutProps = { children: React.ReactNode };
 
@@ -10,6 +11,8 @@ export default function Layout({ children }: LayoutProps) {
         <title>ByQuiz</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <HeaderComponent />
 
       <main>
         <div className="container">

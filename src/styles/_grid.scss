@@ -1,7 +1,13 @@
-@import 'variables';
+// @import 'variables';
 
 // Customized based on SIMPLE GRID - SASS/SCSS
 // Only the grid parts
+/* Grid variables */
+$width: 96%;
+$gutter: 4%;
+$breakpoint-small: 540px;
+$breakpoint-medium: 800px;
+
 @mixin media-small {
   @media only screen and (max-width: #{$breakpoint-small - 1px}) {
     @content;
@@ -15,7 +21,7 @@
 }
 
 .container {
-  width: 45rem;
+  width: 64rem;
   margin-left: auto;
   margin-right: auto;
 

@@ -1,0 +1,50 @@
+@import 'src/styles/variables';
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .headerLeft,
+  .headerRight {
+    width: 8rem;
+  }
+
+  .siteTitle {
+    font-size: 1.3rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-weight: 800;
+  }
+
+  .headerCenter {
+    flex-grow: 1;
+  }
+
+  .headerRight {
+    display: flex;
+    justify-content: flex-end;
+
+    .menuIconWrapper {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  .headerMainMenu {
+    display: flex;
+    justify-content: center;
+
+    a {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  a {
+    color: black;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
