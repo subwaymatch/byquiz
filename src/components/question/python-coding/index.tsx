@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import classnames from 'classnames';
+import classNames from 'classnames/bind';
 import styles from './python-coding-question.module.scss';
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import { EditorDidMount, ControlledEditorOnChange } from '@monaco-editor/react';
 import { CodeResult } from 'typing/pyodide';
+
+const cx = classNames.bind(styles);
 
 const ControlledEditor = dynamic(
   import('@monaco-editor/react').then((mod) => mod.ControlledEditor),
@@ -16,7 +18,6 @@ const ControlledEditor = dynamic(
 type PythonCodingQuestionComponentProps = {
   templateCode: string;
   checkCode: string;
-  language: string;
 };
 
 export default function PythonCodingQuestionComponent({
@@ -31,8 +32,8 @@ export default function PythonCodingQuestionComponent({
     stdout: null,
   };
 
-  const [editorValue, setEditorValue] = useState<string>(templateCode);
   const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor>();
+  const [editorValue, setEditorValue] = useState<string>(templateCode);
   const [isPyodideReady, setIsPyodideReady] = useState(false);
   const [codeResult, setCodeResult] = useState(defaultCodeResult);
   const [isSubmitInProgress, setIsSubmitInProgress] = useState(false);
@@ -112,7 +113,7 @@ export default function PythonCodingQuestionComponent({
   };
 
   return (
-    <div className={styles.codeEditorWrapper}>
+    <div className={cx(['codeEditorWrapper'])}>
       <ControlledEditor
         height="40vh"
         value={editorValue}
@@ -130,25 +131,39 @@ export default function PythonCodingQuestionComponent({
         }}
       />
 
-      <div className={classnames([styles.editorBox, styles.commandBox])}>
+      <div className={cx(['editorBox', 'commandBox'])}>
         <a className={styles.hintButton}>See Hint</a>
 
         <div className={styles.commandButtons}>
-          <a className={styles.runCodeButton}>Run Code</a>
-          <a className={styles.submitButton}>Submit</a>
+          <a
+            className={styles.runCodeButton}
+            onClick={(e) => {
+              runAndCheckCode(editorValue);
+            }}
+          >
+            Run Code
+          </a>
+          <a
+            className={styles.submitButton}
+            onClick={(e) => {
+              runAndCheckCode(editorValue);
+            }}
+          >
+            Submit
+          </a>
         </div>
       </div>
 
-      <div className={classnames([styles.editorBox, styles.outputBox])}>
+      <div className={cx(['editorBox', 'outputBox'])}>
         <span className={styles.boxLabel}>Output</span>
 
-        <pre>No Output</pre>
+        <pre>{codeResult.stdout}</pre>
       </div>
 
-      <div className={classnames([styles.editorBox, styles.errorOutputBox])}>
+      <div className={cx(['editorBox', 'errorOutputBox'])}>
         <span className={styles.boxLabel}>Error</span>
 
-        <pre>No Output</pre>
+        <pre>{codeResult.errorMessage}</pre>
       </div>
     </div>
   );
