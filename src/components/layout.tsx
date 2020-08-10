@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import HeaderComponent from 'src/components/header';
 
 type LayoutProps = { children: React.ReactNode };
@@ -19,33 +18,6 @@ export default function Layout({ children }: LayoutProps) {
           <div className="row">{children}</div>
         </div>
       </main>
-
-      <footer>
-        <div>
-          <ul>
-            <li>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/pyodide-test">
-                <a>Python Test</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/course">
-                <a>Courses</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/question">
-                <a>Question Bank</a>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </footer>
 
       <style jsx>{`
         .wrapper {

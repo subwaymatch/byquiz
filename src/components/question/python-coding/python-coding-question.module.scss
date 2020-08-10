@@ -1,0 +1,84 @@
+@import 'src/styles/variables';
+
+.codeEditorWrapper {
+  border: 1px solid #e8e8e8;
+  padding-bottom: 1rem;
+
+  .editorBox {
+    padding: 1rem 1.5rem;
+  }
+
+  .commandBox {
+    display: flex;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    align-items: center;
+    justify-content: space-between;
+
+    .hintButton {
+      color: #777;
+      font-size: 1.05rem;
+
+      &:hover {
+        color: #444;
+      }
+    }
+
+    .commandButtons {
+      display: flex;
+      align-items: center;
+    }
+
+    .runCodeButton,
+    .submitButton {
+      display: inline-block;
+      color: white;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 0;
+      padding: 0.6rem 1.3rem;
+      border-radius: 10rem;
+    }
+
+    .runCodeButton {
+      background-color: $color-secondary;
+
+      &:hover {
+        background-color: lighten($color-secondary, 3%);
+      }
+    }
+
+    .submitButton {
+      background-color: $color-primary;
+      margin-left: 0.8rem;
+
+      &:hover {
+        background-color: lighten($color-primary, 3%);
+      }
+    }
+  }
+
+  .boxLabel {
+    font-size: 1rem;
+  }
+
+  .outputBox,
+  .errorOutputBox {
+    letter-spacing: 0;
+  }
+
+  .outputBox {
+    border-bottom: 1px solid #e8e8e8;
+
+    .boxLabel {
+      color: $color-secondary;
+    }
+  }
+
+  .errorOutputBox {
+    .boxLabel {
+      color: $color-tertiary;
+    }
+  }
+}

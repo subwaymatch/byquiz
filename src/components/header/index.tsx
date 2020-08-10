@@ -19,6 +19,9 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
           <h1>{headerTitle}</h1>
         ) : (
           <nav className={styles.headerMainMenu}>
+            <Link href="/pyodide-test">
+              <a>Python Q</a>
+            </Link>
             <Link href="/course">
               <a>Courses</a>
             </Link>
