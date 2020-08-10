@@ -1,4 +1,4 @@
-import { ICourse } from 'types/course';
+import { ICourse } from 'typing/course';
 
 type CourseHeaderProps = {
   course: ICourse;

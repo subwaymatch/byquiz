@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import classNames from 'classnames/bind';
 import styles from './course-module-navigation.module.scss';
-import { ICourseModulePageMeta } from 'types/course';
+import { ICourseModulePageMeta } from 'typing/course';
 
 const cx = classNames.bind(styles);
 

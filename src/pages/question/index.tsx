@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Layout from 'src/components/layout';
 import { getAllMultipleChoiceQuestions } from 'lib/questions';
-import { IMultipleChoiceQuestion } from 'types/question';
+import { IMultipleChoiceQuestion } from 'typing/question';
 
 import styles from './index.module.scss';
 

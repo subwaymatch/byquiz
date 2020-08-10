@@ -1,4 +1,4 @@
-import { ICourse } from 'types/course';
+import { ICourse } from 'typing/course';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import { getAllCourses } from 'lib/courses';
@@ -22,8 +22,6 @@ export default function CourseIndexPage({ courses }: CourseIndexPageProps) {
           {course.modules && (
             <div>
               {course.modules.map((cm) => {
-                console.log(cm);
-
                 return (
                   <Link
                     key={cm.id}

@@ -5,7 +5,7 @@ import {
   IQuestion,
   IMultipleChoiceQuestion,
   QuestionType,
-} from 'types/question';
+} from 'typing/question';
 
 const fsPromises = fs.promises;
 const questionContentPath = path.join(process.cwd(), 'content', 'question');

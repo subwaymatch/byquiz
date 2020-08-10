@@ -6,7 +6,7 @@ import {
   ICourseModule,
   ICourseModulePageData,
   ICourseModulePageMeta,
-} from 'types/course';
+} from 'typing/course';
 import matter, { GrayMatterFile } from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';

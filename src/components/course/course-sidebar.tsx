@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ICourse } from 'types/course';
+import { ICourse } from 'typing/course';
 import styles from './course-sidebar.module.scss';
 import classNames from 'classnames/bind';
 

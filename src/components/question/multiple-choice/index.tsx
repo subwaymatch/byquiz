@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './multiple-choice-question.module.scss';
 import classNames from 'classnames/bind';
-import { IMultipleChoiceQuestion } from 'types/question';
+import { IMultipleChoiceQuestion } from 'typing/question';
 import ChoiceOption from 'src/components/question/multiple-choice/choice-option';
 
 const cx = classNames.bind(styles);

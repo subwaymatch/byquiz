@@ -1,4 +1,4 @@
-import { IQuestion } from 'types/question';
+import { IQuestion } from 'typing/question';
 import classNames from 'classnames/bind';
 import styles from './course-module-page-questions.module.scss';
 import QuestionComponent from 'src/components/question';

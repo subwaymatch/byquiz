@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { CodeResult } from 'typing/pyodide';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/theme-tomorrow';
@@ -6,14 +7,6 @@ import styles from './coding-question.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
-
-type CodeResult = {
-  hasError: boolean;
-  errorMessage?: null | string;
-  output?: null | string;
-  stderr?: null | string;
-  stdout?: null | string;
-};
 
 export default function PythonCodingQuestionOld({
   templateCode,
