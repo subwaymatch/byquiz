@@ -16,6 +16,8 @@ export default function CourseSidebar({
 }: CourseSidebarProps) {
   return (
     <div className={styles.sidebarWrapper}>
+      <h1>{course.title}</h1>
+
       {course.modules.map((module) => (
         <Link
           key={module.id}

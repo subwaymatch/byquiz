@@ -28,11 +28,16 @@ export default function CourseModulePagePage({
     <Layout>
       <div className="courseModulePageWrapper">
         <div className="row">
-          <div className="col-12">
-            <CourseHeader course={course} />
+          <div className="col-3">&nbsp;</div>
+          <div className="col-9">
+            <CourseModuleNavigation
+              courseId={course.id}
+              moduleId={currentModule.id}
+              currentPageId={pageData.id}
+              pagesMeta={currentModule.pages}
+            />
           </div>
         </div>
-
         <div className="row">
           <div className="col-3">
             <CourseSidebar
@@ -42,13 +47,6 @@ export default function CourseModulePagePage({
           </div>
 
           <div className="col-9">
-            <CourseModuleNavigation
-              courseId={course.id}
-              moduleId={currentModule.id}
-              currentPageId={pageData.id}
-              pagesMeta={currentModule.pages}
-            />
-
             <CourseModulePageContent pageData={pageData} />
 
             <CourseModulePageQuestions questions={pageData.questions} />

@@ -19,22 +19,24 @@ export default function CourseModuleNavigation({
   currentPageId,
 }: CourseModuleNavigationProps) {
   return (
-    <div className={styles.courseModuleNavigation}>
-      {pagesMeta.map((pageMeta, pageIndex) => (
-        <Link
-          key={pageMeta.id}
-          href="/course/[courseId]/[moduleId]/[pageId]"
-          as={`/course/${courseId}/${moduleId}/${pageMeta.id}`}
-        >
-          <div
-            className={cx('pageLinkItem', {
-              active: pageMeta.id === currentPageId,
-            })}
+    <div className={styles.courseModuleNavigationWrapper}>
+      <nav className={styles.courseModuleNavigation}>
+        {pagesMeta.map((pageMeta, pageIndex) => (
+          <Link
+            key={pageMeta.id}
+            href="/course/[courseId]/[moduleId]/[pageId]"
+            as={`/course/${courseId}/${moduleId}/${pageMeta.id}`}
           >
-            {pageIndex + 1}
-          </div>
-        </Link>
-      ))}
+            <div
+              className={cx('pageLinkItem', {
+                active: pageMeta.id === currentPageId,
+              })}
+            >
+              <span>{pageIndex + 1}</span>
+            </div>
+          </Link>
+        ))}
+      </nav>
     </div>
   );
 }

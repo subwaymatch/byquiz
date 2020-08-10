@@ -1,13 +1,13 @@
 import Layout from 'src/components/layout';
-import Counter from 'src/components/counter';
-import TodosComponent from 'src/components/todo';
+import styles from './home.module.scss';
 
 export default function Home() {
   return (
     <Layout>
-      <div className="test">
-        <Counter />
-        <TodosComponent />
+      <div className="row">
+        <div className="col-12">
+          <p className={styles.hero}>Learn anything by solving problems.</p>
+        </div>
       </div>
     </Layout>
   );

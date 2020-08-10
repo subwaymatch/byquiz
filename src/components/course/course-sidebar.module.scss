@@ -1,11 +1,18 @@
 @import 'src/styles/variables';
 
 .sidebarWrapper {
+  font-size: 1.2rem;
+
+  h1 {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
   .moduleLinkItem {
     cursor: pointer;
     color: #777;
     font-size: 1.1rem;
-    border-top: 1px solid #999;
     padding: 0.4rem 0;
 
     &:hover {

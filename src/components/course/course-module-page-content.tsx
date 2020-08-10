@@ -13,7 +13,7 @@ export default function CourseModulePageContent({
 }: CourseModulePageContentProps) {
   return (
     <div className={cx('courseModulePageContent')}>
-      <h3>{pageData.title}</h3>
+      <h2>{pageData.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: pageData.content }} />
     </div>
   );
