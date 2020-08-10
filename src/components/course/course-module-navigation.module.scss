@@ -15,19 +15,21 @@
       justify-content: center;
       background-color: transparent;
       border-radius: 10rem;
-      margin-right: 0.6rem;
+      margin-right: 1rem;
       cursor: pointer;
 
       &:hover {
         background-color: white;
+        border: 1px solid #e9e9e9;
       }
 
       &.active {
         color: white;
         background-color: black;
+        border: none;
 
         &:hover {
-          background-color: $color-primary;
+          background-color: #333;
         }
       }
     }

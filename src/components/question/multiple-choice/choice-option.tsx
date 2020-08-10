@@ -27,7 +27,10 @@ export default function ChoiceOption({
       })}
       onClick={onClick}
     >
-      {label}
+      <div className={styles.checkIndicator}>
+        <span className={styles.checkmark}>✓</span>
+      </div>
+      <p className={styles.labelText}>{label}</p>
     </div>
   );
 }
