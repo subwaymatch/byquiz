@@ -1,5 +1,5 @@
 import Layout from 'src/components/layout';
-import PythonCodingQuestion from 'src/components/question/python-coding';
+import PythonCodingQuestion from 'src/components/question/python-coding-ace';
 
 const templateCode = `some_list = []`;
 const checkCode = `from nose.tools import assert_equal
