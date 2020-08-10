@@ -6,7 +6,6 @@ import {
   getCourseModulePageData,
 } from 'lib/courses';
 import { ICourse, ICourseModulePageData } from 'typing/course';
-import CourseHeader from 'src/components/course/course-header';
 import CourseSidebar from 'src/components/course/course-sidebar';
 import CourseModulePageContent from 'src/components/course/course-module-page-content';
 import CourseModulePageQuestions from 'src/components/course/course-module-page-questions';
