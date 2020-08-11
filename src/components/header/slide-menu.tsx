@@ -1,15 +1,17 @@
-import { slide as Menu } from 'react-burger-menu';
+import Link from 'next/link';
+import { push as Menu } from 'react-burger-menu';
+// import burgerBarsIcon from 'src/svg/icon-burger-bars.svg';
 
 const menuStyles = {
   bmBurgerButton: {
     position: 'fixed',
     width: '36px',
     height: '30px',
-    right: '1rem',
-    top: '1rem',
+    right: '0',
+    top: '0',
   },
   bmBurgerBars: {
-    background: '#373a47',
+    background: '#ffcc33',
   },
   bmBurgerBarsHover: {
     background: '#000',
@@ -48,23 +50,21 @@ const menuStyles = {
 export default function SlideMenu() {
   return (
     <Menu
+      customBurgerIcon={<img src="/images/icon-burger-bars.svg" />}
       styles={menuStyles}
       pageWrapId="page-wrap"
       outerContainerId="layout-wrapper"
       right
     >
-      <a id="home" className="menu-item" href="/">
-        Home
-      </a>
-      <a id="about" className="menu-item" href="/about">
-        About
-      </a>
-      <a id="contact" className="menu-item" href="/contact">
-        Contact
-      </a>
-      <a className="menu-item--small" href="">
-        Settings
-      </a>
+      <Link href="/">
+        <a>Home</a>
+      </Link>
+      <Link href="/course">
+        <a>Courses</a>
+      </Link>
+      <Link href="/question">
+        <a>Question Bank</a>
+      </Link>
     </Menu>
   );
 }

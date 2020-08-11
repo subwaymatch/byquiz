@@ -25,10 +25,7 @@
   .headerRight {
     display: flex;
     justify-content: flex-end;
-
-    .menuIconWrapper {
-      padding: 0.5rem 1rem;
-    }
+    visibility: hidden;
   }
 
   .headerMainMenu {

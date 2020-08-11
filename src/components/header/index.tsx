@@ -32,16 +32,7 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
         )}
       </div>
 
-      <div className={styles.headerRight}>
-        <a
-          className={styles.menuIconWrapper}
-          onClick={() => {
-            console.log('Menu clicked!');
-          }}
-        >
-          <span className={styles.menuIcon}>Menu Icon</span>
-        </a>
-      </div>
+      <div className={styles.headerRight}>M</div>
     </header>
   );
 }
