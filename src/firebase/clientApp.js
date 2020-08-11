@@ -2,7 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth'; // If you need it
 import 'firebase/firestore'; // If you need it
 // import 'firebase/storage' // If you need it
-// import 'firebase/analytics' // If you need it
 
 const clientCredentials = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -14,7 +13,6 @@ const clientCredentials = {
   appId: process.env.FIREBASE_APP_ID,
 };
 
-// Check that `window` is in scope for the analytics module!
 if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
 

@@ -3,12 +3,16 @@
   position: fixed;
   width: 40px;
   height: 40px;
-  top: 1rem;
-  right: 1.4rem;
+  top: 16px;
+  right: 22px;
   padding: 5px;
 
   button {
     outline: none;
+
+    &:focus {
+      border-bottom: 1px solid #f5f5f5;
+    }
   }
 
   &:hover svg {
@@ -40,7 +44,7 @@
 .bm-menu {
   background: white;
   padding: 2.5em 1.5em 0;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -54,9 +58,19 @@
   padding: 0.8em;
 }
 
+.bm-item {
+  outline: none;
+}
+
 /* Individual item */
 .menu-item {
+  color: #333;
   display: block;
+  padding: 0.2rem 0;
+
+  &:hover {
+    color: $color-secondary;
+  }
 }
 
 /* Styling of overlay */
