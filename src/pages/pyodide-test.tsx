@@ -1,4 +1,4 @@
-import Layout from 'src/components/layout';
+import Layout from 'src/components/layout/layout';
 import PythonCodingQuestion from 'src/components/question/python-coding';
 
 const templateCode = `some_list = []`;

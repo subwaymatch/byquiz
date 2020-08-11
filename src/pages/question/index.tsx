@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
-import Layout from 'src/components/layout';
+import Layout from 'src/components/layout/layout';
 import { getAllMultipleChoiceQuestions } from 'lib/questions';
 import { IMultipleChoiceQuestion } from 'typing/question';
 
