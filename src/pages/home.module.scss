@@ -1,8 +1,16 @@
 @import 'src/styles/variables';
 
-p.hero {
+p.heroText {
   text-align: center;
   font-size: 6rem;
   line-height: 7.5rem;
-  font-weight: 400;
+  font-weight: 900;
+  background: -webkit-linear-gradient($color-tertiary, $color-secondary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroImageWrapper {
+  margin-top: 3rem;
 }
