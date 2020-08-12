@@ -1,9 +1,11 @@
 // On production, variables are set with `now secrets`. On development, they use the .env file
 require('dotenv').config();
 
+const withImages = require('next-images');
+
 const WorkerPlugin = require('worker-plugin');
 
-module.exports = {
+module.exports = withImages({
   env: {
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
@@ -24,4 +26,4 @@ module.exports = {
     }
     return config;
   },
-};
+});

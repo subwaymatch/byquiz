@@ -13,6 +13,7 @@ import { CodeResult } from 'typing/pyodide';
 import { FiArrowDownRight } from 'react-icons/fi';
 import { BsFillPuzzleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
+import CuteCatImage from 'src/images/cute-cartoon-cat.svg';
 
 const cx = classNames.bind(styles);
 
@@ -173,13 +174,25 @@ export default function PythonCodingQuestion({
           </div>
         </div>
 
-        <div className={cx(['editorBox', 'outputBox'])}>
+        <div className={cx('editorBox', 'hintBox')}>
+          <img
+            src={CuteCatImage}
+            alt="Cute Cat"
+            className={styles.hintCharacterImage}
+          />
+          <div>
+            <span className={styles.boxLabel}>Hint</span>
+            <div dangerouslySetInnerHTML={{ __html: question.hint }} />
+          </div>
+        </div>
+
+        <div className={cx('editorBox', 'outputBox')}>
           <span className={styles.boxLabel}>Output</span>
 
           <pre>{codeResult.stdout ? codeResult.stdout : 'No Output'}</pre>
         </div>
 
-        <div className={cx(['editorBox', 'errorOutputBox'])}>
+        <div className={cx('editorBox', 'errorOutputBox')}>
           <span className={styles.boxLabel}>Error</span>
 
           <pre>
