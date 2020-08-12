@@ -34,7 +34,6 @@ $border-color: #e8e8e8;
     display: flex;
     margin-top: 1px;
     border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
     align-items: center;
     justify-content: space-between;
 
@@ -105,25 +104,30 @@ $border-color: #e8e8e8;
 
   .boxLabel {
     font-size: 1rem;
+    letter-spacing: 0;
   }
 
   .hintBox {
     display: flex;
-    border-bottom: 1px solid $border-color;
     align-items: center;
     justify-content: center;
-    padding-top: 1.1rem;
-    padding-bottom: 1.1rem;
+    padding: 0.9rem;
+    margin: 0.3rem;
     font-size: 1.1rem;
-    color: color.scale(#d2e1dd, $lightness: -10%, $saturation: 10%);
+    background-color: color.scale(
+      $color-secondary,
+      $lightness: 92%,
+      $saturation: 10%
+    );
 
     .boxLabel {
+      font-size: 0.9rem;
       color: $color-secondary;
     }
 
     img.hintCharacterImage {
       width: 5rem;
-      margin-right: 1rem;
+      margin-right: 1.4rem;
     }
   }
 
@@ -137,6 +141,7 @@ $border-color: #e8e8e8;
   }
 
   .outputBox {
+    border-top: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
 
     .boxLabel {

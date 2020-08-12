@@ -181,7 +181,7 @@ export default function PythonCodingQuestion({
             className={styles.hintCharacterImage}
           />
           <div>
-            <span className={styles.boxLabel}>Hint</span>
+            <span className={styles.boxLabel}>The wise Hintocat meows...</span>
             <div dangerouslySetInnerHTML={{ __html: question.hint }} />
           </div>
         </div>
