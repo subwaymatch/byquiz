@@ -1,11 +1,19 @@
 import Link from 'next/link';
 import styles from './header.module.scss';
+import { useRouter } from 'next/router';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
 
 type HeaderComponentProps = {
   headerTitle?: string;
 };
 
 export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
+  const router = useRouter();
+
+  console.log(router.pathname);
+
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
@@ -20,13 +28,29 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
         ) : (
           <nav className={styles.headerMainMenu}>
             <Link href="/pyodide-test">
-              <a>Python Q</a>
+              <a className={cx('menuItem')}>Python Q</a>
             </Link>
             <Link href="/course">
-              <a>Courses</a>
+              <a
+                className={cx('menuItem', {
+                  active:
+                    router.pathname === '/course' ||
+                    router.pathname.startsWith('/course/'),
+                })}
+              >
+                Courses
+              </a>
             </Link>
             <Link href="/question">
-              <a>Questions</a>
+              <a
+                className={cx('menuItem', {
+                  active:
+                    router.pathname === '/question' ||
+                    router.pathname.startsWith('/question/'),
+                })}
+              >
+                Questions
+              </a>
             </Link>
           </nav>
         )}
