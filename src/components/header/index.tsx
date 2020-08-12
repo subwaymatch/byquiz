@@ -12,8 +12,6 @@ type HeaderComponentProps = {
 export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
   const router = useRouter();
 
-  console.log(router.pathname);
-
   return (
     <header className={styles.header}>
       <div className={styles.headerLeft}>
