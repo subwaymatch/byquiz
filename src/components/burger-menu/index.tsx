@@ -1,12 +1,25 @@
 import Link from 'next/link';
 import { push as Menu } from 'react-burger-menu';
-import { FaBeer } from 'react-icons/fa';
-import { IoIosSettings } from 'react-icons/io';
+import { RiHome2Line, RiArrowDropRightLine } from 'react-icons/ri';
+import { BsFillLayersFill } from 'react-icons/bs';
+import { AiFillBank } from 'react-icons/ai';
+
+import styles from './burger-menu.module.scss';
 
 export default function SlideMenu() {
   return (
     <>
       <Menu
+        pageWrapId="page-wrap"
+        outerContainerId="layout-wrapper"
+        right
+        burgerButtonClassName={styles.burgerButton}
+        burgerBarClassName={styles.burgerBar}
+        crossButtonClassName={styles.crossButton}
+        crossClassName={styles.cross}
+        menuClassName={styles.menu}
+        itemListClassName={styles.itemList}
+        overlayClassName={styles.overlay}
         customBurgerIcon={
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">
             <g id="Layer_2" data-name="Layer 2">
@@ -40,26 +53,32 @@ export default function SlideMenu() {
             </g>
           </svg>
         }
-        pageWrapId="page-wrap"
-        outerContainerId="layout-wrapper"
-        right
       >
         <div>
           <Link href="/">
-            <a className="menu-item">
-              <FaBeer />
+            <a className={styles.menuItem}>
+              <RiHome2Line className={styles.menuItemIcon} />
               <span>Home</span>
+              <RiArrowDropRightLine className={styles.hoverIndicatorIcon} />
             </a>
           </Link>
         </div>
         <div>
           <Link href="/course">
-            <a className="menu-item">Courses</a>
+            <a className={styles.menuItem}>
+              <BsFillLayersFill className={styles.menuItemIcon} />
+              <span>Courses</span>
+              <RiArrowDropRightLine className={styles.hoverIndicatorIcon} />
+            </a>
           </Link>
         </div>
         <div>
           <Link href="/question">
-            <a className="menu-item">Question Bank</a>
+            <a className={styles.menuItem}>
+              <AiFillBank className={styles.menuItemIcon} />
+              <span>Question Bank</span>
+              <RiArrowDropRightLine className={styles.hoverIndicatorIcon} />
+            </a>
           </Link>
         </div>
       </Menu>

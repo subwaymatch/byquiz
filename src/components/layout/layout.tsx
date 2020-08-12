@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import HeaderComponent from 'src/components/header';
-import SlideMenu from 'src/components/header/slide-menu';
+import SlideMenu from 'src/components/burger-menu';
 import styles from './layout.module.scss';
 
 type LayoutProps = { children: React.ReactNode };
