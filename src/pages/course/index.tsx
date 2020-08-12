@@ -2,7 +2,7 @@ import { ICourse } from 'typing/course';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import { getAllCourses } from 'lib/courses';
-import Layout from 'src/components/layout/layout';
+import Layout from 'src/components/layout';
 import styles from './index.module.scss';
 
 type CourseIndexPageProps = {

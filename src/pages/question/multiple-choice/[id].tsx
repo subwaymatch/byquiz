@@ -4,7 +4,7 @@ import {
 } from 'lib/questions';
 import MultipleChoiceQuestion from 'src/components/question/multiple-choice';
 import { IMultipleChoiceQuestion } from 'typing/question';
-import Layout from 'src/components/layout/layout';
+import Layout from 'src/components/layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 type MultipleChoiceQuestionPageProps = {
