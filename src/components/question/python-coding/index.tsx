@@ -8,21 +8,21 @@ import {
   ControlledEditor,
   ControlledEditorOnChange,
 } from '@monaco-editor/react';
+import { ICodingQuestion } from 'typing/question';
 import { CodeResult } from 'typing/pyodide';
+import { FiArrowDownRight } from 'react-icons/fi';
 import { BsFillPuzzleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 
 const cx = classNames.bind(styles);
 
-type PythonCodingQuestionComponentProps = {
-  templateCode: string;
-  checkCode: string;
+type PythonCodingQuestionProps = {
+  question: ICodingQuestion;
 };
 
-export default function PythonCodingQuestionComponent({
-  templateCode,
-  checkCode,
-}: PythonCodingQuestionComponentProps) {
+export default function PythonCodingQuestion({
+  question,
+}: PythonCodingQuestionProps) {
   const defaultCodeResult: CodeResult = {
     hasError: false,
     errorMessage: null,
@@ -32,7 +32,7 @@ export default function PythonCodingQuestionComponent({
   };
 
   const editorRef = useRef<editor.IStandaloneCodeEditor>();
-  const [editorValue, setEditorValue] = useState<string>(templateCode);
+  const [editorValue, setEditorValue] = useState<string>(question.templateCode);
   const [isPyodideReady, setIsPyodideReady] = useState(false);
   const [codeResult, setCodeResult] = useState(defaultCodeResult);
   const [isSubmitInProgress, setIsSubmitInProgress] = useState(false);
@@ -94,7 +94,7 @@ export default function PythonCodingQuestionComponent({
     pyodideWorkerRef.current.postMessage({
       type: 'RUN_AND_CHECK_CODE',
       userCode: codeStr,
-      checkCode,
+      checkCode: question.checkCode,
     });
   };
 
@@ -116,64 +116,76 @@ export default function PythonCodingQuestionComponent({
   };
 
   return (
-    <div className={cx(['codeEditorWrapper'])}>
-      <ControlledEditor
-        height="40vh"
-        value={editorValue}
-        editorDidMount={handleEditorDidMount}
-        onChange={handleEditorChange}
-        language="python"
-        options={{
-          folding: false,
-          fontSize: 19,
-          wordWrap: 'on',
-          minimap: {
-            enabled: false,
-          },
-          extraEditorClassName: styles.codeEditor,
-        }}
+    <div className={cx('pythonCodingQuestionWrapper')}>
+      <div className={cx('questionHeader')}>
+        <span className={cx('questionTitle')}>Coding Challenge</span>
+        <FiArrowDownRight className={styles.reactIcon} />
+      </div>
+
+      <div
+        className={cx('questionText')}
+        dangerouslySetInnerHTML={{ __html: question.text }}
       />
 
-      <div className={cx(['editorBox', 'commandBox'])}>
-        <a className={styles.hintButton}>
-          <BsFillPuzzleFill className={styles.reactIcon} />
-          <span>See Hint</span>
-        </a>
+      <div className={cx('codeEditorWrapper')}>
+        <ControlledEditor
+          height="40vh"
+          value={editorValue}
+          editorDidMount={handleEditorDidMount}
+          onChange={handleEditorChange}
+          language="python"
+          options={{
+            folding: false,
+            fontSize: 19,
+            wordWrap: 'on',
+            minimap: {
+              enabled: false,
+            },
+            extraEditorClassName: styles.codeEditor,
+          }}
+        />
 
-        <div className={styles.commandButtons}>
-          <a
-            className={styles.runCodeButton}
-            onClick={(e) => {
-              runAndCheckCode(editorValue);
-            }}
-          >
-            <MdPlayArrow className={styles.reactIcon} />
-            <span>Run Code</span>
+        <div className={cx(['editorBox', 'commandBox'])}>
+          <a className={styles.hintButton}>
+            <BsFillPuzzleFill className={styles.reactIcon} />
+            <span>See Hint</span>
           </a>
-          <a
-            className={styles.submitButton}
-            onClick={(e) => {
-              runAndCheckCode(editorValue);
-            }}
-          >
-            <MdPlayForWork className={styles.reactIcon} />
-            <span>Submit</span>
-          </a>
+
+          <div className={styles.commandButtons}>
+            <a
+              className={styles.runCodeButton}
+              onClick={(e) => {
+                runAndCheckCode(editorValue);
+              }}
+            >
+              <MdPlayArrow className={styles.reactIcon} />
+              <span>Run Code</span>
+            </a>
+            <a
+              className={styles.submitButton}
+              onClick={(e) => {
+                runAndCheckCode(editorValue);
+              }}
+            >
+              <MdPlayForWork className={styles.reactIcon} />
+              <span>Submit</span>
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div className={cx(['editorBox', 'outputBox'])}>
-        <span className={styles.boxLabel}>Output</span>
+        <div className={cx(['editorBox', 'outputBox'])}>
+          <span className={styles.boxLabel}>Output</span>
 
-        <pre>{codeResult.stdout ? codeResult.stdout : 'No Output'}</pre>
-      </div>
+          <pre>{codeResult.stdout ? codeResult.stdout : 'No Output'}</pre>
+        </div>
 
-      <div className={cx(['editorBox', 'errorOutputBox'])}>
-        <span className={styles.boxLabel}>Error</span>
+        <div className={cx(['editorBox', 'errorOutputBox'])}>
+          <span className={styles.boxLabel}>Error</span>
 
-        <pre>
-          {codeResult.errorMessage ? codeResult.errorMessage : 'No Error'}
-        </pre>
+          <pre>
+            {codeResult.errorMessage ? codeResult.errorMessage : 'No Error'}
+          </pre>
+        </div>
       </div>
     </div>
   );

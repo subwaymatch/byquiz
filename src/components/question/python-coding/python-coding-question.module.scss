@@ -1,6 +1,25 @@
 @import 'src/styles/variables';
 
+.questionHeader {
+  display: flex;
+  align-items: center;
+  color: $color-primary;
+  font-size: 1.1rem;
+
+  .reactIcon {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    margin-left: 0.2rem;
+  }
+}
+
+.questionText {
+  margin-top: 0rem;
+}
+
 .codeEditorWrapper {
+  margin-top: 1.5rem;
   border: 1px solid #e8e8e8;
 
   .editorBox {

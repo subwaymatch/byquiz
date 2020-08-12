@@ -10,15 +10,16 @@ export interface IQuestion {
   id: string;
   text: string;
   hint?: string;
-  explanation: string;
+  explanation?: string;
 }
 
 export interface ICodingQuestion extends IQuestion {
   type: QuestionType;
-  runBefore: string;
-  beginningCode: string;
-  runAfter: string;
+  templateCode?: string;
+  solutionCode: string;
   checkCode: string;
+  runBefore?: string;
+  runAfter?: string;
 }
 
 export interface IMultipleChoiceQuestion extends IQuestion {

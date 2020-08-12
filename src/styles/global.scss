@@ -38,6 +38,19 @@ a {
   cursor: pointer;
 }
 
+code {
+  font-family: $font-monospace;
+  padding: 0.1em 0.3em;
+  background-color: #f8f8f8;
+  border: 1px solid #eaeaea;
+
+  color: mix($color-primary, black, 90%);
+  background-color: mix($color-primary, white, 8%);
+  border: 1px solid mix($color-primary, white, 20%);
+  border-radius: 7px;
+  font-size: 0.8em;
+}
+
 img {
   max-width: 100%;
 }
