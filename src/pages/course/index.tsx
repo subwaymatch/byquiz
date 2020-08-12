@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import { getAllCourses } from 'lib/courses';
 import Layout from 'src/components/layout';
-import styles from './index.module.scss';
+import styles from './course.module.scss';
 
 type CourseIndexPageProps = {
   courses: ICourse[];

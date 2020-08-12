@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 @import 'src/styles/variables';
 
 $border-color: #e8e8e8;
@@ -80,20 +80,20 @@ $border-color: #e8e8e8;
 
     .runCodeButton {
       background-color: $color-secondary;
-      border: 1px solid darken($color-secondary, 6%);
+      border: 1px solid color.scale($color-secondary, $lightness: -7%);
 
       &:hover {
-        background-color: lighten($color-secondary, 3%);
+        background-color: color.scale($color-secondary, $lightness: 3%);
       }
     }
 
     .submitButton {
       background-color: $color-primary;
       margin-left: 0.8rem;
-      border: 1px solid darken($color-primary, 6%);
+      border: 1px solid color.scale($color-primary, $lightness: -7%);
 
       &:hover {
-        background-color: lighten($color-primary, 3%);
+        background-color: color.scale($color-primary, $lightness: 3%);
       }
 
       .reactIcon {
