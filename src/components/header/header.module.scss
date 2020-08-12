@@ -34,7 +34,12 @@
     font-size: 1.1rem;
 
     a {
+      color: #999;
       padding: 0.5rem 1rem;
+
+      &:hover {
+        color: #666;
+      }
     }
   }
 
@@ -43,7 +48,7 @@
     cursor: pointer;
 
     &:hover {
-      color: $color-primary;
+      color: #666;
     }
   }
 }
