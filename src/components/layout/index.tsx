@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { ToastContainer } from 'react-toastify';
 import HeaderComponent from 'src/components/header';
 import SlideMenu from 'src/components/burger-menu';
 import styles from './layout.module.scss';
@@ -26,6 +27,8 @@ export default function Layout({ children }: LayoutProps) {
           </main>
         </div>
       </div>
+
+      <ToastContainer position="top-center" />
     </>
   );
 }

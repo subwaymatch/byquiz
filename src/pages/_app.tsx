@@ -7,6 +7,7 @@ import { IconContext } from 'react-icons';
 
 import store from 'src/store';
 import 'src/styles/global.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const rrfConfig = {
   userProfile: 'users',

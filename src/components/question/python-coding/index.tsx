@@ -16,6 +16,7 @@ import { BsFillPuzzleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 import HintocatImage from 'src/images/cute-cartoon-cat.svg';
 import CheckofrogImage from 'src/images/cute-cartoon-frog.svg';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 
@@ -99,6 +100,8 @@ export default function PythonCodingQuestion({
       userCode: codeStr,
       checkCode: question.checkCode,
     });
+
+    toast('Executing your Python code...');
   };
 
   const handleEditorDidMount: EditorDidMount = (_, editor) => {
