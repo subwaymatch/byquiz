@@ -159,24 +159,26 @@ export default function PythonCodingQuestion({
           </a>
 
           <div className={styles.commandButtons}>
-            <a
+            <button
               className={styles.runCodeButton}
               onClick={(e) => {
                 runAndCheckCode(editorValue);
               }}
+              disabled={!isPyodideReady || isSubmitInProgress}
             >
               <MdPlayArrow className={styles.reactIcon} />
               <span>Run Code</span>
-            </a>
-            <a
+            </button>
+            <button
               className={styles.submitButton}
               onClick={(e) => {
                 runAndCheckCode(editorValue);
               }}
+              disabled={!isPyodideReady || isSubmitInProgress}
             >
               <MdPlayForWork className={styles.reactIcon} />
               <span>Submit</span>
-            </a>
+            </button>
           </div>
         </div>
         <div className={cx('editorBox', 'hintBox')}>

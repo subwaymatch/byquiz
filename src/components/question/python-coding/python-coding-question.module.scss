@@ -71,9 +71,21 @@ $border-color: #e8e8e8;
       letter-spacing: 0;
       padding: 0.6rem 1.2rem;
       border-radius: 10rem;
+      cursor: pointer;
 
       .reactIcon {
         margin-right: 0.5rem;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: #ddd;
+        border-color: #bbb;
+
+        &:hover {
+          background-color: #ddd;
+          border-color: #bbb;
+        }
       }
     }
 
