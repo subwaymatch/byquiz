@@ -1,0 +1,59 @@
+@use 'sass:color';
+@import 'src/styles/variables';
+
+.hintBox,
+.resultCheckBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 2rem;
+  margin: 0.3rem;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.1rem;
+
+  .boxLabel {
+    font-size: 0.9rem;
+  }
+
+  .imageWrapper {
+    width: 5rem;
+    margin-right: 1.5rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.hintBox {
+  color: color.scale($color-secondary, $lightness: -60%, $saturation: 20%);
+  background-color: color.scale(
+    $color-secondary,
+    $lightness: 92%,
+    $saturation: 10%
+  );
+
+  img.characterImage {
+    width: 5rem;
+  }
+
+  .boxLabel {
+    color: $color-secondary;
+  }
+}
+
+.resultCheckBox {
+  color: color.scale($color-primary, $lightness: -60%, $saturation: 20%);
+  background-color: color.scale(
+    $color-primary,
+    $lightness: 92%,
+    $saturation: 10%
+  );
+
+  img.characterImage {
+    width: 4rem;
+  }
+
+  .boxLabel {
+    color: $color-primary;
+  }
+}

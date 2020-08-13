@@ -13,7 +13,7 @@ export interface IQuestion {
   explanation?: string;
 }
 
-export interface ICodingQuestion extends IQuestion {
+export interface IPythonCodingQuestion extends IQuestion {
   type: QuestionType;
   templateCode?: string;
   solutionCode: string;
@@ -32,6 +32,6 @@ export interface IFreeResponseQuestion extends IQuestion {
   type: QuestionType.FreeResponse;
 }
 
-export interface IPythonCodingQuiz extends ICodingQuestion {
+export interface IPythonCodingQuiz extends IPythonCodingQuestion {
   type: QuestionType.PythonCoding;
 }

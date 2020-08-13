@@ -8,7 +8,7 @@ import {
   ControlledEditor,
   ControlledEditorOnChange,
 } from '@monaco-editor/react';
-import { ICodingQuestion } from 'typing/question';
+import { IPythonCodingQuestion } from 'typing/question';
 import { CodeResult } from 'typing/pyodide';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 import { FiArrowDownRight } from 'react-icons/fi';
@@ -17,11 +17,12 @@ import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 import HintocatImage from 'src/images/cute-cartoon-cat.svg';
 import CheckofrogImage from 'src/images/cute-cartoon-frog.svg';
 import { toast } from 'react-toastify';
+import { HintBox } from '../message-boxes';
 
 const cx = classNames.bind(styles);
 
 type PythonCodingQuestionProps = {
-  question: ICodingQuestion;
+  question: IPythonCodingQuestion;
 };
 
 export default function PythonCodingQuestion({
@@ -95,6 +96,10 @@ export default function PythonCodingQuestion({
     };
   }, []);
 
+  const toggleHint = () => {
+    setShowHint(!showHint);
+  };
+
   const runAndCheckCode = async (codeStr) => {
     console.log('runCode()');
     setIsSubmitInProgress(true);
@@ -152,8 +157,15 @@ export default function PythonCodingQuestion({
             extraEditorClassName: styles.codeEditor,
           }}
         />
+
         <div className={cx(['editorBox', 'commandBox'])}>
-          <a className={styles.hintButton}>
+          <a
+            className={styles.hintButton}
+            onClick={(e) => {
+              e.preventDefault();
+              toggleHint();
+            }}
+          >
             <BsFillPuzzleFill className={styles.reactIcon} />
             <span>See Hint</span>
             <IoMdArrowDropdown className={styles.reactIcon} />
@@ -183,34 +195,32 @@ export default function PythonCodingQuestion({
             </button>
           </div>
         </div>
-        <div className={cx('editorBox', 'hintBox')}>
-          <div className={cx('imageWrapper')}>
-            <img
-              src={HintocatImage}
-              alt="Image of Checkofrog"
-              className={styles.characterImage}
-            />
-          </div>
 
-          <div>
-            <span className={styles.boxLabel}>Hintocat meows...</span>
-            <div dangerouslySetInnerHTML={{ __html: question.hint }} />
-          </div>
-        </div>
-        <div className={cx('editorBox', 'resultCheckBox')}>
-          <div className={cx('imageWrapper')}>
-            <img
-              src={CheckofrogImage}
-              alt="Image of Checkofrog"
-              className={styles.characterImage}
-            />
-          </div>
+        {showHint && <HintBox hintMarkdown={question.hint} />}
 
-          <div>
-            <span className={styles.boxLabel}>Checkofrog ribbits...</span>
-            <div dangerouslySetInnerHTML={{ __html: question.explanation }} />
+        {isCorrect && (
+          <div className={cx('editorBox', 'resultCheckBox')}>
+            <div className={cx('imageWrapper')}>
+              <img
+                src={CheckofrogImage}
+                alt="Image of Checkofrog"
+                className={styles.characterImage}
+              />
+            </div>
+
+            <div>
+              <span className={styles.boxLabel}>Ribbit!</span>
+
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: question.explanation
+                    ? question.explanation
+                    : `You're right!`,
+                }}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className={cx('editorBox', 'outputBox')}>
           <span className={styles.boxLabel}>Output</span>
