@@ -10,7 +10,7 @@ import {
 } from '@monaco-editor/react';
 import { ICodingQuestion } from 'typing/question';
 import { CodeResult } from 'typing/pyodide';
-import { IoMdArrowDropdown } from 'react-icons/io';
+import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 import { FiArrowDownRight } from 'react-icons/fi';
 import { BsFillPuzzleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
@@ -152,6 +152,7 @@ export default function PythonCodingQuestion({
             <BsFillPuzzleFill className={styles.reactIcon} />
             <span>See Hint</span>
             <IoMdArrowDropdown className={styles.reactIcon} />
+            <IoMdArrowDropup className={styles.reactIcon} />
           </a>
 
           <div className={styles.commandButtons}>
@@ -185,7 +186,7 @@ export default function PythonCodingQuestion({
           </div>
 
           <div>
-            <span className={styles.boxLabel}>The kind Hintocat meows...</span>
+            <span className={styles.boxLabel}>Hintocat meows...</span>
             <div dangerouslySetInnerHTML={{ __html: question.hint }} />
           </div>
         </div>
@@ -199,9 +200,7 @@ export default function PythonCodingQuestion({
           </div>
 
           <div>
-            <span className={styles.boxLabel}>
-              The wise Checkofrog ribbits...
-            </span>
+            <span className={styles.boxLabel}>Checkofrog ribbits...</span>
             <div dangerouslySetInnerHTML={{ __html: question.explanation }} />
           </div>
         </div>
