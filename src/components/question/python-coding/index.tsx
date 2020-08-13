@@ -10,10 +10,12 @@ import {
 } from '@monaco-editor/react';
 import { ICodingQuestion } from 'typing/question';
 import { CodeResult } from 'typing/pyodide';
+import { IoMdArrowDropdown } from 'react-icons/io';
 import { FiArrowDownRight } from 'react-icons/fi';
 import { BsFillPuzzleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
-import CuteCatImage from 'src/images/cute-cartoon-cat.svg';
+import HintocatImage from 'src/images/cute-cartoon-cat.svg';
+import CheckofrogImage from 'src/images/cute-cartoon-frog.svg';
 
 const cx = classNames.bind(styles);
 
@@ -145,11 +147,11 @@ export default function PythonCodingQuestion({
             extraEditorClassName: styles.codeEditor,
           }}
         />
-
         <div className={cx(['editorBox', 'commandBox'])}>
           <a className={styles.hintButton}>
             <BsFillPuzzleFill className={styles.reactIcon} />
             <span>See Hint</span>
+            <IoMdArrowDropdown className={styles.reactIcon} />
           </a>
 
           <div className={styles.commandButtons}>
@@ -173,16 +175,34 @@ export default function PythonCodingQuestion({
             </a>
           </div>
         </div>
-
         <div className={cx('editorBox', 'hintBox')}>
-          <img
-            src={CuteCatImage}
-            alt="Cute Cat"
-            className={styles.hintCharacterImage}
-          />
+          <div className={cx('imageWrapper')}>
+            <img
+              src={HintocatImage}
+              alt="Image of Checkofrog"
+              className={styles.characterImage}
+            />
+          </div>
+
           <div>
-            <span className={styles.boxLabel}>The wise Hintocat meows...</span>
+            <span className={styles.boxLabel}>The kind Hintocat meows...</span>
             <div dangerouslySetInnerHTML={{ __html: question.hint }} />
+          </div>
+        </div>
+        <div className={cx('editorBox', 'resultCheckBox')}>
+          <div className={cx('imageWrapper')}>
+            <img
+              src={CheckofrogImage}
+              alt="Image of Checkofrog"
+              className={styles.characterImage}
+            />
+          </div>
+
+          <div>
+            <span className={styles.boxLabel}>
+              The wise Checkofrog ribbits...
+            </span>
+            <div dangerouslySetInnerHTML={{ __html: question.explanation }} />
           </div>
         </div>
 
@@ -191,7 +211,6 @@ export default function PythonCodingQuestion({
 
           <pre>{codeResult.stdout ? codeResult.stdout : 'No Output'}</pre>
         </div>
-
         <div className={cx('editorBox', 'errorOutputBox')}>
           <span className={styles.boxLabel}>Error</span>
 
