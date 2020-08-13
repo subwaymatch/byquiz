@@ -14,10 +14,11 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 import { FiArrowDownRight } from 'react-icons/fi';
 import { BsFillPuzzleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
-import HintocatImage from 'src/images/cute-cartoon-cat.svg';
-import CheckofrogImage from 'src/images/cute-cartoon-frog.svg';
 import { toast } from 'react-toastify';
-import { HintBox } from '../message-boxes';
+import {
+  HintBox,
+  CorrectResultBox,
+} from 'src/components/question/message-boxes';
 
 const cx = classNames.bind(styles);
 
@@ -198,29 +199,7 @@ export default function PythonCodingQuestion({
 
         {showHint && <HintBox hintMarkdown={question.hint} />}
 
-        {isCorrect && (
-          <div className={cx('editorBox', 'resultCheckBox')}>
-            <div className={cx('imageWrapper')}>
-              <img
-                src={CheckofrogImage}
-                alt="Image of Checkofrog"
-                className={styles.characterImage}
-              />
-            </div>
-
-            <div>
-              <span className={styles.boxLabel}>Ribbit!</span>
-
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: question.explanation
-                    ? question.explanation
-                    : `You're right!`,
-                }}
-              />
-            </div>
-          </div>
-        )}
+        {isCorrect && <CorrectResultBox isCorrect={isCorrect} />}
 
         <div className={cx('editorBox', 'outputBox')}>
           <span className={styles.boxLabel}>Output</span>

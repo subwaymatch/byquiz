@@ -2,14 +2,13 @@
 @import 'src/styles/variables';
 
 .hintBox,
-.resultCheckBox {
+.correctResultBox {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 2rem;
   margin: 0.3rem;
   font-size: 1.1rem;
-  padding: 0.8rem 1.1rem;
 
   .boxLabel {
     font-size: 0.9rem;
@@ -41,7 +40,7 @@
   }
 }
 
-.resultCheckBox {
+.correctResultBox {
   color: color.scale($color-primary, $lightness: -60%, $saturation: 20%);
   background-color: color.scale(
     $color-primary,

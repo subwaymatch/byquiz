@@ -20,13 +20,11 @@ function TodosComponent() {
         createdAt: firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
-        console.log('Then it was done');
+        // do nothing
       });
   };
 
   const deleteTodo = (todoId) => {
-    console.log(`deleteTodo(${todoId})`);
-
     firestore.delete({
       collection: 'todos',
       doc: todoId,

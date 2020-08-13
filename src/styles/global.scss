@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import './variables';
 @import './grid';
 @import url('https://rsms.me/inter/inter.css');
@@ -41,13 +42,10 @@ a {
 code {
   font-family: $font-monospace;
   padding: 0.1em 0.3em;
-  background-color: #f8f8f8;
-  border: 1px solid #eaeaea;
-
-  color: mix($color-primary, black, 90%);
-  background-color: mix($color-primary, white, 8%);
-  border: 1px solid mix($color-primary, white, 20%);
-  border-radius: 7px;
+  color: color.mix($color-primary, black, 90%);
+  background-color: color.mix($color-primary, white, 6%);
+  border: 1px solid color.mix($color-primary, white, 20%);
+  border-radius: 5px;
   font-size: 0.8em;
 }
 

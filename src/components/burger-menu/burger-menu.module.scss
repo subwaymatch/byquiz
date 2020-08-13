@@ -17,6 +17,10 @@
     }
   }
 
+  svg {
+    fill: white;
+  }
+
   &:hover svg {
     fill: $color-secondary;
   }
@@ -33,10 +37,6 @@
 
   button {
     outline: none;
-  }
-
-  svg {
-    fill: white;
   }
 }
 
