@@ -26,6 +26,8 @@ export default function PyodideTest() {
     <Layout>
       <div>
         <PythonCodingQuestion question={question} />
+
+        <PythonCodingQuestion question={question} />
       </div>
     </Layout>
   );

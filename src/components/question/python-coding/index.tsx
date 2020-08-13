@@ -67,8 +67,12 @@ export default function PythonCodingQuestion({
 
           if (data.didPass) {
             setIsCorrect(true);
+
+            toast(`Very nice!`);
           } else {
             setIsCorrect(false);
+
+            toast(`Oops, let's give that another try...`);
           }
 
           setIsSubmitInProgress(false);
@@ -100,8 +104,6 @@ export default function PythonCodingQuestion({
       userCode: codeStr,
       checkCode: question.checkCode,
     });
-
-    toast('Executing your Python code...');
   };
 
   const handleEditorDidMount: EditorDidMount = (_, editor) => {
@@ -135,7 +137,7 @@ export default function PythonCodingQuestion({
 
       <div className={cx('codeEditorWrapper')}>
         <ControlledEditor
-          height="40vh"
+          height="20vh"
           value={editorValue}
           editorDidMount={handleEditorDidMount}
           onChange={handleEditorChange}
