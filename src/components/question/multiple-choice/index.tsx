@@ -92,7 +92,7 @@ export default function MultipleChoiceQuestion({
         {text} {numCorrectOptions > 1 && `Select ${numCorrectOptions}.`}
       </p>
 
-      <div className="options-wrapper">
+      <div className={styles.optionsWrapper}>
         {options.map((option, index) => (
           <ChoiceOption
             key={index}

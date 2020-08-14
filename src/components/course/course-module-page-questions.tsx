@@ -13,10 +13,12 @@ export default function CourseModulePageQuestions({
   questions,
 }: CourseModulePagequestionsProps) {
   return (
-    <div className={cx('wrapper')}>
+    <>
       {questions.map((question) => (
-        <QuestionComponent key={question.id} question={question} />
+        <div className={cx('challengeWrapper')}>
+          <QuestionComponent key={question.id} question={question} />
+        </div>
       ))}
-    </div>
+    </>
   );
 }

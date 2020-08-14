@@ -12,9 +12,12 @@ export default function CourseModulePageContent({
   pageData,
 }: CourseModulePageContentProps) {
   return (
-    <div className={cx('courseModulePageContent')}>
-      <h2>{pageData.title}</h2>
-      <div dangerouslySetInnerHTML={{ __html: pageData.content }} />
+    <div className={cx('courseModulePageWrapper')}>
+      <h1 className={cx('courseModulePageTitle')}>{pageData.title}</h1>
+      <div
+        className={cx('courseModulePageContent')}
+        dangerouslySetInnerHTML={{ __html: pageData.content }}
+      />
     </div>
   );
 }

@@ -1,8 +1,16 @@
-.courseModulePageContent {
-  h2 {
+.courseModulePageWrapper {
+  h1.courseModulePageTitle {
     font-size: 2.2rem;
     line-height: 1.4;
     font-weight: 600;
     margin: 0;
+  }
+
+  .courseModulePageContent {
+    margin-top: 1.5rem;
+
+    div {
+      margin-top: 1rem;
+    }
   }
 }

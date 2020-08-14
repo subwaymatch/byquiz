@@ -3,6 +3,7 @@ import { push as Menu } from 'react-burger-menu';
 import { RiHome2Line, RiArrowDropRightLine } from 'react-icons/ri';
 import { BsFillLayersFill } from 'react-icons/bs';
 import { AiFillBank } from 'react-icons/ai';
+import { GoMarkGithub } from 'react-icons/go';
 
 import styles from './burger-menu.module.scss';
 
@@ -55,6 +56,16 @@ export default function SlideMenu() {
         }
       >
         <div>
+          <div>
+            <a
+              className={styles.menuItem}
+              href="https://github.com/subwaymatch/byquiz-prototype"
+            >
+              <GoMarkGithub className={styles.menuItemIcon} />
+              <span>GitHub</span>
+              <RiArrowDropRightLine className={styles.hoverIndicatorIcon} />
+            </a>
+          </div>
           <Link href="/">
             <a className={styles.menuItem}>
               <RiHome2Line className={styles.menuItemIcon} />
