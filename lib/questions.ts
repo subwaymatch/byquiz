@@ -5,11 +5,13 @@ import {
   IQuestion,
   IMultipleChoiceQuestion,
   QuestionType,
+  IPythonCodingQuestion,
 } from 'typing/question';
 
 const fsPromises = fs.promises;
 const questionContentPath = path.join(process.cwd(), 'content', 'question');
 const multipleChoicePath = path.join(questionContentPath, 'multiple-choice');
+const pythonCodingPath = path.join(questionContentPath, 'multiple-choice');
 
 export async function getMultipleChoiceQuestion(
   questionId: string

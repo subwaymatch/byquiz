@@ -1,6 +1,6 @@
 ---
-title: Multiplying two variables
-hint: An asterik `*` is used to multiply two values.
+title: Print Hello World
+hint: `print("Bye")` prints `Bye`.
 ---
 
-Can you multiply two variables `a` and `b`?
+Can you print "Hello World" to the console?

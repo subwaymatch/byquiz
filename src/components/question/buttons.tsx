@@ -5,11 +5,16 @@ import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 const cx = classNames.bind(styles);
 
 type RunCodeButtonProps = {
+  label?: string;
   disabled: boolean;
   onClick(): void;
 };
 
-export const RunCodeButton = ({ disabled, onClick }: RunCodeButtonProps) => {
+export const RunCodeButton = ({
+  label,
+  disabled,
+  onClick,
+}: RunCodeButtonProps) => {
   return (
     <button
       className={styles.runCodeButton}
@@ -20,17 +25,22 @@ export const RunCodeButton = ({ disabled, onClick }: RunCodeButtonProps) => {
       disabled={disabled}
     >
       <MdPlayArrow className={styles.buttonIcon} />
-      <span>Run Code</span>
+      <span>{label ? label : 'Run Code'}</span>
     </button>
   );
 };
 
 type SubmitButtonProps = {
+  label?: string;
   disabled: boolean;
   onClick(): void;
 };
 
-export const SubmitButton = ({ disabled, onClick }: SubmitButtonProps) => {
+export const SubmitButton = ({
+  label,
+  disabled,
+  onClick,
+}: SubmitButtonProps) => {
   return (
     <button
       className={styles.submitButton}
@@ -41,7 +51,7 @@ export const SubmitButton = ({ disabled, onClick }: SubmitButtonProps) => {
       disabled={disabled}
     >
       <MdPlayForWork className={styles.buttonIcon} />
-      <span>Submit</span>
+      <span>{label ? label : 'Submit'}</span>
     </button>
   );
 };

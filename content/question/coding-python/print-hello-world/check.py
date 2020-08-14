@@ -1,1 +1,1 @@
-assert c == 50
+assert sys.stdout == "Hello World"

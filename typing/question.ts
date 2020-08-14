@@ -13,15 +13,6 @@ export interface IQuestion {
   explanation?: string;
 }
 
-export interface IPythonCodingQuestion extends IQuestion {
-  type: QuestionType;
-  templateCode?: string;
-  solutionCode: string;
-  checkCode: string;
-  runBefore?: string;
-  runAfter?: string;
-}
-
 export interface IMultipleChoiceQuestion extends IQuestion {
   type: QuestionType.MultipleChoice;
   options: (string | number | boolean)[];
@@ -32,6 +23,11 @@ export interface IFreeResponseQuestion extends IQuestion {
   type: QuestionType.FreeResponse;
 }
 
-export interface IPythonCodingQuiz extends IPythonCodingQuestion {
+export interface IPythonCodingQuestion extends IQuestion {
   type: QuestionType.PythonCoding;
+  templateCode?: string;
+  solutionCode: string;
+  checkCode: string;
+  runBefore?: string;
+  runAfter?: string;
 }
