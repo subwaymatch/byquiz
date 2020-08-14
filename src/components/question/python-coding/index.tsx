@@ -12,7 +12,7 @@ import { IPythonCodingQuestion } from 'typing/question';
 import { CodeResult } from 'typing/pyodide';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 import { FiArrowDownRight } from 'react-icons/fi';
-import { BsFillPuzzleFill } from 'react-icons/bs';
+import { BsInfoCircleFill } from 'react-icons/bs';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import {
@@ -179,10 +179,13 @@ export default function PythonCodingQuestion({
               toggleHint();
             }}
           >
-            <BsFillPuzzleFill className={styles.reactIcon} />
+            <BsInfoCircleFill className={styles.hintIcon} />
             <span>See Hint</span>
-            <IoMdArrowDropdown className={styles.reactIcon} />
-            <IoMdArrowDropup className={styles.reactIcon} />
+            {showHint ? (
+              <IoMdArrowDropup className={styles.toggleIcon} />
+            ) : (
+              <IoMdArrowDropdown className={styles.toggleIcon} />
+            )}
           </a>
 
           <div className={styles.commandButtons}>

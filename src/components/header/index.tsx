@@ -54,7 +54,7 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
         )}
       </div>
 
-      <div className={styles.headerRight}>M</div>
+      <div className={styles.headerRight}>&nbsp;</div>
     </header>
   );
 }
