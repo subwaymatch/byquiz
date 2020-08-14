@@ -1,6 +1,8 @@
+import { GetStaticProps } from 'next';
 import Layout from 'src/components/layout';
 import PythonCodingQuestion from 'src/components/question/python-coding';
 import { QuestionType, IPythonCodingQuestion } from 'typing/question';
+import { getQuestionByFullId } from 'lib/questions';
 
 const templateCode = `some_list = []`;
 const text = `Create a variable called <code>some_list</code> and set its value to a
@@ -20,7 +22,9 @@ const question: IPythonCodingQuestion = {
   checkCode,
 };
 
-export default function PyodideTest() {
+export default function PyodideTest(props: any) {
+  console.log(props);
+
   return (
     <Layout>
       <div>
@@ -31,3 +35,15 @@ export default function PyodideTest() {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const question: IPythonCodingQuestion = (await getQuestionByFullId(
+    'python-coding/hello-world'
+  )) as IPythonCodingQuestion;
+
+  return {
+    props: {
+      question,
+    },
+  };
+};

@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs, { promises as fsPromises } from 'fs';
 import path from 'path';
 import YAML from 'yaml';
 import {
@@ -7,8 +7,8 @@ import {
   QuestionType,
   IPythonCodingQuestion,
 } from 'typing/question';
+import { readYamlFile, readFileFrontMatter, readMarkdownFile } from './utils';
 
-const fsPromises = fs.promises;
 const questionContentPath = path.join(process.cwd(), 'content', 'question');
 const multipleChoicePath = path.join(questionContentPath, 'multiple-choice');
 const pythonCodingPath = path.join(questionContentPath, 'multiple-choice');
@@ -53,14 +53,35 @@ export async function getAllMultipleChoiceQuestions(): Promise<
   return questions;
 }
 
+export async function getPythonCodingQuestion(
+  questionId: string
+): Promise<IPythonCodingQuestion> {
+  return {
+    id: questionId,
+    type: QuestionType.PythonCoding,
+    solutionCode: '',
+    checkCode: '',
+    text: '',
+    explanation: null,
+    hint: null,
+    runBefore: null,
+    runAfter: null,
+    templateCode: null,
+  };
+}
+
 // Full Id refers to "{question-type}/{question-id}"
 // Question Id refers to only the {question-id} part
-export async function getQuestionByFullId(fullId: string): Promise<IQuestion> {
+export async function getQuestionByFullId(
+  fullId: string
+): Promise<IMultipleChoiceQuestion | IPythonCodingQuestion> {
   const [questionType, questionId] = fullId.split('/');
 
   switch (questionType) {
     case QuestionType.MultipleChoice:
       return await getMultipleChoiceQuestion(questionId);
+    case QuestionType.PythonCoding:
+      return await getPythonCodingQuestion(questionId);
     default:
       return null;
   }
