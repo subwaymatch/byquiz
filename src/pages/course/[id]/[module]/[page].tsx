@@ -9,7 +9,8 @@ import { ICourse, ICourseModulePageData } from 'typing/course';
 import CourseSidebar from 'src/components/course/course-sidebar';
 import CourseModulePageContent from 'src/components/course/course-module-page-content';
 import CourseModulePageQuestions from 'src/components/course/course-module-page-questions';
-import CourseModuleNavigation from 'src/components/course/course-module-navigation';
+import CourseModulePagesNavigation from 'src/components/course/course-module-pages-navigation';
+import CourseModulePageBottomNavigation from 'src/components/course/course-module-page-bottom-navigation';
 
 type CourseModulePagePageProps = {
   course: ICourse;
@@ -29,7 +30,7 @@ export default function CourseModulePagePage({
         <div className="row">
           <div className="col-3">&nbsp;</div>
           <div className="col-9">
-            <CourseModuleNavigation
+            <CourseModulePagesNavigation
               courseId={course.id}
               moduleId={currentModule.id}
               currentPageId={pageData.id}
@@ -49,6 +50,15 @@ export default function CourseModulePagePage({
             <CourseModulePageContent pageData={pageData} />
 
             <CourseModulePageQuestions questions={pageData.questions} />
+
+            <CourseModulePageBottomNavigation
+              prevHref={`/`}
+              prevModuleLabel="Prev Module"
+              prevPageLabel="Prev Page"
+              nextHref={`/`}
+              nextModuleLabel="Next Module"
+              nextPageLabel="Next Page"
+            />
           </div>
         </div>
       </div>

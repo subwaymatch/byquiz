@@ -1,26 +1,26 @@
 import Link from 'next/link';
 import classNames from 'classnames/bind';
-import styles from './course-module-navigation.module.scss';
+import styles from './course-module-pages-navigation.module.scss';
 import { ICourseModulePageMeta } from 'typing/course';
 
 const cx = classNames.bind(styles);
 
-type CourseModuleNavigationProps = {
+type CourseModulePageNavigationProps = {
   courseId: string;
   moduleId: string;
   pagesMeta: ICourseModulePageMeta[];
   currentPageId: string;
 };
 
-export default function CourseModuleNavigation({
+export default function CourseModulePagesNavigation({
   courseId,
   moduleId,
   pagesMeta,
   currentPageId,
-}: CourseModuleNavigationProps) {
+}: CourseModulePageNavigationProps) {
   return (
-    <div className={styles.courseModuleNavigationWrapper}>
-      <nav className={styles.courseModuleNavigation}>
+    <div className={styles.navigationWrapper}>
+      <nav className={styles.navigation}>
         {pagesMeta.map((pageMeta, pageIndex) => (
           <Link
             key={pageMeta.id}

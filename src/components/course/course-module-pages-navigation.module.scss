@@ -1,10 +1,10 @@
 @import 'src/styles/variables';
 
-.courseModuleNavigationWrapper {
+.navigationWrapper {
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
-  nav.courseModuleNavigation {
+  nav.navigation {
     display: flex;
 
     .pageLinkItem {
