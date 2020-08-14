@@ -1,0 +1,56 @@
+@use 'sass:color';
+@import 'src/styles/variables';
+
+.runCodeButton,
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  font-family: $font-sans-serif;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  font-weight: 300;
+  letter-spacing: -0.01rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10rem;
+  cursor: pointer;
+
+  .buttonIcon {
+    margin-right: 0.5rem;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #ddd;
+    border-color: #bbb;
+
+    &:hover {
+      background-color: #ddd;
+      border-color: #bbb;
+    }
+  }
+}
+
+.runCodeButton {
+  background-color: $color-secondary;
+  border: 1px solid color.scale($color-secondary, $lightness: -7%);
+
+  &:hover {
+    background-color: color.scale($color-secondary, $lightness: 3%);
+  }
+}
+
+.submitButton {
+  background-color: $color-primary;
+  margin-left: 0.8rem;
+  border: 1px solid color.scale($color-primary, $lightness: -7%);
+
+  &:hover {
+    background-color: color.scale($color-primary, $lightness: 3%);
+  }
+
+  .buttonIcon {
+    font-size: 1.3rem;
+    transform: rotate(180deg);
+  }
+}

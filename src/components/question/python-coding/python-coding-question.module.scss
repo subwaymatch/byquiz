@@ -3,226 +3,179 @@
 
 $border-color: #e8e8e8;
 
-.questionHeader {
-  display: flex;
-  align-items: center;
-  color: $color-primary;
-  font-size: 1rem;
-  letter-spacing: 0;
-
-  .reactIcon {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    margin-left: 0.1rem;
-  }
-}
-
-.questionText {
-  margin-top: 0;
-}
-
-.codeEditorWrapper {
-  margin-top: 1.5rem;
-  border: 1px solid $border-color;
-
-  .editorBox {
-    padding: 0.8rem 1.1rem;
-  }
-
-  .commandBox {
+.pythonCodingQuestionWrapper {
+  .questionHeader {
     display: flex;
-    margin-top: 1px;
-    border-top: 1px solid $border-color;
     align-items: center;
-    justify-content: space-between;
+    color: $color-primary;
+    font-size: 1rem;
+    letter-spacing: 0;
 
-    .hintButton {
-      color: #999;
-      font-size: 1.05rem;
-      letter-spacing: -0.01rem;
-      font-weight: 300;
+    .reactIcon {
+      display: inline-block;
+      position: relative;
+      top: 1px;
+      margin-left: 0.1rem;
+    }
+  }
 
-      .hintIcon {
-        color: #aaa;
-        font-size: 0.95rem;
-        margin-right: 0.3rem;
-        position: relative;
-        top: -0.1rem;
-      }
+  .questionText {
+    margin-top: 0;
+  }
 
-      .toggleIcon {
-        margin-left: 0.1rem;
-        position: relative;
-        top: -0.1rem;
-      }
+  .codeEditorWrapper {
+    margin-top: 1.5rem;
+    border: 1px solid $border-color;
 
-      &:hover {
-        color: #777;
+    .editorBox {
+      padding: 0.8rem 1.1rem;
+    }
+
+    .commandBox {
+      display: flex;
+      margin-top: 1px;
+      border-top: 1px solid $border-color;
+      align-items: center;
+      justify-content: space-between;
+
+      .hintButton {
+        color: #999;
+        font-size: 1.05rem;
+        letter-spacing: -0.01rem;
+        font-weight: 300;
 
         .hintIcon {
-          color: #999;
+          color: #aaa;
+          font-size: 0.95rem;
+          margin-right: 0.3rem;
+          position: relative;
+          top: -0.1rem;
         }
-      }
 
-      &.isOpen {
-        color: $color-secondary;
-
-        .hintIcon {
-          color: $color-secondary;
+        .toggleIcon {
+          margin-left: 0.1rem;
+          position: relative;
+          top: -0.1rem;
         }
 
         &:hover {
-          color: color.scale($color-secondary, $lightness: -15%);
+          color: #777;
 
           .hintIcon {
+            color: #999;
+          }
+        }
+
+        &.isOpen {
+          color: $color-secondary;
+
+          .hintIcon {
+            color: $color-secondary;
+          }
+
+          &:hover {
             color: color.scale($color-secondary, $lightness: -15%);
+
+            .hintIcon {
+              color: color.scale($color-secondary, $lightness: -15%);
+            }
           }
         }
       }
+
+      .commandButtons {
+        display: flex;
+        align-items: center;
+      }
     }
 
-    .commandButtons {
+    .boxLabel {
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+
+    .hintBox,
+    .resultCheckBox {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 2rem;
+      margin: 0.3rem;
+      font-size: 1.1rem;
+
+      .boxLabel {
+        font-size: 0.9rem;
+      }
+
+      .imageWrapper {
+        width: 5rem;
+        margin-right: 1.5rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
 
-    .runCodeButton,
-    .submitButton {
-      display: inline-flex;
-      align-items: center;
-      color: white;
-      font-size: 1rem;
-      line-height: 1.4rem;
-      font-weight: 300;
+    .hintBox {
+      color: color.scale($color-secondary, $lightness: -60%, $saturation: 20%);
+      background-color: color.scale(
+        $color-secondary,
+        $lightness: 92%,
+        $saturation: 10%
+      );
+
+      img.characterImage {
+        width: 5rem;
+      }
+
+      .boxLabel {
+        color: $color-secondary;
+      }
+    }
+
+    .resultCheckBox {
+      color: color.scale($color-primary, $lightness: -60%, $saturation: 20%);
+      background-color: color.scale(
+        $color-primary,
+        $lightness: 92%,
+        $saturation: 10%
+      );
+
+      img.characterImage {
+        width: 4rem;
+      }
+
+      .boxLabel {
+        color: $color-primary;
+      }
+    }
+
+    .outputBox,
+    .errorOutputBox {
       letter-spacing: 0;
-      padding: 0.6rem 1.2rem;
-      border-radius: 10rem;
-      cursor: pointer;
 
-      .reactIcon {
-        margin-right: 0.5rem;
-      }
-
-      &:disabled {
-        cursor: not-allowed;
-        background-color: #ddd;
-        border-color: #bbb;
-
-        &:hover {
-          background-color: #ddd;
-          border-color: #bbb;
-        }
+      pre {
+        margin: 0;
       }
     }
 
-    .runCodeButton {
-      background-color: $color-secondary;
-      border: 1px solid color.scale($color-secondary, $lightness: -7%);
+    .outputBox {
+      border-top: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
 
-      &:hover {
-        background-color: color.scale($color-secondary, $lightness: 3%);
+      .boxLabel {
+        color: $color-secondary;
       }
     }
 
-    .submitButton {
-      background-color: $color-primary;
-      margin-left: 0.8rem;
-      border: 1px solid color.scale($color-primary, $lightness: -7%);
-
-      &:hover {
-        background-color: color.scale($color-primary, $lightness: 3%);
-      }
-
-      .reactIcon {
-        font-size: 1.3rem;
-        transform: rotate(180deg);
+    .errorOutputBox {
+      .boxLabel {
+        color: $color-tertiary;
       }
     }
   }
 
-  .boxLabel {
-    font-size: 1rem;
-    letter-spacing: 0;
-  }
-
-  .hintBox,
-  .resultCheckBox {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1rem 2rem;
-    margin: 0.3rem;
-    font-size: 1.1rem;
-
-    .boxLabel {
-      font-size: 0.9rem;
-    }
-
-    .imageWrapper {
-      width: 5rem;
-      margin-right: 1.5rem;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  .hintBox {
-    color: color.scale($color-secondary, $lightness: -60%, $saturation: 20%);
-    background-color: color.scale(
-      $color-secondary,
-      $lightness: 92%,
-      $saturation: 10%
-    );
-
-    img.characterImage {
-      width: 5rem;
-    }
-
-    .boxLabel {
-      color: $color-secondary;
-    }
-  }
-
-  .resultCheckBox {
-    color: color.scale($color-primary, $lightness: -60%, $saturation: 20%);
-    background-color: color.scale(
-      $color-primary,
-      $lightness: 92%,
-      $saturation: 10%
-    );
-
-    img.characterImage {
-      width: 4rem;
-    }
-
-    .boxLabel {
-      color: $color-primary;
-    }
-  }
-
-  .outputBox,
-  .errorOutputBox {
-    letter-spacing: 0;
-
-    pre {
-      margin: 0;
-    }
-  }
-
-  .outputBox {
-    border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
-
-    .boxLabel {
-      color: $color-secondary;
-    }
-  }
-
-  .errorOutputBox {
-    .boxLabel {
-      color: $color-tertiary;
-    }
+  button {
+    outline: none;
   }
 }

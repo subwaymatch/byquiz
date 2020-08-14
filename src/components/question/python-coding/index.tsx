@@ -12,10 +12,9 @@ import { IPythonCodingQuestion } from 'typing/question';
 import { CodeResult } from 'typing/pyodide';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 import { FiArrowDownRight } from 'react-icons/fi';
-import { BsInfoCircleFill } from 'react-icons/bs';
 import { RiLightbulbLine } from 'react-icons/ri';
-import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import { RunCodeButton, SubmitButton } from 'src/components/question/buttons';
 import {
   HintBox,
   CorrectResultBox,
@@ -196,26 +195,12 @@ export default function PythonCodingQuestion({
           </a>
 
           <div className={styles.commandButtons}>
-            <button
-              className={styles.runCodeButton}
-              onClick={(e) => {
-                runCode();
-              }}
-              disabled={!isPyodideReady}
-            >
-              <MdPlayArrow className={styles.reactIcon} />
-              <span>{isPyodideReady ? 'Run Code' : 'Waiting'}</span>
-            </button>
-            <button
-              className={styles.submitButton}
-              onClick={(e) => {
-                runAndCheckCode();
-              }}
+            <RunCodeButton onClick={runCode} disabled={!isPyodideReady} />
+
+            <SubmitButton
+              onClick={runAndCheckCode}
               disabled={!isPyodideReady || submittedCode === editorValue}
-            >
-              <MdPlayForWork className={styles.reactIcon} />
-              <span>{isPyodideReady ? 'Submit' : 'Waiting'}</span>
-            </button>
+            />
           </div>
         </div>
 
