@@ -44,7 +44,7 @@ export default function PythonCodingQuestion({
   const [isPyodideReady, setIsPyodideReady] = useState(false);
   const [codeResult, setCodeResult] = useState(defaultCodeResult);
   const [submittedCode, setSubmittedCode] = useState('');
-  const [didSubmit, setDidSubmit] = useState(false);
+  const [isSubmitComplete, setIsSubmitComplete] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
@@ -70,6 +70,8 @@ export default function PythonCodingQuestion({
           setCodeResult(data.result);
           setIsPyodideReady(true);
 
+          toast(`Finished running code`);
+
           break;
 
         case 'CODE_RUN_AND_CHECK_COMPLETE':
@@ -82,7 +84,7 @@ export default function PythonCodingQuestion({
             toast(`Oops, let's give that another try...`);
           }
 
-          setDidSubmit(true);
+          setIsSubmitComplete(true);
           setIsPyodideReady(true);
 
           break;
@@ -134,7 +136,7 @@ export default function PythonCodingQuestion({
       editor.addCommand(
         monacoInstance.KeyMod.CtrlCmd | monacoInstance.KeyCode.Enter,
         () => {
-          alert('CmdCtrl + Enter Pressed!');
+          runCode();
         }
       );
     });
@@ -219,11 +221,11 @@ export default function PythonCodingQuestion({
 
         {showHint && <HintBox hintMarkdown={question.hint} />}
 
-        {didSubmit && isCorrect && (
+        {isSubmitComplete && isCorrect && (
           <CorrectResultBox explanation={question.explanation} />
         )}
 
-        {didSubmit && !isCorrect && <IncorrectResultBox />}
+        {isSubmitComplete && !isCorrect && <IncorrectResultBox />}
 
         <div className={cx('editorBox', 'outputBox')}>
           <span className={styles.boxLabel}>Output</span>
