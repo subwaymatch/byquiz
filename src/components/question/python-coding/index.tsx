@@ -13,6 +13,7 @@ import { CodeResult } from 'typing/pyodide';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 import { FiArrowDownRight } from 'react-icons/fi';
 import { BsInfoCircleFill } from 'react-icons/bs';
+import { RiLightbulbLine } from 'react-icons/ri';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import {
@@ -106,22 +107,22 @@ export default function PythonCodingQuestion({
     setShowHint(!showHint);
   };
 
-  const runCode = async (codeStr) => {
+  const runCode = async () => {
     setIsPyodideReady(false);
 
     pyodideWorkerRef.current.postMessage({
       type: 'RUN_CODE',
-      userCode: codeStr,
+      userCode: editorValue,
     });
   };
 
-  const runAndCheckCode = async (codeStr) => {
+  const runAndCheckCode = async () => {
     setIsPyodideReady(false);
-    setSubmittedCode(codeStr);
+    setSubmittedCode(editorValue);
 
     pyodideWorkerRef.current.postMessage({
       type: 'RUN_AND_CHECK_CODE',
-      userCode: codeStr,
+      userCode: editorValue,
       checkCode: question.checkCode,
     });
   };
@@ -173,16 +174,18 @@ export default function PythonCodingQuestion({
           }}
         />
 
-        <div className={cx(['editorBox', 'commandBox'])}>
+        <div className={cx('editorBox', 'commandBox')}>
           <a
-            className={styles.hintButton}
+            className={cx('hintButton', {
+              isOpen: showHint,
+            })}
             onClick={(e) => {
               e.preventDefault();
               toggleHint();
             }}
           >
-            <BsInfoCircleFill className={styles.hintIcon} />
-            <span>See Hint</span>
+            <RiLightbulbLine className={styles.hintIcon} />
+            <span>{showHint ? 'Hide Hint' : 'See Hint'}</span>
             {showHint ? (
               <IoMdArrowDropup className={styles.toggleIcon} />
             ) : (
@@ -194,7 +197,7 @@ export default function PythonCodingQuestion({
             <button
               className={styles.runCodeButton}
               onClick={(e) => {
-                runCode(editorValue);
+                runCode();
               }}
               disabled={!isPyodideReady}
             >
@@ -204,7 +207,7 @@ export default function PythonCodingQuestion({
             <button
               className={styles.submitButton}
               onClick={(e) => {
-                runAndCheckCode(editorValue);
+                runAndCheckCode();
               }}
               disabled={!isPyodideReady || submittedCode === editorValue}
             >
