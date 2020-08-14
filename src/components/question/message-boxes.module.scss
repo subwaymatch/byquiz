@@ -2,7 +2,8 @@
 @import 'src/styles/variables';
 
 .hintBox,
-.correctResultBox {
+.correctResultBox,
+.incorrectResultBox {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -12,6 +13,7 @@
 
   .boxLabel {
     font-size: 0.9rem;
+    letter-spacing: 0;
   }
 
   .imageWrapper {
@@ -54,5 +56,22 @@
 
   .boxLabel {
     color: $color-primary;
+  }
+}
+
+.incorrectResultBox {
+  color: color.scale($color-tertiary, $lightness: -60%, $saturation: 20%);
+  background-color: color.scale(
+    $color-tertiary,
+    $lightness: 92%,
+    $saturation: 10%
+  );
+
+  img.characterImage {
+    width: 4.5rem;
+  }
+
+  .boxLabel {
+    color: $color-tertiary;
   }
 }

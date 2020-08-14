@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './message-boxes.module.scss';
-import HintocatImage from 'src/images/cute-cartoon-cat.svg';
-import CheckofrogImage from 'src/images/cute-cartoon-frog.svg';
+import CuteCatImage from 'src/images/cute-cartoon-cat.svg';
+import CuteFrogImage from 'src/images/cute-cartoon-frog.svg';
+import CutePigImage from 'src/images/cute-cartoon-pig.svg';
 
 const cx = classNames.bind(styles);
 
@@ -9,8 +10,8 @@ export const HintBox = ({ hintMarkdown }: { hintMarkdown?: string }) => (
   <div className={cx('hintBox')}>
     <div className={cx('imageWrapper')}>
       <img
-        src={HintocatImage}
-        alt="Image of Checkofrog"
+        src={CuteCatImage}
+        alt="Image of a cute cat"
         className={styles.characterImage}
       />
     </div>
@@ -29,14 +30,14 @@ export const CorrectResultBox = ({ explanation }: { explanation?: string }) => {
     <div className={cx('correctResultBox')}>
       <div className={cx('imageWrapper')}>
         <img
-          src={CheckofrogImage}
-          alt="Image of Checkofrog"
+          src={CuteFrogImage}
+          alt="Image of a cute frog"
           className={styles.characterImage}
         />
       </div>
 
       <div>
-        <span className={styles.boxLabel}>Ribbit!</span>
+        <span className={styles.boxLabel}>Great!</span>
 
         <div
           dangerouslySetInnerHTML={{
@@ -53,8 +54,8 @@ export const IncorrectResultBox = () => {
     <div className={cx('incorrectResultBox')}>
       <div className={cx('imageWrapper')}>
         <img
-          src={CheckofrogImage}
-          alt="Image of Checkofrog"
+          src={CutePigImage}
+          alt="Image of a cute pig"
           className={styles.characterImage}
         />
       </div>
@@ -62,7 +63,7 @@ export const IncorrectResultBox = () => {
       <div>
         <span className={styles.boxLabel}>Oink...</span>
 
-        <div>Why don't we give it another try?</div>
+        <div>Let's give it another try!</div>
       </div>
     </div>
   );

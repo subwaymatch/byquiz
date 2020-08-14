@@ -39,9 +39,10 @@ export default function PythonCodingQuestion({
   };
 
   const editorRef = useRef<editor.IStandaloneCodeEditor>();
-  const [editorValue, setEditorValue] = useState<string>(question.templateCode);
+  const [editorValue, setEditorValue] = useState(question.templateCode);
   const [isPyodideReady, setIsPyodideReady] = useState(false);
   const [codeResult, setCodeResult] = useState(defaultCodeResult);
+  const [submittedCode, setSubmittedCode] = useState('');
   const [didSubmit, setDidSubmit] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -116,6 +117,7 @@ export default function PythonCodingQuestion({
 
   const runAndCheckCode = async (codeStr) => {
     setIsPyodideReady(false);
+    setSubmittedCode(codeStr);
 
     pyodideWorkerRef.current.postMessage({
       type: 'RUN_AND_CHECK_CODE',
@@ -197,17 +199,17 @@ export default function PythonCodingQuestion({
               disabled={!isPyodideReady}
             >
               <MdPlayArrow className={styles.reactIcon} />
-              <span>{isPyodideReady ? 'Run Code' : 'Loading'}</span>
+              <span>{isPyodideReady ? 'Run Code' : 'Waiting'}</span>
             </button>
             <button
               className={styles.submitButton}
               onClick={(e) => {
                 runAndCheckCode(editorValue);
               }}
-              disabled={!isPyodideReady || didSubmit}
+              disabled={!isPyodideReady || submittedCode === editorValue}
             >
               <MdPlayForWork className={styles.reactIcon} />
-              <span>{isPyodideReady ? 'Submit' : 'Loading'}</span>
+              <span>{isPyodideReady ? 'Submit' : 'Waiting'}</span>
             </button>
           </div>
         </div>
