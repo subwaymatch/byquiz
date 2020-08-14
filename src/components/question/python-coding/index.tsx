@@ -106,7 +106,6 @@ export default function PythonCodingQuestion({
   };
 
   const runCode = async (codeStr) => {
-    console.log('runCode()');
     setIsPyodideReady(false);
 
     pyodideWorkerRef.current.postMessage({
@@ -116,7 +115,6 @@ export default function PythonCodingQuestion({
   };
 
   const runAndCheckCode = async (codeStr) => {
-    console.log('runAndCheckCode()');
     setIsPyodideReady(false);
 
     pyodideWorkerRef.current.postMessage({
@@ -142,9 +140,6 @@ export default function PythonCodingQuestion({
   const handleEditorChange: ControlledEditorOnChange = (ev, value) => {
     setEditorValue(value);
   };
-
-  console.log(`codeResult`);
-  console.log(codeResult);
 
   return (
     <div className={cx('pythonCodingQuestionWrapper')}>
