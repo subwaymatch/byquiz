@@ -18,6 +18,7 @@ import { toast } from 'react-toastify';
 import {
   HintBox,
   CorrectResultBox,
+  IncorrectResultBox,
 } from 'src/components/question/message-boxes';
 
 const cx = classNames.bind(styles);
@@ -41,7 +42,7 @@ export default function PythonCodingQuestion({
   const [editorValue, setEditorValue] = useState<string>(question.templateCode);
   const [isPyodideReady, setIsPyodideReady] = useState(false);
   const [codeResult, setCodeResult] = useState(defaultCodeResult);
-  const [isSubmitInProgress, setIsSubmitInProgress] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
@@ -55,7 +56,6 @@ export default function PythonCodingQuestion({
     pyodideWorkerRef.current.onmessage = (evt) => {
       const data = evt.data;
 
-      console.log('message');
       console.log(evt);
 
       switch (data.type) {
@@ -64,20 +64,24 @@ export default function PythonCodingQuestion({
 
           break;
 
+        case 'CODE_RUN_COMPLETE':
+          setIsPyodideReady(true);
+
+          break;
+
         case 'CODE_RUN_AND_CHECK_COMPLETE':
           setCodeResult(data.result);
 
-          if (data.didPass) {
-            setIsCorrect(true);
+          setIsCorrect(data.result.isCorrect);
 
+          if (data.result.isCorrect) {
             toast(`Very nice!`);
           } else {
-            setIsCorrect(false);
-
             toast(`Oops, let's give that another try...`);
           }
 
-          setIsSubmitInProgress(false);
+          setDidSubmit(true);
+          setIsPyodideReady(true);
 
           break;
 
@@ -103,7 +107,7 @@ export default function PythonCodingQuestion({
 
   const runAndCheckCode = async (codeStr) => {
     console.log('runCode()');
-    setIsSubmitInProgress(true);
+    setIsPyodideReady(false);
 
     pyodideWorkerRef.current.postMessage({
       type: 'RUN_AND_CHECK_CODE',
@@ -179,7 +183,7 @@ export default function PythonCodingQuestion({
               onClick={(e) => {
                 runAndCheckCode(editorValue);
               }}
-              disabled={!isPyodideReady || isSubmitInProgress}
+              disabled={!isPyodideReady}
             >
               <MdPlayArrow className={styles.reactIcon} />
               <span>Run Code</span>
@@ -189,7 +193,7 @@ export default function PythonCodingQuestion({
               onClick={(e) => {
                 runAndCheckCode(editorValue);
               }}
-              disabled={!isPyodideReady || isSubmitInProgress}
+              disabled={!isPyodideReady || didSubmit}
             >
               <MdPlayForWork className={styles.reactIcon} />
               <span>Submit</span>
@@ -199,7 +203,11 @@ export default function PythonCodingQuestion({
 
         {showHint && <HintBox hintMarkdown={question.hint} />}
 
-        {isCorrect && <CorrectResultBox isCorrect={isCorrect} />}
+        {didSubmit && isCorrect && (
+          <CorrectResultBox explanation={question.explanation} />
+        )}
+
+        {didSubmit && !isCorrect && <IncorrectResultBox />}
 
         <div className={cx('editorBox', 'outputBox')}>
           <span className={styles.boxLabel}>Output</span>

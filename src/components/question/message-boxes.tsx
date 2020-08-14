@@ -47,3 +47,23 @@ export const CorrectResultBox = ({ explanation }: { explanation?: string }) => {
     </div>
   );
 };
+
+export const IncorrectResultBox = () => {
+  return (
+    <div className={cx('incorrectResultBox')}>
+      <div className={cx('imageWrapper')}>
+        <img
+          src={CheckofrogImage}
+          alt="Image of Checkofrog"
+          className={styles.characterImage}
+        />
+      </div>
+
+      <div>
+        <span className={styles.boxLabel}>Oink...</span>
+
+        <div>Why don't we give it another try?</div>
+      </div>
+    </div>
+  );
+};
