@@ -8,6 +8,7 @@ export enum QuestionType {
 export interface IQuestion {
   type: QuestionType;
   id: string;
+  title: string;
   text: string;
   hint?: string;
   explanation?: string;
@@ -28,6 +29,6 @@ export interface IPythonCodingQuestion extends IQuestion {
   templateCode?: string;
   solutionCode: string;
   checkCode: string;
-  runBefore?: string;
-  runAfter?: string;
+  runBeforeCode?: string;
+  runAfterCode?: string;
 }

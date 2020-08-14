@@ -1,1 +1,1 @@
-assert sys.stdout == "Hello World"
+assert sys.stdout == "Hello World\n"

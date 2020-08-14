@@ -2,16 +2,15 @@ import fs, { promises as fsPromises } from 'fs';
 import path from 'path';
 import YAML from 'yaml';
 import {
-  IQuestion,
   IMultipleChoiceQuestion,
   QuestionType,
   IPythonCodingQuestion,
 } from 'typing/question';
-import { readYamlFile, readFileFrontMatter, readMarkdownFile } from './utils';
+import { readMarkdownFile, getFileContents } from './utils';
 
 const questionContentPath = path.join(process.cwd(), 'content', 'question');
 const multipleChoicePath = path.join(questionContentPath, 'multiple-choice');
-const pythonCodingPath = path.join(questionContentPath, 'multiple-choice');
+const pythonCodingPath = path.join(questionContentPath, 'python-coding');
 
 export async function getMultipleChoiceQuestion(
   questionId: string
@@ -56,18 +55,44 @@ export async function getAllMultipleChoiceQuestions(): Promise<
 export async function getPythonCodingQuestion(
   questionId: string
 ): Promise<IPythonCodingQuestion> {
+  const questionDirPath = path.join(pythonCodingPath, questionId);
+
+  const questionMarkdown = await readMarkdownFile(
+    path.join(questionDirPath, '_question.md')
+  );
+
+  const templateCode = await getFileContents(
+    path.join(questionDirPath, 'template.py')
+  );
+  const runBeforeCode = await getFileContents(
+    path.join(questionDirPath, 'before.py')
+  );
+  const runAfterCode = await getFileContents(
+    path.join(questionDirPath, 'after.py')
+  );
+  const checkCode = await getFileContents(
+    path.join(questionDirPath, 'check.py')
+  );
+  const solutionCode = await getFileContents(
+    path.join(questionDirPath, 'solution.py')
+  );
+
   return {
     id: questionId,
     type: QuestionType.PythonCoding,
-    solutionCode: '',
-    checkCode: '',
-    text: '',
-    explanation: null,
-    hint: null,
-    runBefore: null,
-    runAfter: null,
-    templateCode: null,
-  };
+    title: questionMarkdown.title ? questionMarkdown.title : null,
+    checkCode: checkCode,
+    solutionCode: solutionCode,
+    text: questionMarkdown.content,
+    explanation: questionMarkdown.explanation
+      ? questionMarkdown.explanation
+      : null,
+    hint: questionMarkdown.hint ? questionMarkdown.hint : null,
+    runBeforeCode,
+    runAfterCode,
+    templateCode,
+    content: questionMarkdown,
+  } as IPythonCodingQuestion;
 }
 
 // Full Id refers to "{question-type}/{question-id}"

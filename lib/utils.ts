@@ -3,6 +3,7 @@ import remark from 'remark';
 import html from 'remark-html';
 import YAML from 'yaml';
 import fs, { promises as fsPromises } from 'fs';
+import path from 'path';
 
 export async function readYamlFile<T>(filePath: string): Promise<T> {
   if (!fs.existsSync(filePath)) {
@@ -53,4 +54,16 @@ export async function readMarkdownFile(filePath: string): Promise<any> {
     ...matterResult.data,
     content: contentHtml,
   };
+}
+
+export async function getFileContents(
+  filePath: string
+): Promise<string | null> {
+  if (fs.existsSync(filePath)) {
+    return await fsPromises.readFile(path.join(filePath), {
+      encoding: 'utf-8',
+    });
+  } else {
+    return null;
+  }
 }

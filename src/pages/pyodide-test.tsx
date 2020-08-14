@@ -15,6 +15,7 @@ assert_equal(some_list, [-4, 'cat', 8.7])`;
 const question: IPythonCodingQuestion = {
   id: 'python-coding/create-list',
   type: QuestionType.PythonCoding,
+  title: null,
   text,
   hint,
   templateCode,
@@ -30,7 +31,7 @@ export default function PyodideTest(props: any) {
       <div>
         <PythonCodingQuestion question={question} />
 
-        <PythonCodingQuestion question={question} />
+        <PythonCodingQuestion question={props.question} />
       </div>
     </Layout>
   );
@@ -38,7 +39,7 @@ export default function PyodideTest(props: any) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const question: IPythonCodingQuestion = (await getQuestionByFullId(
-    'python-coding/hello-world'
+    'python-coding/print-hello-world'
   )) as IPythonCodingQuestion;
 
   return {
