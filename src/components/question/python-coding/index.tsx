@@ -65,13 +65,13 @@ export default function PythonCodingQuestion({
           break;
 
         case 'CODE_RUN_COMPLETE':
+          setCodeResult(data.result);
           setIsPyodideReady(true);
 
           break;
 
         case 'CODE_RUN_AND_CHECK_COMPLETE':
           setCodeResult(data.result);
-
           setIsCorrect(data.result.isCorrect);
 
           if (data.result.isCorrect) {
@@ -105,8 +105,18 @@ export default function PythonCodingQuestion({
     setShowHint(!showHint);
   };
 
-  const runAndCheckCode = async (codeStr) => {
+  const runCode = async (codeStr) => {
     console.log('runCode()');
+    setIsPyodideReady(false);
+
+    pyodideWorkerRef.current.postMessage({
+      type: 'RUN_CODE',
+      userCode: codeStr,
+    });
+  };
+
+  const runAndCheckCode = async (codeStr) => {
+    console.log('runAndCheckCode()');
     setIsPyodideReady(false);
 
     pyodideWorkerRef.current.postMessage({
@@ -132,6 +142,9 @@ export default function PythonCodingQuestion({
   const handleEditorChange: ControlledEditorOnChange = (ev, value) => {
     setEditorValue(value);
   };
+
+  console.log(`codeResult`);
+  console.log(codeResult);
 
   return (
     <div className={cx('pythonCodingQuestionWrapper')}>
@@ -181,12 +194,12 @@ export default function PythonCodingQuestion({
             <button
               className={styles.runCodeButton}
               onClick={(e) => {
-                runAndCheckCode(editorValue);
+                runCode(editorValue);
               }}
               disabled={!isPyodideReady}
             >
               <MdPlayArrow className={styles.reactIcon} />
-              <span>Run Code</span>
+              <span>{isPyodideReady ? 'Run Code' : 'Loading'}</span>
             </button>
             <button
               className={styles.submitButton}
@@ -196,7 +209,7 @@ export default function PythonCodingQuestion({
               disabled={!isPyodideReady || didSubmit}
             >
               <MdPlayForWork className={styles.reactIcon} />
-              <span>Submit</span>
+              <span>{isPyodideReady ? 'Submit' : 'Loading'}</span>
             </button>
           </div>
         </div>
