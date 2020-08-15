@@ -35,30 +35,6 @@
     font-size: 1.03rem;
     font-weight: 400;
     letter-spacing: -0.02rem;
-
-    a.menuItem {
-      color: #444;
-      // color: color.scale($color-secondary, $lightness: 10%, $saturation: -60%);
-      padding: 0.5rem 1.2rem;
-      display: flex;
-      align-items: center;
-
-      .menuIcon {
-        margin-right: 0.5rem;
-      }
-
-      &:hover {
-        color: #666;
-      }
-
-      &.active {
-        color: $color-secondary;
-
-        &:hover {
-          color: color.scale($color-secondary, $lightness: -15%);
-        }
-      }
-    }
   }
 
   a {

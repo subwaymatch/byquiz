@@ -1,0 +1,25 @@
+@use 'sass:color';
+@import 'src/styles/variables';
+
+a.menuItem {
+  color: #444;
+  padding: 0.5rem 1.2rem;
+  display: flex;
+  align-items: center;
+
+  .menuIconWrapper {
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    color: #666;
+  }
+
+  &.active {
+    color: $color-secondary;
+
+    &:hover {
+      color: color.scale($color-secondary, $lightness: -15%);
+    }
+  }
+}
