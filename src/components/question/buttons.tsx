@@ -1,8 +1,5 @@
-import classNames from 'classnames/bind';
 import styles from './buttons.module.scss';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
-
-const cx = classNames.bind(styles);
 
 type RunCodeButtonProps = {
   label?: string;
