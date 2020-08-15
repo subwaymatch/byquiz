@@ -1,5 +1,9 @@
 import Link from 'next/link';
 import styles from './header.module.scss';
+import { FaPython } from 'react-icons/fa';
+import { BsFillLayersFill } from 'react-icons/bs';
+import { AiFillBank } from 'react-icons/ai';
+import { IoIosFiling } from 'react-icons/io';
 import { useRouter } from 'next/router';
 import classNames from 'classnames/bind';
 
@@ -25,9 +29,6 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
           <h1>{headerTitle}</h1>
         ) : (
           <nav className={styles.headerMainMenu}>
-            <Link href="/pyodide-test">
-              <a className={cx('menuItem')}>Python Q</a>
-            </Link>
             <Link href="/course">
               <a
                 className={cx('menuItem', {
@@ -36,7 +37,8 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
                     router.pathname.startsWith('/course/'),
                 })}
               >
-                Courses
+                <BsFillLayersFill className={cx('menuIcon')} />
+                <span>Courses</span>
               </a>
             </Link>
             <Link href="/question">
@@ -47,7 +49,14 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
                     router.pathname.startsWith('/question/'),
                 })}
               >
-                Questions
+                <IoIosFiling className={cx('menuIcon')} />
+                <span>Challenges</span>
+              </a>
+            </Link>
+            <Link href="/pyodide-test">
+              <a className={cx('menuItem')}>
+                <FaPython className={cx('menuIcon')} />
+                <span>Playground</span>
               </a>
             </Link>
           </nav>
