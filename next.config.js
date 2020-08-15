@@ -2,7 +2,6 @@
 require('dotenv').config();
 
 const withImages = require('next-images');
-
 const WorkerPlugin = require('worker-plugin');
 
 module.exports = withImages({

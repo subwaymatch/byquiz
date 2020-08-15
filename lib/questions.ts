@@ -81,8 +81,8 @@ export async function getPythonCodingQuestion(
     id: questionId,
     type: QuestionType.PythonCoding,
     title: questionMarkdown.title ? questionMarkdown.title : null,
-    checkCode: checkCode,
-    solutionCode: solutionCode,
+    checkCode,
+    solutionCode,
     text: questionMarkdown.content,
     explanation: questionMarkdown.explanation
       ? questionMarkdown.explanation
