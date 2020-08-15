@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.4.0",
     "classnames": "^2.2.6",
     "firebase": "^7.16.1",
+    "framer-motion": "^2.4.2",
     "gray-matter": "^4.0.2",
     "js-yaml-loader": "^1.2.2",
     "monaco-editor": "^0.20.0",
