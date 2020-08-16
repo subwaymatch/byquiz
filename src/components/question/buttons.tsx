@@ -1,5 +1,6 @@
-import styles from './buttons.module.scss';
+import { motion } from 'framer-motion';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
+import styles from './buttons.module.scss';
 
 type RunCodeButtonProps = {
   label?: string;
@@ -13,17 +14,26 @@ export const RunCodeButton = ({
   onClick,
 }: RunCodeButtonProps) => {
   return (
-    <button
+    <motion.button
       className={styles.runCodeButton}
       onClick={(e) => {
         e.preventDefault();
         onClick();
       }}
       disabled={disabled}
+      whileHover={{
+        y: 2,
+        transition: {
+          duration: 0.1,
+        },
+      }}
+      whileTap={{
+        scale: 0.97,
+      }}
     >
       <MdPlayArrow className={styles.buttonIcon} />
       <span>{label ? label : 'Run Code'}</span>
-    </button>
+    </motion.button>
   );
 };
 
@@ -39,16 +49,25 @@ export const SubmitButton = ({
   onClick,
 }: SubmitButtonProps) => {
   return (
-    <button
+    <motion.button
       className={styles.submitButton}
       onClick={(e) => {
         e.preventDefault();
         onClick();
       }}
       disabled={disabled}
+      whileHover={{
+        y: 2,
+        transition: {
+          duration: 0.1,
+        },
+      }}
+      whileTap={{
+        scale: 0.97,
+      }}
     >
       <MdPlayForWork className={styles.buttonIcon} />
       <span>{label ? label : 'Submit'}</span>
-    </button>
+    </motion.button>
   );
 };

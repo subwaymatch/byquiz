@@ -18,7 +18,7 @@
   }
 
   &:hover svg {
-    fill: $color-secondary;
+    fill: $color-primary;
   }
 }
 
@@ -51,8 +51,7 @@
 
 /* General sidebar styles */
 .menu {
-  background: $color-secondary;
-  border-left: 1px solid #eee;
+  background: $color-primary;
   padding: 2.5em 1.5em 0;
   font-size: 1.15rem;
 }

@@ -1,6 +1,14 @@
 import Layout from 'src/components/layout';
 import styles from './home.module.scss';
 import { motion } from 'framer-motion';
+import { css } from '@emotion/core';
+import ClipLoader from 'react-spinners/ClipLoader';
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 export default function Home() {
   return (
@@ -28,6 +36,13 @@ export default function Home() {
               Learn anything by solving problems.
             </p>
           </motion.div>
+
+          <ClipLoader
+            css={override}
+            size={150}
+            color={'#123abc'}
+            loading={true}
+          />
 
           <div className={styles.heroImageWrapper}>
             <img

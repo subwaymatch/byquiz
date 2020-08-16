@@ -1,29 +1,92 @@
+@use 'sass:color';
 @import 'src/styles/variables';
 
 .sidebarWrapper {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 
   h1 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    letter-spacing: -0.01rem;
     line-height: 1.4;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  .moduleLinkItem {
-    cursor: pointer;
-    color: #777;
-    font-size: 1.1rem;
-    padding: 0.4rem 0;
+  nav.sideNav {
+    margin-top: 0.8rem;
 
-    &:hover {
-      color: #333;
-      border-color: #333;
-    }
+    .moduleLinkItem {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: black;
+      font-size: 1.06rem;
+      letter-spacing: -0.02rem;
+      font-weight: 300;
+      padding: 0.4rem 0;
+      position: relative;
 
-    &.active,
-    &.active:hover {
-      color: $color-primary;
-      border-color: $color-primary;
+      .verticalLine {
+        width: 2px;
+        height: 100%;
+        background-color: #e8e9ea;
+        position: absolute;
+        top: 0;
+        left: 11px;
+        z-index: 1;
+      }
+
+      .indicator {
+        width: 24px;
+        margin-right: 1rem;
+        position: relative;
+        z-index: 2;
+
+        .checkIconWrapper {
+          display: flex;
+          width: 24px;
+          height: 24px;
+          border-radius: 60px;
+          background-color: black;
+          justify-content: center;
+          align-items: center;
+
+          .checkIcon {
+            color: white;
+          }
+        }
+
+        .currentCircle {
+          width: 10px;
+          height: 10px;
+          border-radius: 24px;
+          margin: 7px;
+          background-color: $color-primary;
+        }
+      }
+
+      .label {
+        position: relative;
+        z-index: 2;
+      }
+
+      &:hover {
+        color: #333;
+        border-color: rgb(5, 5, 5);
+
+        .verticalLine {
+          background-color: color.mix(#e8e9ea, black, 80%);
+        }
+
+        .checkIconWrapper {
+          background-color: #333;
+        }
+      }
+
+      &.isInProgress,
+      &.isInProgress:hover {
+        color: $color-primary;
+        border-color: $color-primary;
+      }
     }
   }
 }

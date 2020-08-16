@@ -12,14 +12,14 @@ a.menuItem {
   }
 
   &:hover {
-    color: #666;
+    color: #555;
   }
 
   &.active {
-    color: $color-secondary;
+    color: $color-primary;
 
     &:hover {
-      color: color.scale($color-secondary, $lightness: -15%);
+      color: color.scale($color-primary, $lightness: -15%);
     }
   }
 }

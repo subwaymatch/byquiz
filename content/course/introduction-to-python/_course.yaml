@@ -3,3 +3,5 @@ description: SQL statements are used to perform tasks such as update data on a d
 modules:
   - introduction-to-programming
   - second-module
+  - visualization
+  - debugging-tips
