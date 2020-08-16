@@ -10,12 +10,13 @@
     .pageLinkItem {
       width: 2.2rem;
       height: 2.2rem;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: transparent;
       border-radius: 10rem;
-      margin-right: 1rem;
+      margin-right: 0.5rem;
       cursor: pointer;
 
       &:hover {
