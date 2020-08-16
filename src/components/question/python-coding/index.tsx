@@ -204,7 +204,7 @@ export default function PythonCodingQuestion({
           </div>
         </div>
 
-        {showHint && <HintBox hintMarkdown={question.hint} />}
+        <HintBox hintMarkdown={question.hint} show={showHint} />
 
         {isSubmitComplete && isCorrect && (
           <CorrectResultBox explanation={question.explanation} />
