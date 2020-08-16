@@ -1,6 +1,9 @@
 @use 'sass:color';
 @import 'src/styles/variables';
 
+$indicator-width: 20px;
+$current-circle-width: 10px;
+
 .sidebarWrapper {
   font-size: 1.1rem;
 
@@ -31,7 +34,7 @@
         background-color: #ecedef;
         position: absolute;
         top: 0;
-        left: 10px;
+        left: ($indicator-width / 2) - 1;
         z-index: 1;
       }
 
@@ -45,15 +48,16 @@
       }
 
       .indicator {
-        width: 22px;
+        width: $indicator-width;
         margin-right: 1rem;
         position: relative;
         z-index: 2;
+        font-size: 0.9rem;
 
         .checkIconWrapper {
           display: flex;
-          width: 22px;
-          height: 22px;
+          width: $indicator-width;
+          height: $indicator-width;
           border-radius: 60px;
           background-color: black;
           justify-content: center;
@@ -65,10 +69,10 @@
         }
 
         .currentCircle {
-          width: 12px;
-          height: 12px;
-          border-radius: 24px;
-          margin: 5px;
+          width: $current-circle-width;
+          height: $current-circle-width;
+          border-radius: $current-circle-width;
+          margin: ($indicator-width - $current-circle-width) / 2;
           background-color: $color-primary;
         }
       }

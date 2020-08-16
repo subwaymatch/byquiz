@@ -3,11 +3,7 @@ import { ICourse } from 'typing/course';
 import styles from './course-sidebar.module.scss';
 import classNames from 'classnames/bind';
 import _ from 'lodash';
-import { MdDone } from 'react-icons/md';
-import { BsCircleFill } from 'react-icons/bs';
 import { GoCheck } from 'react-icons/go';
-import { FaCheck } from 'react-icons/fa';
-import { IoIosCheckmarkCircle } from 'react-icons/io';
 
 const cx = classNames.bind(styles);
 
@@ -52,7 +48,7 @@ export default function CourseSidebar({
                 <div className={cx('indicator')}>
                   {isComplete ? (
                     <div className={cx('checkIconWrapper')}>
-                      <MdDone className={cx('checkIcon')} />
+                      <GoCheck className={cx('checkIcon')} />
                     </div>
                   ) : isInProgress ? (
                     <div className={cx('currentCircle')} />
