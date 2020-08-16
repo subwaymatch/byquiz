@@ -4,47 +4,56 @@
 .sidebarWrapper {
   font-size: 1.1rem;
 
-  h1 {
-    font-size: 1.1rem;
+  .sidebarTitle {
+    display: block;
+    font-size: 1rem;
     letter-spacing: -0.01rem;
-    line-height: 1.4;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   nav.sideNav {
-    margin-top: 0.8rem;
+    margin-top: 1rem;
 
     .moduleLinkItem {
       display: flex;
       align-items: center;
       cursor: pointer;
       color: black;
-      font-size: 1.06rem;
-      letter-spacing: -0.02rem;
-      font-weight: 300;
+      font-size: 1rem;
+      letter-spacing: -0.01rem;
+      font-weight: 400;
       padding: 0.4rem 0;
       position: relative;
 
       .verticalLine {
         width: 2px;
         height: 100%;
-        background-color: #e8e9ea;
+        background-color: #ecedef;
         position: absolute;
         top: 0;
-        left: 11px;
+        left: 10px;
         z-index: 1;
       }
 
+      &.isInProgress {
+        font-weight: 400;
+        color: $color-primary;
+      }
+
+      &.isIncomplete {
+        color: #dcdcdc;
+      }
+
       .indicator {
-        width: 24px;
+        width: 22px;
         margin-right: 1rem;
         position: relative;
         z-index: 2;
 
         .checkIconWrapper {
           display: flex;
-          width: 24px;
-          height: 24px;
+          width: 22px;
+          height: 22px;
           border-radius: 60px;
           background-color: black;
           justify-content: center;
@@ -56,10 +65,10 @@
         }
 
         .currentCircle {
-          width: 10px;
-          height: 10px;
+          width: 12px;
+          height: 12px;
           border-radius: 24px;
-          margin: 7px;
+          margin: 5px;
           background-color: $color-primary;
         }
       }
@@ -74,18 +83,26 @@
         border-color: rgb(5, 5, 5);
 
         .verticalLine {
-          background-color: color.mix(#e8e9ea, black, 80%);
+          background-color: color.mix(#ecedef, black, 90%);
         }
 
         .checkIconWrapper {
           background-color: #333;
         }
-      }
 
-      &.isInProgress,
-      &.isInProgress:hover {
-        color: $color-primary;
-        border-color: $color-primary;
+        &.isInProgress {
+          color: color.scale($color-primary, $lightness: -10%);
+
+          .indicator {
+            .currentCircle {
+              background-color: color.scale($color-primary, $lightness: -10%);
+            }
+          }
+        }
+
+        &.isIncomplete {
+          color: #bcbcbc;
+        }
       }
     }
   }

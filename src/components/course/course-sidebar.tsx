@@ -27,7 +27,7 @@ export default function CourseSidebar({
 
   return (
     <div className={cx('sidebarWrapper')}>
-      <h1>{course.title}</h1>
+      <span className={cx('sidebarTitle')}>{course.title}</span>
 
       <nav className={cx('sideNav')}>
         {course.modules.map((module, index) => {
