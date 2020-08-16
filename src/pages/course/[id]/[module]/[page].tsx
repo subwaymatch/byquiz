@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { motion } from 'framer-motion';
 import Layout from 'src/components/layout';
 import {
   getAllCourses,
@@ -26,7 +27,7 @@ export default function CourseModulePagePage({
   )[0];
   return (
     <Layout>
-      <div className="courseModulePageWrapper">
+      <div>
         <div className="row">
           <div className="col-3">&nbsp;</div>
           <div className="col-9">

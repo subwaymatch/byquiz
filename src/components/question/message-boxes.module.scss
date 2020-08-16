@@ -29,7 +29,7 @@
   }
 }
 
-.hintBox {
+.hintBox .inner {
   color: color.scale($color-secondary, $lightness: -60%, $saturation: 20%);
   background-color: color.scale(
     $color-secondary,
@@ -46,7 +46,7 @@
   }
 }
 
-.correctResultBox {
+.correctResultBox .inner {
   color: color.scale($color-primary, $lightness: -60%, $saturation: 20%);
   background-color: color.scale(
     $color-primary,
@@ -63,7 +63,7 @@
   }
 }
 
-.incorrectResultBox {
+.incorrectResultBox .inner {
   color: color.scale($color-tertiary, $lightness: -60%, $saturation: 20%);
   background-color: color.scale(
     $color-tertiary,

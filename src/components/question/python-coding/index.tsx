@@ -206,11 +206,12 @@ export default function PythonCodingQuestion({
 
         <HintBox hintMarkdown={question.hint} show={showHint} />
 
-        {isSubmitComplete && isCorrect && (
-          <CorrectResultBox explanation={question.explanation} />
-        )}
+        <CorrectResultBox
+          explanation={question.explanation}
+          show={isSubmitComplete && isCorrect}
+        />
 
-        {isSubmitComplete && !isCorrect && <IncorrectResultBox />}
+        <IncorrectResultBox show={isSubmitComplete && !isCorrect} />
 
         <div className={cx('editorBox', 'outputBox')}>
           <span className={styles.boxLabel}>Output</span>

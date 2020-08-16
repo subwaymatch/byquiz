@@ -28,7 +28,7 @@ export const RunCodeButton = ({
         },
       }}
       whileTap={{
-        scale: 0.97,
+        scale: 0.98,
       }}
     >
       <MdPlayArrow className={styles.buttonIcon} />
