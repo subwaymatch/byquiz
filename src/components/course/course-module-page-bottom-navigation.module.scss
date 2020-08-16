@@ -2,21 +2,22 @@
 @import 'src/styles/variables';
 
 .navigationWrapper {
-  margin-top: 3rem;
-  display: flex;
-  justify-content: flex-end;
+  margin-top: 5rem;
 
   nav.navigation {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     .navItem {
       display: flex;
       align-items: center;
       cursor: pointer;
+      padding-top: 1rem;
+      width: 50%;
 
       .navArrowIcon {
-        font-size: 1.6rem;
+        font-size: 2.2rem;
       }
 
       .moduleLabel,
@@ -27,16 +28,17 @@
 
       .moduleLabel {
         font-size: 1rem;
-        letter-spacing: -0.01rem;
+        letter-spacing: 0rem;
         color: #d5d5d5;
       }
 
       .pageLabel {
         font-size: 1.2rem;
+        margin-top: 0.2rem;
       }
 
       &.navPrev {
-        margin-right: 1.5rem;
+        margin-right: 1rem;
 
         .navArrowIcon {
           margin-right: 1rem;
@@ -45,7 +47,8 @@
 
       &.navNext {
         text-align: right;
-        margin-left: 1.5rem;
+        justify-content: flex-end;
+        margin-left: 1rem;
 
         .navArrowIcon {
           margin-left: 1rem;
@@ -56,13 +59,17 @@
         color: $color-primary;
 
         .moduleLabel {
-          color: color.scale($color-primary, $lightness: 65%);
+          color: color.scale($color-primary, $lightness: 50%);
         }
 
         .navArrowIcon {
           color: $color-primary;
         }
       }
+    }
+
+    .spacer {
+      flex-grow: 1;
     }
   }
 }

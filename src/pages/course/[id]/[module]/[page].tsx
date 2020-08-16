@@ -1,12 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { motion } from 'framer-motion';
+import _ from 'lodash';
 import Layout from 'src/components/layout';
 import {
   getAllCourses,
   getCourseData,
   getCourseModulePageData,
 } from 'lib/courses';
-import { ICourse, ICourseModulePageData } from 'typing/course';
+import { ICourse, ICourseModule, ICourseModulePageData } from 'typing/course';
 import CourseSidebar from 'src/components/course/course-sidebar';
 import CourseModulePageContent from 'src/components/course/course-module-page-content';
 import CourseModulePageQuestions from 'src/components/course/course-module-page-questions';
@@ -22,9 +23,59 @@ export default function CourseModulePagePage({
   course,
   pageData,
 }: CourseModulePagePageProps) {
-  const currentModule = course.modules.filter(
+  const currentModule: ICourseModule = _.find(
+    course.modules,
     (module) => module.id === pageData.moduleId
-  )[0];
+  );
+
+  const currentModuleIndex = _.findIndex(
+    course.modules,
+    (module) => module.id === pageData.moduleId
+  );
+
+  const currentPageIndex = _.findIndex(
+    currentModule.pages,
+    (page) => page.id === pageData.id
+  );
+
+  const prevPage =
+    currentPageIndex === 0
+      ? currentModuleIndex === 0
+        ? null
+        : _.last(course.modules[currentModuleIndex - 1].pages)
+      : currentModule.pages[currentPageIndex - 1];
+
+  const prevModule = prevPage
+    ? currentPageIndex === 0
+      ? course.modules[currentModuleIndex - 1]
+      : currentModule
+    : null;
+
+  const nextPage =
+    currentPageIndex === currentModule.pages.length - 1
+      ? currentModuleIndex === course.modules.length - 1
+        ? null
+        : _.first(course.modules[currentModuleIndex + 1].pages)
+      : currentModule.pages[currentPageIndex + 1];
+
+  const nextModule = nextPage
+    ? currentPageIndex === currentModule.pages.length - 1
+      ? course.modules[currentModuleIndex + 1]
+      : currentModule
+    : null;
+
+  const prevModuleLabel = prevModule ? prevModule.title : null;
+  const prevPageLabel = prevPage ? prevPage.title : null;
+  const prevHref = prevPage
+    ? `/course/${course.id}/${prevModule.id}/${prevPage.id}`
+    : null;
+
+  const nextModuleLabel = nextModule ? nextModule.title : null;
+  const nextPageLabel = nextModule ? nextPage.title : null;
+  const nextHref = nextPage
+    ? `/course/${course.id}/${nextModule.id}/${nextPage.id}`
+    : null;
+
   return (
     <Layout>
       <div>
@@ -53,12 +104,12 @@ export default function CourseModulePagePage({
             <CourseModulePageQuestions questions={pageData.questions} />
 
             <CourseModulePageBottomNavigation
-              prevHref={`/`}
-              prevModuleLabel="Prev Module"
-              prevPageLabel="Prev Page"
-              nextHref={`/`}
-              nextModuleLabel="Next Module"
-              nextPageLabel="Next Page"
+              prevHref={prevHref}
+              prevModuleLabel={prevModuleLabel}
+              prevPageLabel={prevPageLabel}
+              nextHref={nextHref}
+              nextModuleLabel={nextModuleLabel}
+              nextPageLabel={nextPageLabel}
             />
           </div>
         </div>

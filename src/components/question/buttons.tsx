@@ -2,6 +2,18 @@ import { motion } from 'framer-motion';
 import { MdPlayArrow, MdPlayForWork } from 'react-icons/md';
 import styles from './buttons.module.scss';
 
+const buttonVariants = {
+  hover: {
+    y: 2,
+    transition: {
+      duration: 0.1,
+    },
+  },
+  tap: {
+    scale: 0.98,
+  },
+};
+
 type RunCodeButtonProps = {
   label?: string;
   disabled: boolean;
@@ -21,15 +33,9 @@ export const RunCodeButton = ({
         onClick();
       }}
       disabled={disabled}
-      whileHover={{
-        y: 2,
-        transition: {
-          duration: 0.1,
-        },
-      }}
-      whileTap={{
-        scale: 0.98,
-      }}
+      variants={buttonVariants}
+      whileHover="hover"
+      whileTap="tap"
     >
       <MdPlayArrow className={styles.buttonIcon} />
       <span>{label ? label : 'Run Code'}</span>
@@ -56,15 +62,9 @@ export const SubmitButton = ({
         onClick();
       }}
       disabled={disabled}
-      whileHover={{
-        y: 2,
-        transition: {
-          duration: 0.1,
-        },
-      }}
-      whileTap={{
-        scale: 0.97,
-      }}
+      variants={buttonVariants}
+      whileHover="hover"
+      whileTap="tap"
     >
       <MdPlayForWork className={styles.buttonIcon} />
       <span>{label ? label : 'Submit'}</span>

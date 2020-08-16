@@ -8,6 +8,18 @@ import { GoCheck } from 'react-icons/go';
 
 const cx = classNames.bind(styles);
 
+const linkItemVariants = {
+  hover: {
+    y: 2,
+    transition: {
+      duration: 0.1,
+    },
+  },
+  tap: {
+    scale: 0.99,
+  },
+};
+
 type CourseSidebarProps = {
   course: ICourse;
   currentModuleId: string;
@@ -44,15 +56,9 @@ export default function CourseSidebar({
                   isInProgress,
                   isIncomplete,
                 })}
-                whileHover={{
-                  y: 2,
-                  transition: {
-                    duration: 0.1,
-                  },
-                }}
-                whileTap={{
-                  scale: 0.99,
-                }}
+                variants={linkItemVariants}
+                whileHover="hover"
+                whileTap="tap"
               >
                 <div className={cx('verticalLine')} />
                 <div className={cx('indicator')}>

@@ -8,10 +8,10 @@ const cx = classNames.bind(styles);
 type PropTypes = {
   prevModuleLabel: string;
   prevPageLabel: string;
-  prevHref: string;
+  prevHref: string | null;
   nextModuleLabel: string;
   nextPageLabel: string;
-  nextHref: string;
+  nextHref: string | null;
 };
 
 export default function CourseModulePageBottomNavigation({
@@ -25,7 +25,7 @@ export default function CourseModulePageBottomNavigation({
   return (
     <div className={styles.navigationWrapper}>
       <nav className={styles.navigation}>
-        {prevHref && (
+        {prevHref ? (
           <Link href={prevHref}>
             <div className={cx('navItem', 'navPrev')}>
               <BsChevronLeft className={cx('navArrowIcon')} />
@@ -35,7 +35,9 @@ export default function CourseModulePageBottomNavigation({
               </div>
             </div>
           </Link>
-        )}
+        ) : null}
+
+        <div className={cx('spacer')} />
 
         {nextHref && (
           <Link href={nextHref}>
