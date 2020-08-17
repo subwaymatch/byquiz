@@ -22,7 +22,7 @@ type HintBoxProps = {
 };
 
 export const HintBox = ({ hintMarkdown, show }: HintBoxProps) => (
-  <AnimatePresence>
+  <>
     {show && (
       <motion.div
         className={cx('hintBox')}
@@ -49,7 +49,7 @@ export const HintBox = ({ hintMarkdown, show }: HintBoxProps) => (
         </div>
       </motion.div>
     )}
-  </AnimatePresence>
+  </>
 );
 
 type CorrectResultBoxProps = {
