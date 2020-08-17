@@ -1,17 +1,33 @@
 @use 'sass:color';
 @import 'src/styles/variables';
 
-.courseItem {
-  border-top: 1px solid #eee;
-  padding: 1rem 0;
-}
+.courseIndexWrapper {
+  h1.pageTitle {
+    font-weight: 300;
+  }
 
-.courseModuleItem {
-  cursor: pointer;
-  color: $color-primary;
-  padding: 0.4rem 0;
+  .courseItem {
+    padding: 1rem 0;
+    margin-top: 2rem;
 
-  &:hover {
-    color: color.scale($color-primary, $lightness: -10%);
+    h2.courseTitle {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .courseInfo {
+      margin-bottom: 1rem;
+    }
+
+    a.moduleItem {
+      display: block;
+      cursor: pointer;
+      color: $color-primary;
+      padding: 0.2rem 0;
+
+      &:hover {
+        color: color.scale($color-primary, $lightness: -10%);
+      }
+    }
   }
 }

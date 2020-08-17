@@ -1,41 +1,82 @@
 import { ICourse } from 'typing/course';
-import Link from 'next/link';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import classNames from 'classnames/bind';
 import { getAllCourses } from 'lib/courses';
 import Layout from 'src/components/layout';
 import styles from './course.module.scss';
+
+const cx = classNames.bind(styles);
 
 type CourseIndexPageProps = {
   courses: ICourse[];
 };
 
+const fadeInUpVariants = {
+  initial: {
+    y: 60,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+const moduleItemVariants = {
+  hover: {
+    y: 2,
+    transition: {
+      duration: 0.1,
+    },
+  },
+  tap: {
+    scale: 0.99,
+  },
+};
+
 export default function CourseIndexPage({ courses }: CourseIndexPageProps) {
   return (
     <Layout>
-      <h2>All Courses</h2>
+      <div className={cx('courseIndexWrapper')}>
+        <h1 className={cx('pageTitle')}>All Courses</h1>
 
-      {courses.map((course) => (
-        <div key={course.id} className={styles.courseItem}>
-          <h3>{course.title}</h3>
-          <p>{course.description}</p>
+        <motion.div
+          variants={fadeInUpVariants}
+          initial="initial"
+          animate="animate"
+          exit={{ opacity: 0 }}
+        >
+          {courses.map((course) => (
+            <div key={course.id} className={cx('courseItem')}>
+              <div className={cx('courseInfo')}>
+                <h2 className={cx('courseTitle')}>{course.title}</h2>
+                <p>{course.description}</p>
+              </div>
 
-          {course.modules && (
-            <div>
-              {course.modules.map((cm) => {
-                return (
-                  <Link
-                    key={cm.id}
-                    href="/course/[course]/[module]/[page]"
-                    as={`/course/${course.id}/${cm.id}/${cm.pages[0].id}`}
-                  >
-                    <div className={styles.courseModuleItem}>{cm.title}</div>
-                  </Link>
-                );
-              })}
+              {course.modules && (
+                <div>
+                  {course.modules.map((cm) => {
+                    return (
+                      <Link
+                        key={cm.id}
+                        href="/course/[course]/[module]/[page]"
+                        as={`/course/${course.id}/${cm.id}/${cm.pages[0].id}`}
+                      >
+                        <a className={styles.moduleItem}>{cm.title}</a>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      ))}
+          ))}
+        </motion.div>
+      </div>
     </Layout>
   );
 }
