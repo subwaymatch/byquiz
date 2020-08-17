@@ -1,4 +1,4 @@
-import GalleryComponent from '../components/Gallery';
+import GalleryComponent from 'src/components/Gallery';
 
 const GalleryPage = () => <GalleryComponent />;
 

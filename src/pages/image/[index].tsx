@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SingleImage from '../../components/SingleImage';
+import SingleImage from 'src/components/SingleImage';
 import { images } from '../../../constants';
 
 const Page = ({ index }) => {

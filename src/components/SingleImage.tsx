@@ -32,7 +32,7 @@ const SingleImage = ({ index }) => (
         alt="The Barbican"
       />
       <motion.div className="back" variants={backVariants}>
-        <Link href="/">
+        <Link href="/gallery">
           <a>← Back</a>
         </Link>
       </motion.div>
