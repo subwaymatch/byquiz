@@ -70,7 +70,7 @@ const Thumbnail = ({ id, i }) => (
 
 const Gallery = () => (
   <>
-    <h1>Barbican</h1>
+    <h1>ByQuiz</h1>
 
     <div className="gallery">
       <motion.div
@@ -92,7 +92,7 @@ const Gallery = () => (
           font-size: 100px;
           text-align: center;
           position: fixed;
-          bottom: -100px;
+          bottom: -50px;
           z-index: 1;
           color: #f9fbf8;
           left: 50%;
@@ -118,28 +118,28 @@ const Gallery = () => (
         @media screen and (min-width: 600px) {
           h1 {
             font-size: 140px;
-            bottom: -130px;
+            bottom: -50px;
           }
         }
 
         @media screen and (min-width: 800px) {
           h1 {
             font-size: 180px;
-            bottom: -170px;
+            bottom: -80px;
           }
         }
 
         @media screen and (min-width: 1000px) {
           h1 {
             font-size: 220px;
-            bottom: -200px;
+            bottom: -100px;
           }
         }
 
         @media screen and (min-width: 1200px) {
           h1 {
             font-size: 280px;
-            bottom: -260px;
+            bottom: -120px;
           }
         }
       `}
