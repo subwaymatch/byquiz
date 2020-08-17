@@ -1,24 +1,11 @@
 import Link from 'next/link';
 import classNames from 'classnames/bind';
 import _ from 'lodash';
-import { motion } from 'framer-motion';
 import { ICourse } from 'typing/course';
 import styles from './course-sidebar.module.scss';
 import { GoCheck } from 'react-icons/go';
 
 const cx = classNames.bind(styles);
-
-const linkItemVariants = {
-  hover: {
-    y: 2,
-    transition: {
-      duration: 0.1,
-    },
-  },
-  tap: {
-    scale: 0.99,
-  },
-};
 
 type CourseSidebarProps = {
   course: ICourse;
@@ -50,15 +37,12 @@ export default function CourseSidebar({
               href="/course/[courseId]/[moduleId]/[pageId]"
               as={`/course/${course.id}/${module.id}/${module.pages[0].id}`}
             >
-              <motion.div
+              <div
                 className={cx('moduleLinkItem', {
                   isComplete,
                   isInProgress,
                   isIncomplete,
                 })}
-                variants={linkItemVariants}
-                whileHover="hover"
-                whileTap="tap"
               >
                 <div className={cx('verticalLine')} />
                 <div className={cx('indicator')}>
@@ -73,7 +57,7 @@ export default function CourseSidebar({
                   )}
                 </div>
                 <span className={cx('label')}>{module.title}</span>
-              </motion.div>
+              </div>
             </Link>
           );
         })}

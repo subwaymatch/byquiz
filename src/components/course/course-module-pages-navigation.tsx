@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import classNames from 'classnames/bind';
-import { motion } from 'framer-motion';
 import styles from './course-module-pages-navigation.module.scss';
 import { ICourseModulePageMeta } from 'typing/course';
 
@@ -28,22 +27,13 @@ export default function CourseModulePagesNavigation({
             href="/course/[courseId]/[moduleId]/[pageId]"
             as={`/course/${courseId}/${moduleId}/${pageMeta.id}`}
           >
-            <motion.div
+            <div
               className={cx('pageLinkItem', {
                 active: pageMeta.id === currentPageId,
               })}
-              whileHover={{
-                y: 2,
-                transition: {
-                  duration: 0.1,
-                },
-              }}
-              whileTap={{
-                scale: 0.9,
-              }}
             >
               <span>{pageIndex + 1}</span>
-            </motion.div>
+            </div>
           </Link>
         ))}
       </nav>
