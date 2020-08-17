@@ -18,6 +18,7 @@ export default function Home() {
           <motion.div
             initial="hidden"
             animate="visible"
+            exit="hidden"
             variants={{
               hidden: {
                 scale: 0.8,
