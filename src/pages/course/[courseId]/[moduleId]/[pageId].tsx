@@ -25,9 +25,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
       module.pages.forEach((page) => {
         paths.push({
           params: {
-            id: course.id,
-            module: module.id,
-            page: page.id,
+            courseId: course.id,
+            moduleId: module.id,
+            pageId: page.id,
           },
         });
       });
@@ -41,14 +41,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { id, module, page } = params;
+  const { courseId, moduleId, pageId } = params;
 
-  const courseId = id as string;
-  const moduleId = module as string;
-  const pageId = page as string;
-
-  const course = await getCourseData(courseId);
-  const pageData = await getCourseModulePageData(courseId, moduleId, pageId);
+  const course = await getCourseData(courseId as string);
+  const pageData = await getCourseModulePageData(
+    courseId as string,
+    moduleId as string,
+    pageId as string
+  );
 
   return {
     props: {
