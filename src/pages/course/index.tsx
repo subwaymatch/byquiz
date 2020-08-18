@@ -52,7 +52,7 @@ export default function CourseIndexPage({ courses }: CourseIndexPageProps) {
                       return (
                         <Link
                           key={cm.id}
-                          href="/course/[course]/[module]/[page]"
+                          href="/course/[id]/[module]/[page]"
                           as={`/course/${course.id}/${cm.id}/${cm.pages[0].id}`}
                         >
                           <a className={styles.moduleItem}>{cm.title}</a>
