@@ -24,7 +24,6 @@
     "react-icons": "^3.10.0",
     "react-redux": "^7.2.0",
     "react-redux-firebase": "^3.6.0",
-    "react-spinners": "^0.9.0",
     "react-toastify": "^6.0.8",
     "redux-firestore": "^0.13.0",
     "remark": "^12.0.0",

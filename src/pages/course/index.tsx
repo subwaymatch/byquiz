@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import { getAllCourses } from 'lib/courses';
 import Layout from 'src/components/layout';
 import styles from './course.module.scss';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,25 @@ type CourseIndexPageProps = {
 export default function CourseIndexPage({ courses }: CourseIndexPageProps) {
   return (
     <Layout>
-      <div className={cx('courseIndexWrapper')}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={{
+          hidden: {
+            scale: 0.8,
+            opacity: 0,
+          },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              delay: 0.4,
+            },
+          },
+        }}
+        className={cx('courseIndexWrapper')}
+      >
         <h1 className={cx('pageTitle')}>All Courses</h1>
 
         <div>
@@ -46,7 +65,7 @@ export default function CourseIndexPage({ courses }: CourseIndexPageProps) {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </Layout>
   );
 }
