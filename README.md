@@ -4,7 +4,7 @@
 
 <blockquote>Learn to code by solving problems - both inside and outside the classroom.</blockquote>
 
-**This project is in development.**
+**This project is in development.** I've forked this project to https://github.com/subwaymatch/accy570-course-site and will use that repository for the next few months.
 
 Vercel Project - [https://vercel.com/subwaymatch/byquiz-prototype](https://vercel.com/subwaymatch/byquiz-prototype)
 
