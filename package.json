@@ -27,7 +27,7 @@
     "react-toastify": "^6.0.8",
     "redux-firestore": "^0.13.0",
     "remark": "^12.0.0",
-    "remark-html": "^11.0.2",
+    "remark-html": "^13.0.2",
     "sass": "^1.26.10",
     "showdown": "^1.9.1",
     "worker-plugin": "^4.0.3",
